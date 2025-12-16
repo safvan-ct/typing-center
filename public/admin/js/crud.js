@@ -14,7 +14,14 @@ class CRUD {
             deferRender: true,
             destroy: true,
             responsive: true,
-            ajax: `/admin/${resource}/datatable`,
+            ajax: {
+                url: `/admin/${resource}/datatable`,
+                data: function (d) {
+                    d.filter = $("#getFilter").length
+                        ? $("#getFilter").val()
+                        : null;
+                },
+            },
             columns: columns,
             columnDefs: [{ targets: "_all", className: "text-center" }],
         });
@@ -120,57 +127,69 @@ class CRUD {
             });
     }
 
-    static toggleStatus(id, table = "dataTable") {
+    static toggleStatus(id, field = "is_active", dataTableId = "dataTable") {
         let resource = this.resource;
         toastr.clear();
 
-        if (!confirm("Are you sure you want to change status?")) return;
+        // if (!confirm("Are you sure you want to change status?")) return;
 
         showLoader();
 
         fetch(`/admin/${resource}/${id}/toggle-status`, {
             method: "PATCH",
             headers: {
+                "Content-Type": "application/json",
                 Accept: "application/json",
                 "X-CSRF-TOKEN": document.querySelector(
                     "meta[name='csrf-token']"
                 ).content,
             },
+            body: JSON.stringify({
+                column: field,
+            }),
         })
             .then((r) => r.json())
             .then((res) => {
                 toastr.success(res.message);
-                $(`#${table}`).DataTable().ajax.reload(null, false);
+                $(`#${dataTableId}`).DataTable().ajax.reload(null, false);
             })
             .catch(() => toastr.error("Network error"))
             .finally(() => hideLoader());
     }
 
     // reusable toggle column
-    static columnToggleStatus(table = "dataTable") {
+    static columnToggleStatus(field = "is_active", table = "dataTable") {
         return {
-            data: "is_active",
+            data: field,
             orderable: false,
             searchable: false,
             render: (data, type, row) => {
                 const label = data ? "Active" : "Inactive";
                 const color = data ? "text-success" : "text-danger";
 
-                return `<button  class="btn btn-link ${color}" onclick="CRUD.toggleStatus(${row.id}, '${table}')">${label}</button>`;
+                return `<button  class="btn btn-link ${color}" onclick="CRUD.toggleStatus(${row.id}, '${field}', '${table}')">${label}</button>`;
             },
         };
     }
 
     // reusable action buttons column
-    static columnActions(table = "dataTable") {
+    static columnActions(edit = true, del = true, table = "dataTable") {
         return {
             data: null, // action is not from DB
             orderable: false,
             searchable: false,
-            render: (data, type, row) => `
-                <button class="btn btn-link" onclick="CRUD.open(${row.id})">Edit</button>
-                <button class="btn btn-link text-danger" onclick="CRUD.delete(${row.id}, '${table}')">Delete</button>
-            `,
+            render: (data, type, row) => {
+                return `
+                    <button class="btn btn-link" onclick="CRUD.open(${
+                        row.id
+                    })">Edit</button>
+                    ${
+                        del
+                            ? `<button class="btn btn-link text-danger" onclick="CRUD.delete(${row.id}, '${table}')">Delete</button>`
+                            : ""
+                    }
+                `;
+            },
         };
     }
 }

@@ -63,12 +63,12 @@
                     <li
                         class="pc-item pc-hasmenu
                         {{ Str::is('admin.categories.*', Route::currentRouteName()) ||
-                        Str::is('admin.products.*', Route::currentRouteName())
+                        Str::is('admin.subcategories.*', Route::currentRouteName())
                             ? 'active pc-trigger'
                             : '' }}">
                         <a href="javascript:void(0)" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-settings"></i></span>
-                            <span class="pc-mtext">Product Management</span>
+                            <span class="pc-mtext">Services</span>
                             <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                         </a>
                         <ul class="pc-submenu">
@@ -77,8 +77,8 @@
                                 <a class="pc-link" href="{{ route('admin.categories.index') }}">Categories</a>
                             </li>
                             <li
-                                class="pc-item {{ Route::currentRouteName() == 'admin.products.index' ? 'active' : '' }}">
-                                <a class="pc-link" href="{{ route('admin.products.index') }}">Products</a>
+                                class="pc-item {{ Route::currentRouteName() == 'admin.subcategories.index' ? 'active' : '' }}">
+                                <a class="pc-link" href="{{ route('admin.subcategories.index') }}">Sub Categories</a>
                             </li>
                         </ul>
                     </li>

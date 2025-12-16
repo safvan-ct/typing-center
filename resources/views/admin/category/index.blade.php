@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-body">
                     <button onclick="CRUD.open()" class="btn btn-primary btn-sm add-btn">Add Category</button>
-                    <x-admin.table :headers="['#', 'Title', 'Active', 'Actions']"></x-admin.table>
+                    <x-admin.table :headers="['#', 'Name', 'Services', 'Description', 'Menu', 'Active', 'Actions']"></x-admin.table>
                 </div>
             </div>
         </div>
@@ -23,11 +23,19 @@
                 data: "id"
             },
             {
-                data: "title"
+                data: "name"
+            },
+            {
+                data: "sub_categories_count"
+            },
+            {
+                data: "description",
+                visible: false
             },
 
+            CRUD.columnToggleStatus('is_menu'),
             CRUD.columnToggleStatus(),
-            CRUD.columnActions(),
+            CRUD.columnActions(true, false),
         ];
 
         window.crudTable = CRUD.loadDataTable(tableColumns);
