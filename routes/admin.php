@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('login', [LoginController::class, 'create'])->name('login');
+
 Route::middleware('guest')->prefix('admin')->name('admin.')->group(function () {
     Route::get('register', [RegisterController::class, 'create'])->name('register');
     Route::post('register', [RegisterController::class, 'store']);

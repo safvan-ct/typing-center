@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('web.index');
 Route::get('/about', [HomeController::class, 'about'])->name('web.about');
 Route::get('/service-list', [ServiceController::class, 'index'])->name('web.service-list');
+Route::get('/service-details/{slug}', [ServiceController::class, 'show'])->name('web.service-details');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -20,10 +21,8 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/admin.php';
-require __DIR__ . '/auth.php';
-
-Route::get('/{slug}', [ServiceController::class, 'show'])->name('web.service-details');
+// require __DIR__ . '/auth.php';
 
 Route::fallback(function () {
-    return view('web.404');
+    return abort(404);
 });
