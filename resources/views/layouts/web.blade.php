@@ -59,10 +59,12 @@
                             </a>
                         </li>
 
+                        @php $service = isset($service) ? $service : null; @endphp
                         @foreach ($sharedCategories as $category)
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarServicesDropdown"
-                                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle {{ $category->id == $service?->category_id ? 'active' : '' }}"
+                                    href="#" id="navbarServicesDropdown" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
                                     {{ $category->name }}
                                 </a>
                                 @php
@@ -73,7 +75,8 @@
                                 <ul class="dropdown-menu {{ $useTwoColumns ? 'dropdown-2cols' : '' }}">
                                     @foreach ($items as $item)
                                         <li>
-                                            <a class="dropdown-item" href="{{ route('web.service', $item->slug) }}">
+                                            <a class="dropdown-item {{ $item->id == $service?->id ? 'active' : '' }}"
+                                                href="{{ route('web.service-details', $item->slug) }}">
                                                 {{ $item->name }}
                                             </a>
                                         </li>
