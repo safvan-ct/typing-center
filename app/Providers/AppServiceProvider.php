@@ -2,6 +2,8 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use App\Models\Settings;
+use App\Models\SubCategory;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
@@ -37,7 +39,19 @@ class AppServiceProvider extends ServiceProvider
                     ->get();
             });
 
-            $view->with('sharedCategories', $categories);
+            $settings = Cache::rememberForever('general_settings', function () {
+                return Settings::pluck('value', 'key');
+            });
+
+            $useful = Cache::rememberForever('useful_links', function () use ($settings) {
+                return SubCategory::select('id', 'name', 'slug')->where('useful_service', true)->get();
+            });
+
+            $view->with([
+                'sharedCategories' => $categories,
+                'generalSettings'  => $settings,
+                'usefulLinks'      => $useful,
+            ]);
         });
 
         Schema::defaultStringLength(191);

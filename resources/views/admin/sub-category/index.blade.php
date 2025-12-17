@@ -15,7 +15,7 @@
                     </select>
 
                     <button onclick="CRUD.open()" class="btn btn-primary btn-sm add-btn">Add Sub Category</button>
-                    <x-admin.table :headers="['#', 'Category', 'Name', 'Description', 'Image', 'Home', 'About', 'Active', 'Actions']"></x-admin.table>
+                    <x-admin.table :headers="['#', 'Category', 'Name', 'Description', 'Image', 'Active', 'Actions']"></x-admin.table>
                 </div>
             </div>
         </div>
@@ -53,8 +53,8 @@
                 }
             },
 
-            CRUD.columnToggleStatus('is_home'),
-            CRUD.columnToggleStatus('is_about'),
+            // CRUD.columnToggleStatus('key_service'),
+            // CRUD.columnToggleStatus('useful_service'),
             CRUD.columnToggleStatus(),
             CRUD.columnActions(true, false),
         ];

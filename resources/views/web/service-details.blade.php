@@ -9,9 +9,9 @@
         <div class="page-banner-content">
             <h1>{{ $service->name }}</h1>
             <div class="breadcrumb-nav">
-                <a href="#">Home</a>
+                <a href="{{ route('web.index') }}">Home</a>
                 <span>/</span>
-                <span class="current-page">Services</span>
+                <span class="current-page">{{ $service->name }}</span>
             </div>
         </div>
     </div>
@@ -25,7 +25,9 @@
                         <div class="row align-items-center">
                             <div class="col-md-9">
                                 <h1 class="color-white fw-bold mb-1">{{ $service->name }}</h1>
-                                <p class=" color-white">{{ $service->description }}</p>
+                                <p class="m-0 color-white">
+                                    {{ $service->description ?? ($generalSettings['service_desc'] ?? '') }}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -113,22 +115,5 @@
         </div>
     </div>
 
-    <div class="cta-banner-refined">
-        <div class="container">
-            <div class="row align-items-center">
-
-                <div class="col-lg-8">
-                    <h2 class="cta-title-refined">Are You Looking For Immigration Services?</h2>
-                    <p class="cta-contact-text-refined">
-                        **Get in Touch with Us!** Call us: <span class="contact-bold">(+971) 04 396 9911</span> or email
-                        us: <span class="contact-bold">info@amercentre.ae</span>
-                    </p>
-                </div>
-
-                <div class="col-lg-4 text-center text-lg-end">
-                    <button class="btn btn-consultation-refined">Free Consultation</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <x-web.cta-banner />
 @endsection

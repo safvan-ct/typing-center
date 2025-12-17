@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('slug');
             $table->string('description')->nullable();
             $table->string('image')->nullable();
-            $table->boolean('is_home')->default(false);
-            $table->boolean('is_about')->default(false);
+            $table->boolean('key_service')->default(false);
+            $table->boolean('useful_service')->default(false);
             $table->boolean('is_active')->default(true);
             $table->unsignedInteger('sort_order')->default(0);
             $table->timestamps();

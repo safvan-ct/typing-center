@@ -4,9 +4,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 
-class Category extends Model
+class Settings extends Model
 {
-    protected $fillable = ['name', 'slug', 'is_menu', 'sort_order', 'description', 'icon', 'is_active'];
+    protected $fillable = ['key', 'value'];
 
     protected static function booted()
     {
@@ -16,11 +16,6 @@ class Category extends Model
 
     protected static function clearMenuCache(): void
     {
-        collect(['menu_categories', 'useful_links'])->each(fn($key) => Cache::forget($key));
-    }
-
-    public function subCategories()
-    {
-        return $this->hasMany(SubCategory::class);
+        collect(['general_settings', 'useful_links'])->each(fn($key) => Cache::forget($key));
     }
 }

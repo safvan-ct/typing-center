@@ -31,6 +31,10 @@ class ServiceController extends Controller
             ->where('slug', $slug)
             ->first();
 
+        if (! $service) {
+            abort(404);
+        }
+
         return view('web.service-details', compact('service'));
     }
 }

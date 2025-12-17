@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\Auth\RegisterController;
 use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\Category\SubCategoryController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use Illuminate\Support\Facades\Route;
 
@@ -64,5 +65,13 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
             Route::get('/form/{id?}', 'form')->name('form');
             Route::get('/datatable', 'dataTable')->name('datatable');
             Route::patch('/{subcategory}/toggle-status', 'toggleStatus')->name('toggle-status');
+        });
+
+    Route::prefix('settings')
+        ->name('settings.')
+        ->controller(SettingsController::class)
+        ->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::post('/', 'store')->name('store');
         });
 });

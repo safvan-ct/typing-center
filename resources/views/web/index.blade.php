@@ -18,15 +18,16 @@
                     <div class="button-group-creative">
                         <a href="#" class="btn btn-primary-red">Book Now</a>
                         <div class="button-separator d-none d-lg-block"></div>
-                        <a href="{{ route('web.service-list') }}" class="btn btn-explore">
-                            Explore Services <i class="fas fa-arrow-right ms-2"></i>
+                        <a href="{{ route('web.about') }}" class="btn btn-explore">
+                            Learn More <i class="fas fa-arrow-right ms-2"></i>
                         </a>
                     </div>
                 </div>
 
                 <div class="col-lg-6 col-md-12 mt-4 mt-lg-0 hero-image-container">
-                    <img src="https://placehold.co/600x400" alt="Professional Consulting Service in Dubai"
-                        class="img-fluid">
+                    <img src="{{ globalFileView($generalSettings['welcome'] ?? '') }}"
+                        alt="Professional Consulting Service in Dubai" class="img-fluid"
+                        style="max-height: 400px; object-fit: cover;">
                 </div>
             </div>
         </div>
@@ -81,8 +82,9 @@
 
                 <div class="col-lg-5">
                     <div class="ad-container">
-                        <img src="https://placehold.co/600x400" alt="Promotional Image for Visa Services with Dubai Skyline"
-                            class="img-fluid ad-image" style="box-shadow: 0 10px 20px rgba(0,0,0,0.15);">
+                        <img src="{{ globalFileView($generalSettings['who_we_are'] ?? '') }}"
+                            alt="Promotional Image for Visa Services with Dubai Skyline" class="img-fluid ad-image"
+                            style="box-shadow: 0 10px 20px rgba(0,0,0,0.15); max-width: 100%; max-height: 350px; object-fit: cover;">
 
                         <button class="promo-banner rotate-n-12">APPLY NOW !</button>
 
@@ -110,7 +112,8 @@
                             <div class="header-bg">
                                 <div class="icon-container">
                                     <div class="icon-image">
-                                        <img src="{{ $item->image_url }}" alt="Service Icon">
+                                        <img src="{{ $item->image_url ?? globalFileView($generalSettings['service_icon'] ?? '') }}"
+                                            alt="Service Icon">
                                     </div>
                                 </div>
                             </div>
@@ -119,7 +122,7 @@
                                 <h4 class="card-title">{{ $item->name }}</h4>
 
                                 <p class="card-text text-secondary">
-                                    {{ $item->description ?? 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat' }}
+                                    {{ $item->description ?? ($generalSettings['service_desc'] ?? '') }}
                                 </p>
 
                                 <div class="mt-auto">
@@ -135,86 +138,7 @@
         </div>
     </section>
 
-    <div class="cta-banner-refined">
-        <div class="container">
-            <div class="row align-items-center">
+    <x-web.cta-banner />
 
-                <div class="col-lg-8">
-                    <h2 class="cta-title-refined">Are You Looking For Immigration Services?</h2>
-                    <p class="cta-contact-text-refined">
-                        **Get in Touch with Us!** Call us: <span class="contact-bold">(+971) 04 396 9911</span> or
-                        email
-                        us: <span class="contact-bold">info@amercentre.ae</span>
-                    </p>
-                </div>
-
-                <div class="col-lg-4 text-center text-lg-end">
-                    <button class="btn btn-consultation-refined">Free Consultation</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <section class="client-carousel-section py-5 bg-white">
-        <div class="container">
-            <div class="row text-center mb-4">
-                <div class="col-12">
-                    <h2 class="section-heading text-center">
-                        <span class="section-heading-underline">Our Valued Partners</span>
-                    </h2>
-                </div>
-            </div>
-
-            <div id="clientCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
-                <div class="carousel-inner">
-
-                    <div class="carousel-item active">
-                        <div class="row text-center align-items-center">
-                            <div class="col-2"><img src="https://placehold.co/600x400" alt="Logo 1"
-                                    class="img-fluid client-logo" style="max-height: 80px;"></div>
-                            <div class="col-2"><img src="https://placehold.co/600x400" alt="Logo 2"
-                                    class="img-fluid client-logo" style="max-height: 80px;"></div>
-                            <div class="col-2"><img src="https://placehold.co/600x400" alt="Logo 2"
-                                    class="img-fluid client-logo" style="max-height: 80px;"></div>
-                            <div class="col-2"><img src="https://placehold.co/600x400" alt="Logo 4"
-                                    class="img-fluid client-logo" style="max-height: 80px;"></div>
-                            <div class="col-2"><img src="https://placehold.co/600x400" alt="Logo 2"
-                                    class="img-fluid client-logo" style="max-height: 80px;"></div>
-                            <div class="col-2"><img src="https://placehold.co/600x400" alt="Logo 4"
-                                    class="img-fluid client-logo" style="max-height: 80px;"></div>
-                        </div>
-                    </div>
-
-                    <div class="carousel-item">
-                        <div class="row text-center align-items-center">
-                            <div class="col-2"><img src="https://placehold.co/600x400" alt="Logo 1"
-                                    class="img-fluid client-logo" style="max-height: 80px;"></div>
-                            <div class="col-2"><img src="https://placehold.co/600x400" alt="Logo 2"
-                                    class="img-fluid client-logo" style="max-height: 80px;"></div>
-                            <div class="col-2"><img src="https://placehold.co/600x400" alt="Logo 2"
-                                    class="img-fluid client-logo" style="max-height: 80px;"></div>
-                            <div class="col-2"><img src="https://placehold.co/600x400" alt="Logo 4"
-                                    class="img-fluid client-logo" style="max-height: 80px;"></div>
-                            <div class="col-2"><img src="https://placehold.co/600x400" alt="Logo 2"
-                                    class="img-fluid client-logo" style="max-height: 80px;"></div>
-                            <div class="col-2"><img src="https://placehold.co/600x400" alt="Logo 4"
-                                    class="img-fluid client-logo" style="max-height: 80px;"></div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <button class="carousel-control-prev" type="button" data-bs-target="#clientCarousel"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#clientCarousel"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-        </div>
-    </section>
+    <x-web.clients />
 @endsection

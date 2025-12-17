@@ -30,6 +30,11 @@
         .choices__list[aria-expanded] {
             z-index: 9999 !important;
         }
+
+        .choices.is-focused .choices__inner,
+        .choices.is-open .choices__inner {
+            box-shadow: none !important;
+        }
     </style>
 
     @stack('styles')
@@ -67,7 +72,7 @@
                             ? 'active pc-trigger'
                             : '' }}">
                         <a href="javascript:void(0)" class="pc-link">
-                            <span class="pc-micon"><i class="ti ti-settings"></i></span>
+                            <span class="pc-micon"><i class="ti ti-package"></i></span>
                             <span class="pc-mtext">Services</span>
                             <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                         </a>
@@ -81,6 +86,14 @@
                                 <a class="pc-link" href="{{ route('admin.subcategories.index') }}">Sub Categories</a>
                             </li>
                         </ul>
+                    </li>
+
+                    <li class="pc-item">
+                        <a href="{{ route('admin.settings.index') }}"
+                            class="pc-link {{ Route::currentRouteName() == 'admin.settings.*' ? 'active' : '' }}">
+                            <span class="pc-micon"><i class="ti ti-settings"></i></span>
+                            <span class="pc-mtext">Settings</span>
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -256,6 +269,14 @@
 
             updateStatus(url, token);
         }
+
+        @if (session('success'))
+            toastr.success("{{ session('success') }}");
+        @endif
+
+        @if (session('error'))
+            toastr.error("{{ session('error') }}");
+        @endif
     </script>
 </body>
 

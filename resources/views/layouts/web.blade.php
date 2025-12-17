@@ -20,15 +20,27 @@
     <div class="top-bar d-none d-md-block">
         <div class="container d-flex justify-content-between align-items-center">
             <div class="social-icons">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="{{ $generalSettings['facebook'] ?? 'javascript:void(0)' }}" target="_blank">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="{{ $generalSettings['twitter'] ?? 'javascript:void(0)' }}" target="_blank">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="{{ $generalSettings['instagram'] ?? 'javascript:void(0)' }}" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="{{ $generalSettings['linkedin'] ?? 'javascript:void(0)' }}" target="_blank">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
             </div>
 
             <div>
-                <a href="tel:+971041234567" class="me-4"><i class="fas fa-phone-alt me-1"></i> (+971) 04 123 4567</a>
-                <a href="mailto:info@yourcentre.ae"><i class="fas fa-envelope me-1"></i> info@yourcentre.ae</a>
+                <a href="tel:+{{ $generalSettings['primary_phone'] ?? '' }}" class="me-4">
+                    <i class="fas fa-phone-alt me-1"></i> {{ formatUaePhone($generalSettings['primary_phone'] ?? '') }}
+                </a>
+                <a href="mailto:{{ $generalSettings['email'] ?? '' }}">
+                    <i class="fas fa-envelope me-1"></i> {{ $generalSettings['email'] ?? '' }}
+                </a>
             </div>
         </div>
     </div>
@@ -63,8 +75,8 @@
                         @foreach ($sharedCategories as $category)
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle {{ $category->id == $service?->category_id ? 'active' : '' }}"
-                                    href="#" id="navbarServicesDropdown" role="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
+                                    href="javascript:void(0)" id="navbarServicesDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
                                     {{ $category->name }}
                                 </a>
                                 @php
@@ -107,42 +119,44 @@
 
                 <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
                     <h5 class="text-uppercase border-bottom border-danger pb-2 mb-3">About Us</h5>
-                    <p class="text-white-50">Established in 2018, we are the most eminent visas and immigration
-                        consultant service provider in the region.</p>
+                    <p class="text-white-50">{{ $generalSettings['about_us'] ?? '' }}</p>
                 </div>
 
                 <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
                     <h5 class="text-uppercase border-bottom border-danger pb-2 mb-3">Useful Links</h5>
                     <ul class="list-unstyled mb-0">
-                        <li><a href="#" class="text-white-50">Tourist Visas</a></li>
-                        <li><a href="#" class="text-white-50">Online Services</a></li>
-                        <li><a href="#" class="text-white-50">Locate Branches</a></li>
-                        <li><a href="#" class="text-white-50">Careers</a></li>
+                        @foreach ($usefulLinks as $item)
+                            <li>
+                                <a class="text-white-50" href="{{ route('web.service-details', $item->slug) }}">
+                                    {{ $item->name }}
+                                </a>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
 
                 <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
                     <h5 class="text-uppercase border-bottom border-danger pb-2 mb-3">Address</h5>
-                    <p class="mb-1 text-white-50">Main Office: Rose-8 Building, Karama, Dubai-UAE</p>
-                    <p class="mb-1 text-white-50">Email: info@yourcentre.ae</p>
+                    <p class="mb-1 text-white-50">Main Office: {{ $generalSettings['address'] ?? '' }}</p>
+                    <p class="mb-1 text-white-50">Email: {{ $generalSettings['email'] ?? '' }}</p>
                 </div>
 
                 <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
                     <h5 class="text-uppercase border-bottom border-danger pb-2 mb-3">Drop Us A Line</h5>
                     <p class="mb-1 fw-bold">Call Us Now!</p>
-                    <p class="mb-1 text-white-50">(+971) 04 123 4567</p>
-                    <p class="mb-1 text-white-50">(+971) 50 123 4567</p>
+                    <p class="mb-1 text-white-50">{{ formatUaePhone($generalSettings['primary_phone'] ?? '') }}</p>
+                    <p class="mb-1 text-white-50">{{ formatUaePhone($generalSettings['secondary_phone'] ?? '') }}</p>
                 </div>
 
             </div>
         </div>
 
         <div class="text-center p-3 mt-4" style="background-color: rgba(0, 0, 0, 0.2);">
-            &copy; 2025 YourCentre. All rights reserved.
+            &copy; {{ date('Y') }} YourCentre. All rights reserved.
         </div>
     </footer>
 
-    <a href="https://wa.me/971582530133?text=Hello%20I%20would%20like%20to%20know%20more%20about%20your%20services"
+    <a href="https://wa.me/{{ $generalSettings['whatsapp'] ?? '' }}?text={{ urlencode($generalSettings['whatsapp_message'] ?? '') }}"
         target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>

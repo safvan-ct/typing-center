@@ -6,20 +6,24 @@ use Illuminate\Support\Facades\Cache;
 
 class SubCategory extends Model
 {
-    protected $fillable = ['category_id', 'name', 'slug', 'is_home', 'is_about', 'sort_order', 'description', 'image', 'is_active'];
+    protected $fillable = ['category_id', 'name', 'slug', 'key_service', 'useful_service', 'sort_order', 'description', 'image', 'is_active'];
 
     protected $appends = ['image_url'];
 
     protected static function booted()
     {
-        static::created(fn() => Cache::forget('menu_categories'));
-        static::updated(fn() => Cache::forget('menu_categories'));
-        static::deleted(fn() => Cache::forget('menu_categories'));
+        static::saved(fn() => self::clearMenuCache());
+        static::deleted(fn() => self::clearMenuCache());
+    }
+
+    protected static function clearMenuCache(): void
+    {
+        collect(['menu_categories', 'useful_links'])->each(fn($key) => Cache::forget($key));
     }
 
     public function getImageUrlAttribute()
     {
-        return $this->image ? asset('storage/' . $this->image) : "https://placehold.co/600x400";
+        return $this->image ? asset('storage/' . $this->image) : null;
     }
 
     public function category()

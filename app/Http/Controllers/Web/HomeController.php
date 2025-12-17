@@ -8,7 +8,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $services = SubCategory::select('id', 'name', 'slug', 'description', 'image')->where('is_home', true)->get();
+        $services = SubCategory::select('id', 'name', 'slug', 'description', 'image')->where('key_service', true)->get();
         return view('web.index', compact('services'));
     }
 
