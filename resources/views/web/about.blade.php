@@ -134,5 +134,5 @@
         </div>
     </section>
 
-    <x-web.clients />
+    <x-web.clients :clients="$partners" />
 @endsection

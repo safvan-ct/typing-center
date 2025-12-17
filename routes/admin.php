@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\Auth\PasswordResetController;
 use App\Http\Controllers\Admin\Auth\RegisterController;
 use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\Category\SubCategoryController;
+use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
@@ -73,5 +74,19 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
         ->group(function () {
             Route::get('/', 'index')->name('index');
             Route::post('/', 'store')->name('store');
+        });
+
+    Route::prefix('partners')
+        ->name('partners.')
+        ->controller(PartnerController::class)
+        ->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::post('/', 'store')->name('store');
+            Route::put('/{partner}', 'update')->name('update');
+            Route::delete('/{partner}', 'destroy')->name('destroy');
+
+            Route::get('/form/{id?}', 'form')->name('form');
+            Route::get('/datatable', 'dataTable')->name('datatable');
+            Route::patch('/{partner}/toggle-status', 'toggleStatus')->name('toggle-status');
         });
 });

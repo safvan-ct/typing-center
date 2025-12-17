@@ -95,6 +95,14 @@
                             <span class="pc-mtext">Settings</span>
                         </a>
                     </li>
+
+                    <li class="pc-item">
+                        <a href="{{ route('admin.partners.index') }}"
+                            class="pc-link {{ Route::currentRouteName() == 'admin.partners.*' ? 'active' : '' }}">
+                            <span class="pc-micon"><i class="ti ti-list"></i></span>
+                            <span class="pc-mtext">Partners</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

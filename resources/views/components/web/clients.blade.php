@@ -1,4 +1,6 @@
-<section class="client-carousel-section py-5 bg-white">
+@props(['clients'])
+
+<section class="client-carousel-section py-5 bg-white {{ $clients->isEmpty() ? 'd-none' : '' }}">
     <div class="container">
         <div class="row text-center mb-4">
             <div class="col-12">
@@ -10,8 +12,22 @@
 
         <div id="clientCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
             <div class="carousel-inner">
+                @foreach ($clients as $index => $data)
+                    <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                        <div class="row justify-content-center text-center align-items-center">
+                            @foreach ($data as $client)
+                                <div class="col-6 col-sm-4 col-md-{{ $clients->count() < 6 ? '3' : '2' }}">
+                                    <img src="{{ $client->image_url }}" class="img-fluid client-logo"
+                                        style="max-height: 80px;" alt="Client Logo">
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @endforeach
 
-                <div class="carousel-item active">
+
+
+                {{-- <div class="carousel-item active">
                     <div class="row text-center align-items-center">
                         <div class="col-2"><img src="https://placehold.co/600x400" alt="Logo 1"
                                 class="img-fluid client-logo" style="max-height: 80px;"></div>
@@ -43,7 +59,7 @@
                         <div class="col-2"><img src="https://placehold.co/600x400" alt="Logo 4"
                                 class="img-fluid client-logo" style="max-height: 80px;"></div>
                     </div>
-                </div>
+                </div> --}}
 
             </div>
 

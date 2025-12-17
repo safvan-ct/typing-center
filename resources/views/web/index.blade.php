@@ -140,5 +140,5 @@
 
     <x-web.cta-banner />
 
-    <x-web.clients />
+    <x-web.clients :clients="$partners"/>
 @endsection
