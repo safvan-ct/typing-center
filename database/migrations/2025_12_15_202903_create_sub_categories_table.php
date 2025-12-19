@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('description')->nullable();
+            $table->longText('doc_notes')->nullable();
             $table->string('image')->nullable();
             $table->boolean('key_service')->default(false);
             $table->boolean('useful_service')->default(false);

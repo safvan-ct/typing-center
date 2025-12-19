@@ -98,7 +98,7 @@
         </div>
     </section>
 
-    <section class="py-5 bg-light">
+    <section class="py-5 bg-light {{ $services->isEmpty() ? 'd-none' : '' }}">
         <div class="container">
             <h2 class="section-heading text-center mb-5">
                 <span class="section-heading-underline">Our Key Services</span>
@@ -122,7 +122,7 @@
                                 <h4 class="card-title">{{ $item->name }}</h4>
 
                                 <p class="card-text text-secondary">
-                                    {{ $item->description ?? ($generalSettings['service_desc'] ?? '') }}
+                                    {{ $item->description ?? ($generalSettings['service_desc'] ?? 'Easily manage and process your applications with our premium streamlined system.') }}
                                 </p>
 
                                 <div class="mt-auto">

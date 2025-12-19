@@ -26,8 +26,12 @@ class ServiceController extends Controller
 
     public function show($slug)
     {
-        $service = SubCategory::select('id', 'category_id', 'name', 'slug', 'description', 'image')
-            ->with(['category:id,name,slug'])
+        $service = SubCategory::select('id', 'category_id', 'name', 'slug', 'description', 'doc_notes', 'image')
+            ->with([
+                'category:id,name,slug',
+                'documentCategories.documents',
+                'documents',
+            ])
             ->where('slug', $slug)
             ->first();
 
@@ -35,6 +39,12 @@ class ServiceController extends Controller
             abort(404);
         }
 
-        return view('web.service-details', compact('service'));
+        $relatedServices = SubCategory::select('id', 'name', 'slug')
+            ->where('category_id', $service->category_id)
+            ->where('is_active', true)
+            ->orderBy('name')
+            ->get();
+
+        return view('web.service-details', compact('service', 'relatedServices'));
     }
 }

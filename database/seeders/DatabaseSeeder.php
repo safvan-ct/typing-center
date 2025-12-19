@@ -26,6 +26,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CategorySeeder::class,
             SubCategorySeeder::class,
+            SettingsSeeder::class,
+            DocumentCategorySeeder::class,
+            DocumentSeeder::class,
         ]);
     }
 }
