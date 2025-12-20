@@ -16,8 +16,11 @@
                     </p>
 
                     <div class="button-group-creative">
-                        <a href="#" class="btn btn-primary-red">Book Now</a>
-                        <div class="button-separator d-none d-lg-block"></div>
+                        <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#consultantModal"
+                            class="btn btn-primary-red">
+                            Book Now
+                        </a>
+                        <div class="button-separator d-lg-block"></div>
                         <a href="{{ route('web.about') }}" class="btn btn-explore">
                             Learn More <i class="fas fa-arrow-right ms-2"></i>
                         </a>
@@ -25,8 +28,7 @@
                 </div>
 
                 <div class="col-lg-6 col-md-12 mt-4 mt-lg-0 hero-image-container">
-                    <img src="{{ asset('img/hero.png') }}"
-                        alt="Professional Consulting Service in Dubai" class="img-fluid"
+                    <img src="{{ asset('img/hero.png') }}" alt="Professional Consulting Service in Dubai" class="img-fluid"
                         style="max-height: 400px; object-fit: cover;">
                 </div>
             </div>
@@ -85,7 +87,7 @@
                         <img src="{{ asset('img/who-we-are.png') }}" alt="WHO WE ARE" class="img-fluid ad-image"
                             style="box-shadow: 0 10px 20px rgba(0,0,0,0.15); max-width: 100%; max-height: 350px; object-fit: cover;">
 
-                        <button class="promo-banner rotate-n-12">APPLY NOW !</button>
+                        <button class="promo-banner rotate-n-12" data-bs-toggle="modal" data-bs-target="#consultantModal">APPLY NOW !</button>
 
                         <div class="promo-footer text-center">
                             VISIT VISA / INSIDE COUNTRY VISA CHANGE

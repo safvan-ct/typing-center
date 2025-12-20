@@ -110,7 +110,8 @@
                             <a class="nav-link " href="contact.html">Contact</a>
                         </li>
                         <li class="nav-item ms-lg-3">
-                            <a href="consultation.html" class="btn btn-danger text-white fw-bold py-2 px-4">
+                            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#consultantModal"
+                                class="btn btn-danger text-white fw-bold py-2 px-4">
                                 Book a Consultation!
                             </a>
                         </li>
@@ -167,27 +168,128 @@
         </div>
     </footer>
 
-    <a href="https://wa.me/{{ $generalSettings['whatsapp'] ?? '' }}?text={{ urlencode($generalSettings['whatsapp_message'] ?? '') }}"
+    <a href="https://wa.me/{{ $generalSettings['whatsapp'] ?? '971582530133' }}?text={{ urlencode($generalSettings['whatsapp_message'] ?? 'Hello') }}"
         target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
+    <div class="page-loader" id="pageLoader">
+        <div class="uae-spinner"></div>
+    </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="consultantModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Header -->
+                <div class="modal-header text-white" style="background-color: var(--primary-red);">
+                    <h5 class="modal-title">Book a Consultant</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+
+                <form id="consultantForm">
+                    <!-- Body -->
+                    <div class="modal-body">
+
+                        <!-- Name -->
+                        <div class="mb-3">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" class="form-control" placeholder="Enter your name" required>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-control" placeholder="Enter your email" required>
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="mb-3">
+                            <label class="form-label">Mobile Number</label>
+                            <input type="tel" id="phone" class="form-control" inputmode="numeric"
+                                autocomplete="tel" pattern="[0-9]*"/>
+                        </div>
+
+                        <!-- Message -->
+                        <div class="mb-3">
+                            <label class="form-label">Message</label>
+                            <textarea class="form-control" rows="4" placeholder="Briefly describe your requirement"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn"
+                            style="background-color: var(--primary-red); color: #fff;">
+                            Submit Request
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.13.3/build/css/intlTelInput.css">
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.13.3/build/js/intlTelInput.min.js"></script>
     <script>
+        const input = document.querySelector("#phone");
+        window.intlTelInput(input, {
+            initialCountry: "ae",
+            separateDialCode: true,
+            nationalMode: false,
+            autoPlaceholder: "aggressive",
+            formatOnDisplay: true,
+            allowDropdown: true,
+            loadUtils: () => import("https://cdn.jsdelivr.net/npm/intl-tel-input@25.13.3/build/js/utils.js"),
+        });
+
         document.addEventListener("DOMContentLoaded", function() {
+            document.querySelector('.page-loader').style.display = 'none';
+
             document.querySelectorAll('.dropdown-submenu > a').forEach(function(element) {
                 element.addEventListener('click', function(e) {
                     if (window.innerWidth < 992) {
                         e.preventDefault();
                         e.stopPropagation();
-                        let parentListItem = this.closest('.dropdown-submenu');
+                        let
+                            parentListItem = this.closest('.dropdown-submenu');
                         parentListItem.classList.toggle('show');
                     }
                 });
             });
+        });
+
+        document.querySelector('#consultantForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.querySelector('.page-loader').style.display = 'flex';
+
+            setTimeout(() => {
+                this.submit();
+            }, 300);
+        });
+
+        const phoneInput = document.querySelector("#phone");
+
+        /* Allow only digits, space, +, -, parentheses */
+        phoneInput.addEventListener("input", function() {
+            this.value = this.value.replace(/[^0-9+\s()-]/g, "");
+        });
+
+        /* Block letter keys completely */
+        phoneInput.addEventListener("keydown", function(e) {
+            if (
+                e.key.length === 1 &&
+                !/[0-9+\s()-]/.test(e.key)
+            ) {
+                e.preventDefault();
+            }
         });
     </script>
 </body>

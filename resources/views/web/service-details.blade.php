@@ -35,7 +35,8 @@
                         </div>
 
                         <div class="col-lg-4 col-md-12 text-lg-end">
-                            <a href="#" class="btn btn-apply px-4 py-2">
+                            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#consultantModal"
+                                class="btn btn-apply px-4 py-2">
                                 Apply Now
                             </a>
                         </div>

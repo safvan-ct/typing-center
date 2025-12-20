@@ -87,7 +87,8 @@
                         <p class="card-text-dark">Apply for residency visa</p>
 
                         <div class="mt-auto d-flex justify-content-center">
-                            <a href="#" class="card-arrow-dark"><i class="fas fa-chevron-right"></i></a>
+                            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#consultantModal"
+                                class="card-arrow-dark"><i class="fas fa-chevron-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -99,7 +100,8 @@
                         <p class="card-text-dark"> Apply for change your nationality </p>
 
                         <div class="mt-auto d-flex justify-content-center">
-                            <a href="#" class="card-arrow-dark"><i class="fas fa-chevron-right"></i></a>
+                            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#consultantModal"
+                                class="card-arrow-dark"><i class="fas fa-chevron-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -111,7 +113,8 @@
                         <p class="card-text-dark"> Apply for change your profession </p>
 
                         <div class="mt-auto d-flex justify-content-center">
-                            <a href="#" class="card-arrow-dark"><i class="fas fa-chevron-right"></i></a>
+                            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#consultantModal"
+                                class="card-arrow-dark"><i class="fas fa-chevron-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -123,7 +126,8 @@
                         <p class="card-text-dark"> Apply for modify your data </p>
 
                         <div class="mt-auto d-flex justify-content-center">
-                            <a href="#" class="card-arrow-dark"><i class="fas fa-chevron-right"></i></a>
+                            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#consultantModal"
+                                class="card-arrow-dark"><i class="fas fa-chevron-right"></i></a>
                         </div>
                     </div>
                 </div>

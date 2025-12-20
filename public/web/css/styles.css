@@ -38,6 +38,40 @@ body {
     background-color: #f8f9fa;
 }
 
+.page-loader {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.page-loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Spinner */
+.uae-spinner {
+    width: 60px;
+    height: 60px;
+    border: 5px solid #e5e5e5;
+    border-top-color: var(--bs-uae-green);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 .bg-uae-green {
     background-color: var(--bs-uae-green) !important;
 }
@@ -751,8 +785,8 @@ header,
 @media (min-width: 768px) {
     .dropdown-2cols {
         column-count: 2;
-        min-width: 360px;
-        max-width: 420px;
+        min-width: 360px !important;
+        max-width: 420px !important;
     }
 
     .dropdown-2cols .dropdown-item {
@@ -1208,4 +1242,28 @@ header,
 
 .accordion-button:focus {
     box-shadow: none;
+}
+
+*:focus,
+*:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Make intl-tel-input fully Bootstrap-compatible */
+.iti {
+    width: 100%;
+}
+
+.iti--separate-dial-code .iti__selected-flag {
+    background-color: transparent;
+}
+
+/* Prevent mobile scroll / overflow issues */
+.iti__country-list {
+    max-height: 260px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    z-index: 1056;
+    /* Above modal */
 }
