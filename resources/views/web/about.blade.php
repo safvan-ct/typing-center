@@ -79,33 +79,52 @@
             <p class="what-we-do text-center">WHAT WE DO</p>
             <h2 class="main-heading text-center">We Provide All Government And Business Services At One Place</h2>
 
-            <div class="row">
-                <div class="col-md-6 col-lg-3">
-                    <div class="dark-service-card"><i class="fas fa-passport card-icon"></i>
+            <div class="row g-3 pb-4">
+                <div class="col-md-6 col-lg-3 d-flex">
+                    <div class="dark-service-card d-flex flex-column w-100 h-100">
+                        <i class="fas fa-passport card-icon"></i>
                         <h5 class="card-title-dark">Apply Residency Visa for New Born Baby</h5>
-                        <p class="card-text-dark">Apply for residency visa</p><a href="#" class="card-arrow-dark"><i
-                                class="fas fa-chevron-right"></i></a>
+                        <p class="card-text-dark">Apply for residency visa</p>
+
+                        <div class="mt-auto d-flex justify-content-center">
+                            <a href="#" class="card-arrow-dark"><i class="fas fa-chevron-right"></i></a>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="dark-service-card"><i class="fas fa-file-signature card-icon"></i>
-                        <h5 class="card-title-dark">Change Nationality</h5>
-                        <p class="card-text-dark">Apply for change your nationality</p><a href="#"
-                            class="card-arrow-dark"><i class="fas fa-chevron-right"></i></a>
+
+                <div class="col-md-6 col-lg-3 d-flex">
+                    <div class="dark-service-card d-flex flex-column w-100 h-100">
+                        <i class="fas fa-file-signature card-icon"></i>
+                        <h5 class="card-title-dark">Change Nationality </h5>
+                        <p class="card-text-dark"> Apply for change your nationality </p>
+
+                        <div class="mt-auto d-flex justify-content-center">
+                            <a href="#" class="card-arrow-dark"><i class="fas fa-chevron-right"></i></a>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="dark-service-card"><i class="fas fa-graduation-cap card-icon"></i>
-                        <h5 class="card-title-dark">Change Profession</h5>
-                        <p class="card-text-dark">Apply for change your profession</p><a href="#"
-                            class="card-arrow-dark"><i class="fas fa-chevron-right"></i></a>
+
+                <div class="col-md-6 col-lg-3 d-flex">
+                    <div class="dark-service-card d-flex flex-column w-100 h-100">
+                        <i class="fas fa-graduation-cap card-icon"></i>
+                        <h5 class="card-title-dark"> Change Profession </h5>
+                        <p class="card-text-dark"> Apply for change your profession </p>
+
+                        <div class="mt-auto d-flex justify-content-center">
+                            <a href="#" class="card-arrow-dark"><i class="fas fa-chevron-right"></i></a>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="dark-service-card"><i class="fas fa-calculator card-icon"></i>
-                        <h5 class="card-title-dark">Data Modification</h5>
-                        <p class="card-text-dark">Apply for modify your data</p><a href="#" class="card-arrow-dark"><i
-                                class="fas fa-chevron-right"></i></a>
+
+                <div class="col-md-6 col-lg-3 d-flex">
+                    <div class="dark-service-card d-flex flex-column w-100 h-100">
+                        <i class="fas fa-calculator card-icon"></i>
+                        <h5 class="card-title-dark"> Data Modification </h5>
+                        <p class="card-text-dark"> Apply for modify your data </p>
+
+                        <div class="mt-auto d-flex justify-content-center">
+                            <a href="#" class="card-arrow-dark"><i class="fas fa-chevron-right"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -114,20 +133,70 @@
 
     <x-web.cta-banner />
 
-    <section class="py-5 bg-light d-none">
+    <section class="py-5 bg-light">
         <div class="container">
-            <h2 class="section-heading text-center mb-4">
-                <span class="section-heading-underline">Our Key Services</span>
-            </h2>
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-                <div class="col">
-                    <div class="card service-card p-3 shadow-sm h-100">
-                        <div class="card-body">
-                            <h3 class="card-title text-uae-black">All Visa Services</h3>
-                            <p class="card-text text-muted">Renewal and revocation of residency, transfer to a new
-                                passport, short & long-term visits.</p>
-                            <a href="#" class="text-decoration-none fw-bold text-danger">Read More →</a>
-                        </div>
+            <h3 class="section-heading text-center mb-3 fw-bold text-uppercase">
+                <span class="section-heading-underline">Why Choose Us</span>
+            </h3>
+
+            <div class="row g-4 mb-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card p-3 h-100 feature-card shadow-sm">
+                        <i class="bi bi-file-earmark-text-fill fs-3 mb-2 color-green"></i>
+                        <h5 class="fw-bold">Accurate Documentation</h5>
+                        <p class="text-muted mb-0">
+                            Error-free typing and submission of government forms to avoid delays and rejections.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card p-3 h-100 feature-card shadow-sm">
+                        <i class="bi bi-lightning-charge-fill fs-3 mb-2 color-green"></i>
+                        <h5 class="fw-bold">Fast Processing</h5>
+                        <p class="text-muted mb-0">
+                            Quick turnaround time for visas, Emirates ID, Ejari, and other government services.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card p-3 h-100 feature-card shadow-sm">
+                        <i class="bi bi-shield-check fs-3 mb-2 color-green"></i>
+                        <h5 class="fw-bold">Government Approved</h5>
+                        <p class="text-muted mb-0">
+                            Authorized typing services compliant with UAE government regulations and systems.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card p-3 h-100 feature-card shadow-sm">
+                        <i class="bi bi-translate fs-3 mb-2 color-green"></i>
+                        <h5 class="fw-bold">Multilingual Assistance</h5>
+                        <p class="text-muted mb-0">
+                            Support available in multiple languages to serve customers from diverse backgrounds.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card p-3 h-100 feature-card shadow-sm">
+                        <i class="bi bi-people fs-3 mb-2 color-green"></i>
+                        <h5 class="fw-bold">Expert Guidance</h5>
+                        <p class="text-muted mb-0">
+                            Professional guidance on document requirements, procedures, and application status.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card p-3 h-100 feature-card shadow-sm">
+                        <i class="bi bi-headset fs-3 mb-2 color-green"></i>
+                        <h5 class="fw-bold">Customer Support</h5>
+                        <p class="text-muted mb-0">
+                            Friendly support team available to assist you throughout the application process.
+                        </p>
                     </div>
                 </div>
             </div>

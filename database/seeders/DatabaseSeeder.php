@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
             SettingsSeeder::class,
             DocumentCategorySeeder::class,
             DocumentSeeder::class,
+            CategoryServiceSeeder::class,
         ]);
     }
 }

@@ -212,7 +212,7 @@ class DocumentSeeder extends Seeder
                 "Medical fitness certificate (post-arrival in UAE)"      => '',
                 "Emirates ID application"                                => '',
                 "Employer’s trade license copy"                          => '',
-            ],
+            ]
         ];
 
         foreach ($nonGroupedDocs as $key => $docs) {

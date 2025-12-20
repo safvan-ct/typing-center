@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="col-lg-6 col-md-12 mt-4 mt-lg-0 hero-image-container">
-                    <img src="{{ globalFileView($generalSettings['welcome'] ?? '') }}"
+                    <img src="{{ asset('img/hero.png') }}"
                         alt="Professional Consulting Service in Dubai" class="img-fluid"
                         style="max-height: 400px; object-fit: cover;">
                 </div>
@@ -82,8 +82,7 @@
 
                 <div class="col-lg-5">
                     <div class="ad-container">
-                        <img src="{{ globalFileView($generalSettings['who_we_are'] ?? '') }}"
-                            alt="Promotional Image for Visa Services with Dubai Skyline" class="img-fluid ad-image"
+                        <img src="{{ asset('img/who-we-are.png') }}" alt="WHO WE ARE" class="img-fluid ad-image"
                             style="box-shadow: 0 10px 20px rgba(0,0,0,0.15); max-width: 100%; max-height: 350px; object-fit: cover;">
 
                         <button class="promo-banner rotate-n-12">APPLY NOW !</button>
@@ -112,8 +111,8 @@
                             <div class="header-bg">
                                 <div class="icon-container">
                                     <div class="icon-image">
-                                        <img src="{{ $item->image_url ?? globalFileView($generalSettings['service_icon'] ?? '') }}"
-                                            alt="Service Icon">
+                                        <img src="{{ $item->image_url ?? asset('img/service.png') }}"
+                                            alt="{{ $item->name }}">
                                     </div>
                                 </div>
                             </div>
@@ -122,7 +121,7 @@
                                 <h4 class="card-title">{{ $item->name }}</h4>
 
                                 <p class="card-text text-secondary">
-                                    {{ $item->description ?? ($generalSettings['service_desc'] ?? 'Easily manage and process your applications with our premium streamlined system.') }}
+                                    {{ $item->short_desc ?? ($generalSettings['service_desc'] ?? 'Easily manage and process your applications with our premium streamlined system.') }}
                                 </p>
 
                                 <div class="mt-auto">
@@ -140,5 +139,5 @@
 
     <x-web.cta-banner />
 
-    <x-web.clients :clients="$partners"/>
+    <x-web.clients :clients="$partners" />
 @endsection

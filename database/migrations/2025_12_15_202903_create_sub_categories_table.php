@@ -16,9 +16,14 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained();
             $table->string('name');
             $table->string('slug');
-            $table->string('description')->nullable();
+            $table->text('short_desc')->nullable();
+
+            $table->string('desc_title')->nullable();
+            $table->longText('description')->nullable();
+
             $table->longText('doc_notes')->nullable();
             $table->string('image')->nullable();
+
             $table->boolean('key_service')->default(false);
             $table->boolean('useful_service')->default(false);
             $table->boolean('is_active')->default(true);

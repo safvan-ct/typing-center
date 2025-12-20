@@ -12,6 +12,7 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         $data = [
+            'PRO & Govt Services',
             'Services',
             'Business Setup',
             'Visa',

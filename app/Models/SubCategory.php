@@ -6,7 +6,10 @@ use Illuminate\Support\Facades\Cache;
 
 class SubCategory extends Model
 {
-    protected $fillable = ['category_id', 'name', 'slug', 'key_service', 'useful_service', 'sort_order', 'description', 'doc_notes', 'image', 'is_active'];
+    protected $fillable = [
+        'category_id', 'name', 'slug', 'short_desc', 'desc_title', 'description', 'doc_notes',
+        'key_service', 'useful_service', 'sort_order', 'image', 'is_active',
+    ];
 
     protected $appends = ['image_url'];
 
@@ -39,5 +42,10 @@ class SubCategory extends Model
     public function documents()
     {
         return $this->hasMany(Document::class)->whereNull('document_category_id');
+    }
+
+    public function categoryServices()
+    {
+        return $this->hasMany(CategoryService::class);
     }
 }

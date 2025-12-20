@@ -12,7 +12,7 @@ class ServiceController extends Controller
         $services = Category::select('id', 'name', 'slug')
             ->with([
                 'subCategories' => fn($q) =>
-                $q->select('id', 'category_id', 'name', 'slug', 'description', 'image')
+                $q->select('id', 'category_id', 'name', 'slug', 'short_desc', 'image')
                     ->where('is_active', true)
                     ->orderBy('sort_order'),
             ])
@@ -26,11 +26,12 @@ class ServiceController extends Controller
 
     public function show($slug)
     {
-        $service = SubCategory::select('id', 'category_id', 'name', 'slug', 'description', 'doc_notes', 'image')
+        $service = SubCategory::select('id', 'category_id', 'name', 'slug', 'short_desc', 'desc_title', 'description', 'doc_notes', 'image')
             ->with([
                 'category:id,name,slug',
                 'documentCategories.documents',
                 'documents',
+                'categoryServices',
             ])
             ->where('slug', $slug)
             ->first();

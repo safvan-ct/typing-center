@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $services = SubCategory::select('id', 'name', 'slug', 'description', 'image')->where('key_service', true)->get();
+        $services = SubCategory::select('id', 'name', 'slug', 'short_desc', 'image')->where('key_service', true)->get();
         $partners = Partner::select('id', 'name', 'image')->where('is_active', true)->get()->chunk(6);
 
         return view('web.index', compact('services', 'partners'));

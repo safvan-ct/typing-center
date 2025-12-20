@@ -5,6 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ config('app.name') }}</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('img/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('img/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('img/favicon-16x16.png') }}">
+    <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('img/android-chrome-192x192.png') }}">
+    <link rel="icon" type="image/png" sizes="512x512" href="{{ asset('img/android-chrome-512x512.png') }}">
+    <link rel="manifest" href="{{ asset('img/site.webmanifest') }}">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -119,7 +128,9 @@
 
                 <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
                     <h5 class="text-uppercase border-bottom border-danger pb-2 mb-3">About Us</h5>
-                    <p class="text-white-50">{{ $generalSettings['about_us'] ?? '' }}</p>
+                    <p class="text-white-50">
+                        {{ $generalSettings['about_us'] ?? 'Easily manage and process your applications with our premium streamlined system.' }}
+                    </p>
                 </div>
 
                 <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
@@ -152,7 +163,7 @@
         </div>
 
         <div class="text-center p-3 mt-4" style="background-color: rgba(0, 0, 0, 0.2);">
-            &copy; {{ date('Y') }} YourCentre. All rights reserved.
+            &copy; {{ date('Y') }} {{ config('app.name') }}. All rights reserved.
         </div>
     </footer>
 
