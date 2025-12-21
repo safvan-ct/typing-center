@@ -192,13 +192,13 @@
                     @csrf
 
                     <input type="hidden" name="opened_from" id="openedFrom" value="{{ old('opened_from') }}">
-                    <input type="hidden" name="phone" id="phone_full" value="{{ old('phone', '971582530133') }}">
+                    <input type="hidden" name="phone" id="phone_full" value="{{ old('phone') }}">
 
                     <div class="modal-body">
                         <div class="mb-3">
                             <label class="form-label">Full Name</label>
                             <input type="text" class="form-control" placeholder="Enter your name" name="name"
-                                value="{{ old('name', 'John Doe') }}">
+                                value="{{ old('name') }}">
                             @error('name')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -208,7 +208,7 @@
                         <div class="mb-3">
                             <label class="form-label">Email Address</label>
                             <input type="email" class="form-control" placeholder="Enter your email" name="email"
-                                value="{{ old('email', 'test@email.com') }}" required>
+                                value="{{ old('email') }}" required>
                             @error('email')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -217,8 +217,8 @@
                         <!-- Phone -->
                         <div class="mb-3">
                             <label class="form-label">Mobile Number</label>
-                            <input type="tel" id="phone" class="form-control"
-                                value="{{ old('phone', '582530133') }}" required />
+                            <input type="tel" id="phone" class="form-control" value="{{ old('phone') }}"
+                                required />
                             @error('phone')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -228,7 +228,7 @@
                         <div class="mb-3">
                             <label class="form-label">Message</label>
                             <textarea class="form-control" rows="4" placeholder="Briefly describe your requirement" name="message"
-                                required>{{ old('message', 'test') }}</textarea>
+                                required>{{ old('message') }}</textarea>
                             @error('message')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
