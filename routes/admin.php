@@ -3,8 +3,10 @@
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\PasswordResetController;
 use App\Http\Controllers\Admin\Auth\RegisterController;
+use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\Category\SubCategoryController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SettingsController;
@@ -24,9 +26,7 @@ Route::middleware('guest')->prefix('admin')->name('admin.')->group(function () {
     Route::post('forgot-password', [PasswordResetController::class, 'store'])->name('password.email');
 });
 
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware(['auth', 'verified'])->name('admin.dashboard');
+Route::get('/admin/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('admin.dashboard');
 
 Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
     Route::post('logout', [LoginController::class, 'destroy'])->name('logout');
@@ -88,5 +88,13 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
             Route::get('/form/{id?}', 'form')->name('form');
             Route::get('/datatable', 'dataTable')->name('datatable');
             Route::patch('/{partner}/toggle-status', 'toggleStatus')->name('toggle-status');
+        });
+
+    Route::prefix('booking')
+        ->name('booking.')
+        ->controller(BookingController::class)
+        ->group(function () {
+            Route::get('/datatable', 'dataTable')->name('datatable');
+            Route::post('/status', 'updateStatus')->name('status.update');
         });
 });

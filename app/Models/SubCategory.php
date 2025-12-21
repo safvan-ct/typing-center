@@ -8,7 +8,7 @@ class SubCategory extends Model
 {
     protected $fillable = [
         'category_id', 'name', 'slug', 'short_desc', 'desc_title', 'description', 'doc_notes',
-        'key_service', 'useful_service', 'sort_order', 'image', 'is_active',
+        'key_service', 'useful_service', 'sort_order', 'image', 'is_govt_sector', 'is_active',
     ];
 
     protected $appends = ['image_url'];

@@ -117,6 +117,7 @@ class SubCategorySeeder extends Seeder
                     'doc_notes'      => $datas['doc_notes'] ?? null,
                     'key_service'    => $firstKey == $sub_category,
                     'useful_service' => $lastKey == $sub_category,
+                    'is_govt_sector' => $category_id == 1,
                 ]);
             }
         }

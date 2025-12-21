@@ -26,6 +26,7 @@ return new class extends Migration
 
             $table->boolean('key_service')->default(false);
             $table->boolean('useful_service')->default(false);
+            $table->boolean('is_govt_sector')->default(false);
             $table->boolean('is_active')->default(true);
             $table->unsignedInteger('sort_order')->default(0);
             $table->timestamps();

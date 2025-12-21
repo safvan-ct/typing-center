@@ -5,15 +5,16 @@ class CRUD {
         this.resource = name;
     }
 
-    static loadDataTable(columns, tableId = "dataTable") {
+    static loadDataTable(columns, tableId = "dataTable", rowColor = false) {
         let resource = this.resource;
 
-        return $(`#${tableId}`).DataTable({
+        let options = {
             processing: true,
             serverSide: true,
             deferRender: true,
             destroy: true,
             responsive: true,
+
             ajax: {
                 url: `/admin/${resource}/datatable`,
                 data: function (d) {
@@ -22,9 +23,21 @@ class CRUD {
                         : null;
                 },
             },
+
             columns: columns,
+
             columnDefs: [{ targets: "_all", className: "text-center" }],
-        });
+        };
+
+        if (rowColor) {
+            options.createdRow = function (row, data) {
+                $(row)
+                    .removeClass("row-new row-opened row-closed")
+                    .addClass(`row-${data.status}`);
+            };
+        }
+
+        return $(`#${tableId}`).DataTable(options);
     }
 
     static open(id = 0) {

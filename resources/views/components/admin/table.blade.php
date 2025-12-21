@@ -1,5 +1,7 @@
+@props(['headers', 'class' => 'table-striped'])
+
 <div class="table-responsive">
-    <table class="table table-hover table-striped text-center" id="dataTable">
+    <table class="table table-hover {{ $class }} text-center" id="dataTable">
         <thead class="table-light">
             <tr>
                 @foreach ($headers as $header)
