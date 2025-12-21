@@ -23,7 +23,7 @@ class SendBookingAdminMail implements ShouldQueue
     public function handle()
     {
         $sendMail = Settings::where('key', 'email')->first();
-        $sendMail = $sendMail ? $sendMail->value : 'safvanctsfn@gmail.com';
+        $sendMail = $sendMail ? $sendMail->value : 'isafvanct@gmail.com';
 
         Mail::to($sendMail)->send(new BookingAdminMail($this->booking));
     }
