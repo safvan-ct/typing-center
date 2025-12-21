@@ -17,7 +17,7 @@
 
                     <div class="button-group-creative">
                         <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#consultantModal"
-                            class="btn btn-primary-red">
+                            data-source="hero_callback" class="btn btn-primary-red">
                             Book Now
                         </a>
                         <div class="button-separator d-lg-block"></div>
@@ -87,7 +87,10 @@
                         <img src="{{ asset('img/who-we-are.png') }}" alt="WHO WE ARE" class="img-fluid ad-image"
                             style="box-shadow: 0 10px 20px rgba(0,0,0,0.15); max-width: 100%; max-height: 350px; object-fit: cover;">
 
-                        <button class="promo-banner rotate-n-12" data-bs-toggle="modal" data-bs-target="#consultantModal">APPLY NOW !</button>
+                        <button class="promo-banner rotate-n-12" data-bs-toggle="modal" data-bs-target="#consultantModal"
+                            data-source="who_we_are_callback">
+                            APPLY NOW !
+                        </button>
 
                         <div class="promo-footer text-center">
                             VISIT VISA / INSIDE COUNTRY VISA CHANGE

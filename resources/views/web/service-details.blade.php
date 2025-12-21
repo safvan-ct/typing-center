@@ -36,8 +36,8 @@
 
                         <div class="col-lg-4 col-md-12 text-lg-end">
                             <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#consultantModal"
-                                class="btn btn-apply px-4 py-2">
-                                Apply Now
+                                data-source="service_callback" class="btn btn-apply px-4 py-2">
+                                Book Now
                             </a>
                         </div>
                     </div>

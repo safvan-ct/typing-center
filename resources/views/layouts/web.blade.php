@@ -55,7 +55,7 @@
     </div>
 
     <header class="shadow-sm sticky-top bg-white">
-        <nav class="navbar navbar-expand-lg container-fluid-mobile px-3 px-md-0">
+        <nav class="navbar navbar-expand-lg container-fluid-mobile px-md-0">
             <div class="container-xl d-flex justify-content-between w-100">
                 <a href="{{ route('web.index') }}" class="navbar-brand">
                     <span class="text-uae-green me-1">UAE</span><span class="text-danger">CENTRE</span>
@@ -111,7 +111,7 @@
                         </li>
                         <li class="nav-item ms-lg-3">
                             <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#consultantModal"
-                                class="btn btn-danger text-white fw-bold py-2 px-4">
+                                data-source="navbar_callback" class="btn btn-danger text-white fw-bold py-2 px-4">
                                 Book a Consultation!
                             </a>
                         </li>
@@ -188,33 +188,50 @@
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
 
-                <form id="consultantForm">
-                    <!-- Body -->
-                    <div class="modal-body">
+                <form id="consultantForm" method="POST" action="{{ route('consultant.store') }}">
+                    @csrf
 
-                        <!-- Name -->
+                    <input type="hidden" name="opened_from" id="openedFrom" value="{{ old('opened_from') }}">
+                    <input type="hidden" name="phone" id="phone_full" value="{{ old('phone', '971582530133') }}">
+
+                    <div class="modal-body">
                         <div class="mb-3">
                             <label class="form-label">Full Name</label>
-                            <input type="text" class="form-control" placeholder="Enter your name" required>
+                            <input type="text" class="form-control" placeholder="Enter your name" name="name"
+                                value="{{ old('name', 'John Doe') }}">
+                            @error('name')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <!-- Email -->
                         <div class="mb-3">
                             <label class="form-label">Email Address</label>
-                            <input type="email" class="form-control" placeholder="Enter your email" required>
+                            <input type="email" class="form-control" placeholder="Enter your email" name="email"
+                                value="{{ old('email', 'test@email.com') }}" required>
+                            @error('email')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <!-- Phone -->
                         <div class="mb-3">
                             <label class="form-label">Mobile Number</label>
-                            <input type="tel" id="phone" class="form-control" inputmode="numeric"
-                                autocomplete="tel" pattern="[0-9]*"/>
+                            <input type="tel" id="phone" class="form-control"
+                                value="{{ old('phone', '582530133') }}" required />
+                            @error('phone')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <!-- Message -->
                         <div class="mb-3">
                             <label class="form-label">Message</label>
-                            <textarea class="form-control" rows="4" placeholder="Briefly describe your requirement"></textarea>
+                            <textarea class="form-control" rows="4" placeholder="Briefly describe your requirement" name="message"
+                                required>{{ old('message', 'test') }}</textarea>
+                            @error('message')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
 
@@ -225,7 +242,7 @@
                         </button>
                         <button type="submit" class="btn"
                             style="background-color: var(--primary-red); color: #fff;">
-                            Submit Request
+                            Book Consultant
                         </button>
                     </div>
                 </form>
@@ -235,20 +252,53 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.13.3/build/css/intlTelInput.css">
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.13.3/build/js/intlTelInput.min.js"></script>
-    <script>
+    <script type="module">
         const input = document.querySelector("#phone");
-        window.intlTelInput(input, {
+        const phoneFull = document.querySelector("#phone_full");
+
+        const iti = window.intlTelInput(input, {
             initialCountry: "ae",
             separateDialCode: true,
             nationalMode: false,
-            autoPlaceholder: "aggressive",
             formatOnDisplay: true,
-            allowDropdown: true,
             loadUtils: () => import("https://cdn.jsdelivr.net/npm/intl-tel-input@25.13.3/build/js/utils.js"),
         });
+
+        input.addEventListener("blur", function() {
+            if (iti.isValidNumber()) {
+                phoneFull.value = iti.getNumber(); // +971501234567
+            } else {
+                phoneFull.value = "";
+            }
+        });
+
+        @if (session('success'))
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: "{{ session('success') }}",
+                    confirmButtonColor: '#009736', // UAE green
+                });
+            });
+        @endif
+
+        @if (session('error'))
+            toastr.error("{{ session('error') }}");
+        @endif
+
+        @if ($errors->any())
+            document.addEventListener('DOMContentLoaded', function() {
+                const modalEl = document.getElementById('consultantModal');
+                const modal = new bootstrap.Modal(modalEl);
+
+                modal.show();
+            });
+        @endif
 
         document.addEventListener("DOMContentLoaded", function() {
             document.querySelector('.page-loader').style.display = 'none';
@@ -266,29 +316,28 @@
             });
         });
 
-        document.querySelector('#consultantForm').addEventListener('submit', function(e) {
+        const form = document.querySelector('#consultantForm');
+        let isSubmitting = false;
+
+        form.addEventListener('submit', function(e) {
+            if (isSubmitting) return;
+
             e.preventDefault();
+            isSubmitting = true;
+
             document.querySelector('.page-loader').style.display = 'flex';
+            form.querySelector('button[type="submit"]').disabled = true;
 
-            setTimeout(() => {
-                this.submit();
-            }, 300);
+            form.submit();
         });
 
-        const phoneInput = document.querySelector("#phone");
+        const consultantModal = document.getElementById('consultantModal');
 
-        /* Allow only digits, space, +, -, parentheses */
-        phoneInput.addEventListener("input", function() {
-            this.value = this.value.replace(/[^0-9+\s()-]/g, "");
-        });
-
-        /* Block letter keys completely */
-        phoneInput.addEventListener("keydown", function(e) {
-            if (
-                e.key.length === 1 &&
-                !/[0-9+\s()-]/.test(e.key)
-            ) {
-                e.preventDefault();
+        consultantModal.addEventListener('show.bs.modal', function(event) {
+            const button = event.relatedTarget;
+            if (button) {
+                const source = button.getAttribute('data-source');
+                document.getElementById('openedFrom').value = source;
             }
         });
     </script>

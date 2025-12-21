@@ -734,7 +734,7 @@ footer a:hover {
     justify-content: center;
     font-size: 28px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, .3);
-    z-index: 9999;
+    z-index: 999;
     text-decoration: none;
 }
 
@@ -1257,13 +1257,4 @@ header,
 
 .iti--separate-dial-code .iti__selected-flag {
     background-color: transparent;
-}
-
-/* Prevent mobile scroll / overflow issues */
-.iti__country-list {
-    max-height: 260px;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    z-index: 1056;
-    /* Above modal */
 }

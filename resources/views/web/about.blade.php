@@ -88,7 +88,9 @@
 
                         <div class="mt-auto d-flex justify-content-center">
                             <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#consultantModal"
-                                class="card-arrow-dark"><i class="fas fa-chevron-right"></i></a>
+                                data-source="about_callback" class="card-arrow-dark">
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -101,7 +103,9 @@
 
                         <div class="mt-auto d-flex justify-content-center">
                             <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#consultantModal"
-                                class="card-arrow-dark"><i class="fas fa-chevron-right"></i></a>
+                                data-source="about_callback" class="card-arrow-dark">
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -114,7 +118,9 @@
 
                         <div class="mt-auto d-flex justify-content-center">
                             <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#consultantModal"
-                                class="card-arrow-dark"><i class="fas fa-chevron-right"></i></a>
+                                data-source="about_callback" class="card-arrow-dark">
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -127,7 +133,9 @@
 
                         <div class="mt-auto d-flex justify-content-center">
                             <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#consultantModal"
-                                class="card-arrow-dark"><i class="fas fa-chevron-right"></i></a>
+                                data-source="about_callback" class="card-arrow-dark">
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
