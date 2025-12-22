@@ -10,7 +10,7 @@ if (! function_exists('formatUaePhone')) {
 
         if (strlen($digits) >= 8 && Str::startsWith($digits, '971')) {
             return sprintf(
-                '(+%s) %s %s %s',
+                '+%s %s %s %s',
                 substr($digits, 0, 3),
                 substr($digits, 3, 2),
                 substr($digits, 5, 3),

@@ -33,7 +33,7 @@
                     <i class="fab fa-facebook-f"></i>
                 </a>
                 <a href="{{ $generalSettings['twitter'] ?? 'javascript:void(0)' }}" target="_blank">
-                    <i class="fab fa-twitter"></i>
+                    <i class="bi bi-twitter-x"></i>
                 </a>
                 <a href="{{ $generalSettings['instagram'] ?? 'javascript:void(0)' }}" target="_blank">
                     <i class="fab fa-instagram"></i>
@@ -107,9 +107,12 @@
                         @endforeach
 
                         <li class="nav-item">
-                            <a class="nav-link " href="contact.html">Contact</a>
+                            <a class="nav-link {{ request()->routeIs('web.contact') ? 'active' : '' }}"
+                                href="{{ route('web.contact') }}">
+                                Contact
+                            </a>
                         </li>
-                        <li class="nav-item ms-lg-3">
+                        <li class="nav-item ms-lg-3 mt-2">
                             <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#consultantModal"
                                 data-source="navbar_callback" class="btn btn-danger text-white fw-bold py-2 px-4">
                                 Book a Consultation!
@@ -197,8 +200,9 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label class="form-label">Full Name</label>
-                            <input type="text" class="form-control" placeholder="Enter your name" name="name"
-                                value="{{ old('name') }}">
+                            <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                placeholder="Enter your name" name="name" value="{{ old('name') }}"
+                                @error('name') autofocus @enderror>
                             @error('name')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -207,8 +211,9 @@
                         <!-- Email -->
                         <div class="mb-3">
                             <label class="form-label">Email Address</label>
-                            <input type="email" class="form-control" placeholder="Enter your email" name="email"
-                                value="{{ old('email') }}" required>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                placeholder="Enter your email" name="email" value="{{ old('email') }}" required
+                                @error('email') autofocus @enderror>
                             @error('email')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -217,8 +222,9 @@
                         <!-- Phone -->
                         <div class="mb-3">
                             <label class="form-label">Mobile Number</label>
-                            <input type="tel" id="phone" class="form-control" value="{{ old('phone') }}"
-                                required />
+                            <input type="tel" id="phone"
+                                class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone') }}"
+                                required placeholder="00 000 0000" @error('phone') autofocus @enderror />
                             @error('phone')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -227,8 +233,8 @@
                         <!-- Message -->
                         <div class="mb-3">
                             <label class="form-label">Message</label>
-                            <textarea class="form-control" rows="4" placeholder="Briefly describe your requirement" name="message"
-                                required>{{ old('message') }}</textarea>
+                            <textarea class="form-control @error('message') is-invalid @enderror" rows="4"
+                                placeholder="How can we help you?" name="message" required @error('message') autofocus @enderror>{{ old('message') }}</textarea>
                             @error('message')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -256,6 +262,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.13.3/build/css/intlTelInput.css">
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.13.3/build/js/intlTelInput.min.js"></script>
+
     <script type="module">
         const input = document.querySelector("#phone");
         const phoneFull = document.querySelector("#phone_full");
@@ -291,12 +298,25 @@
             toastr.error("{{ session('error') }}");
         @endif
 
-        @if ($errors->any())
+        @if ($errors->any() && old('opened_from') != 'contact')
             document.addEventListener('DOMContentLoaded', function() {
                 const modalEl = document.getElementById('consultantModal');
                 const modal = new bootstrap.Modal(modalEl);
 
                 modal.show();
+
+                modalEl.addEventListener('shown.bs.modal', function() {
+                    // Focus first invalid field
+                    const firstInvalid = modalEl.querySelector(
+                        '.is-invalid, input:invalid, textarea:invalid, select:invalid'
+                    );
+
+                    if (firstInvalid) {
+                        firstInvalid.focus();
+                    }
+                }, {
+                    once: true
+                });
             });
         @endif
 
@@ -341,6 +361,8 @@
             }
         });
     </script>
+
+    @stack('scripts')
 </body>
 
 </html>

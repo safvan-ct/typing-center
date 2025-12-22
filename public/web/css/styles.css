@@ -4,7 +4,7 @@
 :root {
     /* General Site Colors */
     --bs-uae-red: #FF0000;
-    --bs-uae-green: #009736;
+    --bs-uae-green: #00843D;
     --bs-uae-black: #000000;
     --bs-hero-bg: #002e3a;
     /* Deep teal/dark green for hero background */
@@ -816,7 +816,7 @@ header,
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('placeholder_banner_bg.jpg');
+    /* background-image: url('placeholder_banner_bg.jpg'); */
     /* REPLACE WITH YOUR ACTUAL IMAGE URL */
     background-size: cover;
     background-position: center center;
@@ -965,21 +965,6 @@ header,
     padding-left: 10%;
     /* Padding for content */
     box-sizing: border-box;
-}
-
-/* Background Image */
-.page-banner-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('placeholder_banner_bg.jpg');
-    /* REPLACE WITH YOUR ACTUAL IMAGE URL */
-    background-size: cover;
-    background-position: center center;
-    z-index: 1;
-    /* Place image behind the overlay and content */
 }
 
 /* Color Overlay (The dark, greenish tint) */
@@ -1257,4 +1242,78 @@ header,
 
 .iti--separate-dial-code .iti__selected-flag {
     background-color: transparent;
+}
+
+
+/* Left Side: Form Styling */
+.contact-form-card {
+    border: none;
+    border-top: 5px solid var(--bs-uae-green);
+    border-radius: 12px;
+}
+
+.form-control:focus {
+    border-color: var(--bs-uae-green);
+    box-shadow: 0 0 0 0.25rem rgba(0, 132, 61, 0.1);
+}
+
+.btn-send {
+    background-color: var(--bs-uae-green);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-send:hover {
+    background-color: var(--bs-uae-black);
+    color: white;
+}
+
+/* Right Side: Info Styling */
+.info-card {
+    background-color: var(--bs-uae-black);
+    color: white;
+    border-radius: 12px;
+    height: 100%;
+}
+
+.contact-icon-box {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    color: var(--bs-uae-red);
+    margin-right: 15px;
+}
+
+.whatsapp-link {
+    color: #25D366;
+    /* Official WhatsApp Green */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-radius: 50%;
+    margin-right: 10px;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+.social-links a:hover {
+    background-color: var(--bs-uae-red);
+    transform: translateY(-3px);
 }

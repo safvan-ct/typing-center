@@ -25,6 +25,35 @@ class HomeController extends Controller
         return view('web.about', compact('partners'));
     }
 
+    public function contact()
+    {
+        return view('web.contact');
+    }
+
+    public function contactStore(Request $request)
+    {
+        $request->validate([
+            'contact_name'    => 'required|string|max:255',
+            'contact_email'   => 'required|email',
+            'contact_phone'   => 'required|string',
+            'contact_message' => 'required|string',
+        ]);
+
+        $booking = ConsultantRequest::create([
+            'name'        => $request->contact_name,
+            'email'       => $request->contact_email,
+            'phone'       => preg_replace('/\D+/', '', $request->contact_phone),
+            'message'     => $request->contact_message,
+            'opened_from' => 'contact_callback',
+            'ip_address'  => $request->ip(),
+            'user_agent'  => $request->userAgent(),
+        ]);
+
+        SendBookingAdminMail::dispatch($booking->toArray())->delay(now()->addSeconds(5));
+
+        return back()->with('success', 'Thank you! Our consultant will contact you shortly.');
+    }
+
     public function store(Request $request)
     {
         $request->validate([
