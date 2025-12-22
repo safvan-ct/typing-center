@@ -72,8 +72,11 @@
 
                     @if (!$service->documentCategories->isEmpty())
                         @foreach ($service->documentCategories as $data)
-                            <h5 class="pb-2 border-danger border-bottom fw-bold mt-4">{{ $data->name }}</h5>
-                            <ul class="list-group list-group-flush documents-list">
+                            @if ($data->name != 'general')
+                                <h5 class="pb-2 border-danger border-bottom fw-bold mt-4">{{ $data->name }}</h5>
+                            @endif
+
+                            {{-- <ul class="list-group list-group-flush documents-list">
                                 @foreach ($data->documents as $item)
                                     <li
                                         class="list-group-item d-flex align-items-{{ $item->notes ? 'start' : 'center' }} px-3">
@@ -83,6 +86,39 @@
                                             @if ($item->notes)
                                                 <small class="text-muted">Notes:- {{ $item->notes }}</small>
                                             @endif
+                                        </div>
+                                    </li>
+                                @endforeach
+
+                                @if ($data->notes)
+                                    <li class="list-group-item px-3 pb-2 pt-2">
+                                        @php
+                                            $notesArray = array_filter(
+                                                explode('@@@', $data->notes),
+                                            );
+                                        @endphp
+
+                                        <small class="text-muted">Notes:-</small>
+                                        @if (count($notesArray))
+                                            <ul class="ps-3 mb-0">
+                                                @foreach ($notesArray as $note)
+                                                    <li><small class="text-muted"> {{ $note }}</small></li>
+                                                @endforeach
+                                            </ul>
+                                        @endif
+                                    </li>
+                                @endif
+                            </ul> --}}
+
+                            <ul class="list-group list-group-flush documents-list">
+                                @php
+                                    $documents = array_filter(explode('@@@', $data->docs));
+                                @endphp
+                                @foreach ($documents as $item)
+                                    <li class="list-group-item d-flex align-items-center px-3">
+                                        <i class="bi bi-check-circle-fill me-3 mt-1 fs-5 color-green"></i>
+                                        <div>
+                                            <p class="m-0 p-0">{{ $item }}</p>
                                         </div>
                                     </li>
                                 @endforeach

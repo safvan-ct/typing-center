@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
             SubCategorySeeder::class,
             SettingsSeeder::class,
             DocumentCategorySeeder::class,
-            DocumentSeeder::class,
+            // DocumentSeeder::class,
             CategoryServiceSeeder::class,
         ]);
     }

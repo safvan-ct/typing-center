@@ -72,7 +72,8 @@
                         class="pc-item pc-hasmenu
                         {{ Str::is('admin.categories.*', Route::currentRouteName()) ||
                         Str::is('admin.subcategories.*', Route::currentRouteName()) ||
-                        Str::is('admin.category-services.*', Route::currentRouteName())
+                        Str::is('admin.category-services.*', Route::currentRouteName()) ||
+                        Str::is('admin.document-groups.*', Route::currentRouteName())
                             ? 'active pc-trigger'
                             : '' }}">
                         <a href="javascript:void(0)" class="pc-link">
@@ -87,7 +88,8 @@
                             </li>
                             <li
                                 class="pc-item {{ Route::currentRouteName() == 'admin.subcategories.index' ||
-                                Str::is('admin.category-services.*', Route::currentRouteName())
+                                Str::is('admin.category-services.*', Route::currentRouteName()) ||
+                                Str::is('admin.document-groups.*', Route::currentRouteName())
                                     ? 'active'
                                     : '' }}">
                                 <a class="pc-link" href="{{ route('admin.subcategories.index') }}">Sub Categories</a>

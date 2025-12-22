@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->longText('notes')->nullable();
+            $table->longText('docs')->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
 

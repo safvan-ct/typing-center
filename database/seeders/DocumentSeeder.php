@@ -212,7 +212,7 @@ class DocumentSeeder extends Seeder
                 "Medical fitness certificate (post-arrival in UAE)"      => '',
                 "Emirates ID application"                                => '',
                 "Employer’s trade license copy"                          => '',
-            ]
+            ],
         ];
 
         foreach ($nonGroupedDocs as $key => $docs) {
@@ -261,8 +261,7 @@ class DocumentSeeder extends Seeder
                 "Employee EmiratesIDCard"                                                                                                                                                                          => '',
             ],
             'renew-new-emirates-id-gcc-national-partner'           => [
-                "Applicant GCCPassport(Original) {
-                            "        => '',
+                "Applicant GCCPassport(Original)"    => '',
                 "ID fromGCCCountry"                  => '',
                 "Applicant UIDNumberfromImmigration" => '',
                 "Company LicenseCopy"                => '',
@@ -278,8 +277,7 @@ class DocumentSeeder extends Seeder
                 "Partner EmiratesID"                                                                                                                                                                               => '',
             ],
             'renew-new-emirates-id-gcc-national-real-estate-owner' => [
-                "Applicant GCCPassport(Original) {
-                                "    => '',
+                "Applicant GCCPassport(Original)"    => '',
                 "ID fromGCCCountry"                  => '',
                 "Applicant UIDNumberfromImmigration" => '',
                 "Title Deed"                         => '',
