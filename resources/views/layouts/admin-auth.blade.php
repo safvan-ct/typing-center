@@ -27,7 +27,10 @@
                 <div class="card mt-5">
                     <div class="card-body">
                         <a href="#" class="d-flex justify-content-center mt-3">
-                            <img src="{{ asset('img/logo.svg') }}" alt="image" class="img-fluid brand-logo" />
+                            <div class="fw-bold fs-2">
+                                <span class="text-success">AL</span>-<span class="text-danger">AQSA</span>
+                            </div>
+                            {{-- <img src="{{ asset('img/logo.svg') }}" alt="image" class="img-fluid brand-logo" /> --}}
                         </a>
 
                         @yield('content')

@@ -19,10 +19,15 @@ class SubCategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'category_id' => "required|exists:categories,id",
-            'name'        => "required|string|max:255",
-            'description' => "nullable|string",
-            'image'       => "nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
+            'category_id'    => "required|exists:categories,id",
+            'name'           => "required|string|max:255",
+            'short_desc'     => "nullable|string",
+            'desc_title'     => "nullable|string",
+            'description'    => "nullable|string",
+            'image'          => "nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
+            'key_service'    => "nullable|boolean",
+            'useful_service' => "nullable|boolean",
+            'is_govt_sector' => "nullable|boolean",
         ]);
 
         $image = null;
@@ -31,11 +36,16 @@ class SubCategoryController extends Controller
         }
 
         SubCategory::create([
-            'category_id' => $request->category_id,
-            'name'        => $request->name,
-            'slug'        => str()->slug($request->name),
-            'description' => $request->description,
-            'image'       => $image,
+            'category_id'    => $request->category_id,
+            'name'           => $request->name,
+            'short_desc'     => $request->short_desc,
+            'desc_title'     => $request->desc_title,
+            'slug'           => str()->slug($request->name),
+            'description'    => $request->description,
+            'image'          => $image,
+            'key_service'    => $request->key_service ?? false,
+            'useful_service' => $request->useful_service ?? false,
+            'is_govt_sector' => $request->is_govt_sector ?? false,
         ]);
 
         return response()->json(['message' => 'Sub Category created successfully']);
@@ -44,10 +54,16 @@ class SubCategoryController extends Controller
     public function update(Request $request, SubCategory $subcategory)
     {
         $data = $request->validate([
-            'category_id' => "required|exists:categories,id",
-            'name'        => "required|string|max:255",
-            'description' => "nullable|string",
-            'image'       => "nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
+            'category_id'    => "required|exists:categories,id",
+            'name'           => "required|string|max:255",
+            'short_desc'     => "nullable|string",
+            'desc_title'     => "nullable|string",
+            'description'    => "nullable|string",
+            'image'          => "nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
+            'doc_notes'      => "nullable|string",
+            'key_service'    => "nullable|boolean",
+            'useful_service' => "nullable|boolean",
+            'is_govt_sector' => "nullable|boolean",
         ]);
 
         //$data = $request->validated();

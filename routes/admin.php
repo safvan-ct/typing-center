@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\Auth\PasswordResetController;
 use App\Http\Controllers\Admin\Auth\RegisterController;
 use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\Category\CategoryController;
+use App\Http\Controllers\Admin\Category\CategoryServiceController;
 use App\Http\Controllers\Admin\Category\SubCategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PartnerController;
@@ -66,6 +67,18 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
             Route::get('/form/{id?}', 'form')->name('form');
             Route::get('/datatable', 'dataTable')->name('datatable');
             Route::patch('/{subcategory}/toggle-status', 'toggleStatus')->name('toggle-status');
+        });
+
+    Route::prefix('category-services')
+        ->name('category-services.')
+        ->controller(CategoryServiceController::class)
+        ->group(function () {
+            Route::get('/datatable', 'dataTable')->name('datatable');
+            Route::get('/form/{category}/{id?}', 'form')->name('form');
+            Route::get('/{category}', 'index')->name('index');
+            Route::post('/{category}', 'store')->name('store');
+            Route::put('/{categoryService}', 'update')->name('update');
+            Route::patch('/{categoryService}/toggle-status', 'toggleStatus')->name('toggle-status');
         });
 
     Route::prefix('settings')

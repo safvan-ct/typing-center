@@ -15,7 +15,7 @@
                     </select>
 
                     <button onclick="CRUD.open()" class="btn btn-primary btn-sm add-btn">Add Sub Category</button>
-                    <x-admin.table :headers="['#', 'Category', 'Name', 'Description', 'Image', 'Active', 'Actions']"></x-admin.table>
+                    <x-admin.table :headers="['#', 'Category', 'Name', 'Tagline', 'Image', 'Docs', 'Active', 'Actions']"></x-admin.table>
                 </div>
             </div>
         </div>
@@ -40,7 +40,7 @@
                 data: "name"
             },
             {
-                data: "description"
+                data: "short_desc"
             },
             {
                 data: "image_url",
@@ -50,6 +50,17 @@
                     return url ?
                         `<img src="${url}" width="40" height="40" class="rounded">` :
                         '-';
+                }
+            },
+            {
+                data: "is_govt_sector",
+                orderable: false,
+                searchable: false,
+                render: (data) => {
+                    const url = data == 1 ?
+                        "{{ route('admin.category-services.index', ':id') }}".replace(':id', 1) : '';
+
+                    return `<a class="btn btn-link text-primary text-decoration-none" href="${url}">ADD INFO</a>`;
                 }
             },
 
@@ -64,6 +75,14 @@
         $('#getFilter').on('change', function() {
             localStorage.setItem("CategoryFilter", $(this).val());
             crudTable.ajax.reload(null, false);
+        });
+
+        $(document).ready(function() {
+            $('#crudModal').on('shown.bs.modal', function() {
+                $(this).find('.modal-dialog')
+                    .removeClass('modal-sm modal-lg')
+                    .addClass('modal-lg');
+            });
         });
     </script>
 @endpush

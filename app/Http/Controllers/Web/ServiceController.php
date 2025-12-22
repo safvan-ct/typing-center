@@ -28,10 +28,10 @@ class ServiceController extends Controller
     {
         $service = SubCategory::select('id', 'category_id', 'name', 'slug', 'short_desc', 'desc_title', 'description', 'doc_notes', 'image')
             ->with([
-                'category:id,name,slug',
-                'documentCategories.documents',
-                'documents',
-                'categoryServices',
+                'category'                     => fn($q)                     => $q->select('id', 'name', 'slug')->where('is_active', true),
+                'documentCategories.documents' => fn($q) => $q->where('is_active', true),
+                'documents'                    => fn($q)                    => $q->where('is_active', true),
+                'categoryServices'             => fn($q)             => $q->where('is_active', true),
             ])
             ->where('slug', $slug)
             ->first();

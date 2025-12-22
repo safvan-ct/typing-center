@@ -57,11 +57,18 @@
     <header class="shadow-sm sticky-top bg-white">
         <nav class="navbar navbar-expand-lg container-fluid-mobile px-md-0">
             <div class="container-xl d-flex justify-content-between w-100">
-                <a href="{{ route('web.index') }}" class="navbar-brand">
-                    <span class="text-uae-green me-1">UAE</span><span class="text-danger">CENTRE</span>
+                <a href="{{ route('web.index') }}" class="navbar-brand d-flex flex-column align-items-center lh-1">
+                    <div class="fw-bold fs-4">
+                        <span class="text-uae-green">AL</span>-<span class="text-danger">AQSA</span>
+                    </div>
+
+                    <small class="text-dark fw-semibold text-uppercase" style="font-size: 9px; letter-spacing: 2px;">
+                        Typing Center
+                    </small>
                 </a>
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="border: none; padding: 0px">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 

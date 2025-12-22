@@ -6,7 +6,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-12 text-lg-start text-center">
                     <h1 class="display-4">
-                        Welcome to <span class="text-uae-green">UAE Centre</span>
+                        Welcome to <span class="text-uae-green">AL-AQSA</span>
                     </h1>
                     <p class="subtitle">
                         Your Trusted Partner for Visa & Business Solutions.

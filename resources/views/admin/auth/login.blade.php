@@ -4,7 +4,7 @@
     <div class="row">
         <div class="d-flex justify-content-center">
             <div class="auth-header">
-                <h2 class="text-secondary mt-5"><b>Hi, Welcome Back</b></h2>
+                <h2 class="text-secondary mt-3"><b>Hi, Welcome Back</b></h2>
                 <p class="f-16 mt-2">Enter your credentials to continue</p>
             </div>
         </div>
@@ -19,7 +19,7 @@
 
         <div class="form-floating mb-2 emailDiv">
             <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required
-                autofocus autocomplete="username" placeholder="" />
+                autofocus autocomplete="username" placeholder="" autocomplete="new-password"/>
             <label for="email">Email Address / Username</label>
 
             @if ($errors->has('email'))
@@ -43,9 +43,9 @@
                 <label class="form-check-label text-muted" for="remember">Remember me</label>
             </div>
 
-            <h5 class="text-secondary">
+            {{-- <h5 class="text-secondary">
                 <a href="{{ route('admin.password.request') }}" class="text-secondary">Forgot Password?</a>
-            </h5>
+            </h5> --}}
         </div>
 
         <div class="d-grid mt-4">
@@ -54,7 +54,7 @@
     </form>
 
     <hr />
-    <h5 class="d-flex justify-content-center">
+    {{-- <h5 class="d-flex justify-content-center">
         <a href="{{ route('admin.register') }}" class="text-secondary">Don't have an account?</a>
-    </h5>
+    </h5> --}}
 @endsection

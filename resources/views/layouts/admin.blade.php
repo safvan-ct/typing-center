@@ -51,8 +51,11 @@
         <div class="navbar-wrapper">
             <div class="m-header d-flex justify-content-center">
                 <a href="{{ route('admin.dashboard') }}" class="b-brand text-primary">
-                    <img src="{{ asset('img/logo.svg') }}" alt="{{ config('app.name') }}" class="logo logo-lg"
-                        width="150" />
+                    <div class="fw-bold fs-2">
+                        <span class="text-success">AL</span>-<span class="text-danger">AQSA</span>
+                    </div>
+                    {{-- <img src="{{ asset('img/logo.svg') }}" alt="{{ config('app.name') }}" class="logo logo-lg"
+                        width="150" /> --}}
                 </a>
             </div>
 
@@ -68,7 +71,8 @@
                     <li
                         class="pc-item pc-hasmenu
                         {{ Str::is('admin.categories.*', Route::currentRouteName()) ||
-                        Str::is('admin.subcategories.*', Route::currentRouteName())
+                        Str::is('admin.subcategories.*', Route::currentRouteName()) ||
+                        Str::is('admin.category-services.*', Route::currentRouteName())
                             ? 'active pc-trigger'
                             : '' }}">
                         <a href="javascript:void(0)" class="pc-link">
@@ -82,7 +86,10 @@
                                 <a class="pc-link" href="{{ route('admin.categories.index') }}">Categories</a>
                             </li>
                             <li
-                                class="pc-item {{ Route::currentRouteName() == 'admin.subcategories.index' ? 'active' : '' }}">
+                                class="pc-item {{ Route::currentRouteName() == 'admin.subcategories.index' ||
+                                Str::is('admin.category-services.*', Route::currentRouteName())
+                                    ? 'active'
+                                    : '' }}">
                                 <a class="pc-link" href="{{ route('admin.subcategories.index') }}">Sub Categories</a>
                             </li>
                         </ul>

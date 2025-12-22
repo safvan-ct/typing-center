@@ -40,7 +40,7 @@ class CRUD {
         return $(`#${tableId}`).DataTable(options);
     }
 
-    static open(id = 0) {
+    static open(id = 0, attributeId = "") {
         toastr.clear();
         let resource = this.resource;
 
@@ -63,11 +63,11 @@ class CRUD {
             .off("submit")
             .on("submit", function (e) {
                 e.preventDefault();
-                CRUD.save();
+                CRUD.save("dataTable", attributeId);
             });
     }
 
-    static save(table = "dataTable") {
+    static save(table = "dataTable", attributeId = "") {
         toastr.clear();
         let resource = this.resource;
 
@@ -75,8 +75,10 @@ class CRUD {
         let formData = new FormData(form);
         let id = formData.get("id");
 
-        let url =
-            id && id > 0 ? `/admin/${resource}/${id}` : `/admin/${resource}`;
+        let createUrl = attributeId
+            ? `/admin/${resource}/${attributeId}`
+            : `/admin/${resource}`;
+        let url = id && id > 0 ? `/admin/${resource}/${id}` : createUrl;
 
         formData.append("_method", id && id > 0 ? "PUT" : "POST");
 
