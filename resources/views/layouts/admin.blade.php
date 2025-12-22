@@ -69,7 +69,7 @@
                     </li>
 
                     <li
-                        class="pc-item pc-hasmenu
+                        class="d-none pc-item pc-hasmenu
                         {{ Str::is('admin.categories.*', Route::currentRouteName()) ||
                         Str::is('admin.subcategories.*', Route::currentRouteName()) ||
                         Str::is('admin.category-services.*', Route::currentRouteName()) ||

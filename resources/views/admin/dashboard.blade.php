@@ -2,58 +2,43 @@
 
 @section('content')
     <div class="row">
-        <div class="col-xl-4 col-md-6">
-            <div class="card bg-secondary-dark dashnum-card text-white overflow-hidden">
-                <span class="round small"></span>
-                <span class="round big"></span>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col">
-                            <div class="avtar avtar-lg">
-                                <i class="text-white ti ti-calendar"></i>
-                            </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-info dashnum-card dashnum-card-small text-white overflow-hidden">
+                <span class="round bg-info small"></span>
+                <span class="round bg-info big"></span>
+                <div class="card-body p-3">
+                    <div class="d-flex align-items-center">
+                        <div class="avtar avtar-lg">
+                            <i class="text-white ti ti-calendar"></i>
                         </div>
-                    </div>
-                    <span class="text-white d-block f-34 f-w-500 my-2">
-                        {{ $newBooking }}
-                        <i class="ti ti-arrow-up-right-circle opacity-50"></i>
-                    </span>
-                    <p class="mb-0 opacity-50">New Booking</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-4 col-md-6">
-            <div class="card bg-primary-dark dashnum-card text-white overflow-hidden">
-                <span class="round small"></span>
-                <span class="round big"></span>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col">
-                            <div class="avtar avtar-lg">
-                                <i class="text-white ti ti-calendar"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-content" id="chart-tab-tabContent">
-                        <div class="tab-pane show active" id="chart-tab-home" role="tabpanel"
-                            aria-labelledby="chart-tab-home-tab" tabindex="0">
-                            <div class="row">
-                                <div class="col-6">
-                                    <span class="text-white d-block f-34 f-w-500 my-2">
-                                        {{ $totalBooking }}
-                                        <i class="ti ti-arrow-up-right-circle opacity-50"></i>
-                                    </span>
-                                    <p class="mb-0 opacity-50">Total Booking</p>
-                                </div>
-                            </div>
+                        <div class="ms-2">
+                            <h4 class="text-white mb-1">{{ $newBooking }}</h4>
+                            <p class="mb-0 opacity-75 text-sm">New Booking</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-xl-4 col-md-12">
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-success dashnum-card dashnum-card-small text-white overflow-hidden">
+                <span class="round bg-success small"></span>
+                <span class="round bg-success big"></span>
+                <div class="card-body p-3">
+                    <div class="d-flex align-items-center">
+                        <div class="avtar avtar-lg">
+                            <i class="text-white ti ti-calendar"></i>
+                        </div>
+                        <div class="ms-2">
+                            <h4 class="text-white mb-1">{{ $totalBooking }}</h4>
+                            <p class="mb-0 opacity-75 text-sm">Total Booking</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-12">
             <div class="card bg-primary-dark dashnum-card dashnum-card-small text-white overflow-hidden">
                 <span class="round bg-primary small"></span>
                 <span class="round bg-primary big"></span>
@@ -69,7 +54,9 @@
                     </div>
                 </div>
             </div>
+        </div>
 
+        <div class="col-xl-3 col-md-12">
             <div class="card dashnum-card dashnum-card-small overflow-hidden">
                 <span class="round bg-warning small"></span>
                 <span class="round bg-warning big"></span>
