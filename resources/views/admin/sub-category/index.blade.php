@@ -15,7 +15,7 @@
                     </select>
 
                     <button onclick="CRUD.open()" class="btn btn-primary btn-sm add-btn">Add Sub Category</button>
-                    <x-admin.table :headers="['#', 'Category', 'Name', 'Tagline', 'Image', 'Docs', 'Active', 'Actions']"></x-admin.table>
+                    <x-admin.table :headers="['#', 'Category', 'Name', 'Tagline', 'Image', 'Services', 'Active', 'Actions']"></x-admin.table>
                 </div>
             </div>
         </div>
@@ -56,11 +56,13 @@
                 data: "is_govt_sector",
                 orderable: false,
                 searchable: false,
-                render: (data) => {
+                render: (data, type, row) => {
                     const url = data == 1 ?
-                        "{{ route('admin.category-services.index', ':id') }}".replace(':id', 1) : '';
+                        "{{ route('admin.category-services.index', ':id') }}".replace(':id', row.id) : '';
 
-                    return `<a class="btn btn-link text-primary text-decoration-none" href="${url}">ADD INFO</a>`;
+                    return data == 1 ?
+                        `<a class="btn btn-link text-primary text-decoration-none" href="${url}">ADD INFO</a>` :
+                        '-';
                 }
             },
 
