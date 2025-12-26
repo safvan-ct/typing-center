@@ -1,18 +1,18 @@
 <?php
 namespace Database\Seeders;
 
-use App\Models\DocumentCategory;
-use App\Models\SubCategory;
+use App\Models\CenterService;
+use App\Models\DocumentGroup;
 use Illuminate\Database\Seeder;
 
-class DocumentCategorySeeder extends Seeder
+class DocumentGroupSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $data = [
+        $data1 = [
             "emirates-id"           => [
                 "Renew / New Emirates ID"                                  => [
                     'notes' => 'One Photo With White Background(Required Only For Child Below 15 Years Old)@@@For New Born Baby – Birth Certificate(Original)',
@@ -47,12 +47,12 @@ class DocumentCategorySeeder extends Seeder
             ],
             'absconding'            => [
                 'general' => [
-                    'docs'  => "Sponsor Emirates ID (Original)@@@Employee passport copy@@@VISA Copy@@@Immigration card copy@@@Company License copy@@@Absconding Labour Approval@@@Applicant Passport Copy@@@Company Bank Account IBAN Number (AE xxxx xxxxxxxxx)",
+                    'docs' => "Sponsor Emirates ID (Original)@@@Employee passport copy@@@VISA Copy@@@Immigration card copy@@@Company License copy@@@Absconding Labour Approval@@@Applicant Passport Copy@@@Company Bank Account IBAN Number (AE xxxx xxxxxxxxx)",
                 ],
             ],
             'change-nationality'    => [
                 'general' => [
-                    'docs'  => "Old Passport@@@New Passport@@@Visa copy@@@Applicant Photo With White Background@@@Sponsor Emirates ID (Original)@@@Sponsor Bank Account IBAN Number (AE xxxx xxxxxxxxx)",
+                    'docs' => "Old Passport@@@New Passport@@@Visa copy@@@Applicant Photo With White Background@@@Sponsor Emirates ID (Original)@@@Sponsor Bank Account IBAN Number (AE xxxx xxxxxxxxx)",
                 ],
             ],
             'change-profession'     => [
@@ -160,17 +160,62 @@ class DocumentCategorySeeder extends Seeder
             ],
         ];
 
+        $data = [
+            "emirates-id" => [
+                "Renew / New Emirates ID"                                  => [
+                    'notes' => 'One Photo With White Background (Required Only For Child Below 15 Years Old). For New Born Baby – Birth Certificate (Original)',
+                    'docs'  => 'Applicant Original Passport@@@Applicant Visa copy@@@Sponsor Visa Copy',
+                ],
+                "Emirates ID Replacement"                                  => [
+                    'notes' => 'One Photo With White Background (Required Only For Child Below 15 Years Old)',
+                    'docs'  => "Applicant Original Passport@@@Applicant Visa copy",
+                ],
+                "Mobile Number Update"                                     => [
+                    'docs' => "Applicant Original Passport@@@Applicant Visa copy@@@Applicant Emirates ID Copy",
+                ],
+                "Renew / New Emirates ID UAE National"                     => [
+                    'notes' => 'One Photo with White Background (Required Only for Child Below 15 Years Old). Father Emirates ID front and back (Required Only for Child Below 15 Years Old). Registration details required from Emirates Identity Authority (Required only for New Born Baby - UAE National)',
+                    'docs'  => "Applicant UAE Passport (Original)@@@Family Book Copy@@@Old Emirates ID (Required Only for Renewal)",
+                ],
+                "Renew / New Emirates ID GCC National (Employee)"          => [
+                    'docs' => "Applicant GCC Passport (Original)@@@ID from GCC Country@@@Employment Contract@@@Employee UID Number from Immigration",
+                ],
+                "Renew / New Emirates ID GCC National (Employee-Family)"   => [
+                    'docs' => "Proof of Kinship (Birth Certificate, the country Family book equivalent document, Marriage Certificate, Proof ofratios, proof of dependency . Should be issued from outside UAE and Officially attested)@@@Applicant GCC Passport (Original)@@@GCC ID for Applicant or Applicant father@@@Employment Contract@@@Applicant UID Number from Immigration@@@Employee Emirates ID Card",
+                ],
+                "Renew / New Emirates ID GCC National (Partner)"           => [
+                    'docs' => "Applicant GCC Passport (Original)@@@ID from GCC Country@@@Applicant UID Number from Immigration@@@Company License Copy@@@Memorandum Copy",
+                ],
+                "Renew / New Emirates ID GCC National (Partner-Family)"    => [
+                    'docs' => "Proof of Kinship (Birth Certificate, the country Family book equivalent document, Marriage Certificate, Proof ofratios, proof of dependency . Should be issued from outside UAE and Officially attested)@@@Applicant GCC Passport (Original)@@@GCC ID for Applicant or Applicant father@@@Applicant UID Number from Immigration@@@Company License Copy@@@Memorandum Copy@@@Partner Emirates ID",
+                ],
+                "Renew / New Emirates ID GCC National (Real Estate Owner)" => [
+                    'docs' => "Applicant GCC Passport (Original)@@@ID from GCC Country@@@Applicant UID Number from Immigration@@@Title Deed",
+                ],
+            ],
+        ];
+
         foreach ($data as $key => $item) {
-            $subCategory = SubCategory::where("slug", $key)->first();
+            $service = CenterService::where("slug", $key)->first();
+            if (! $service) {
+                continue;
+            }
 
             foreach ($item as $k => $value) {
-                DocumentCategory::create([
-                    'sub_category_id' => $subCategory->id,
-                    'name'            => $k,
-                    'slug'            => str()->slug($k),
-                    'notes'           => $value['notes'] ?? null,
-                    'docs'            => $value['docs'] ?? null,
+                $dg = DocumentGroup::create([
+                    'center_service_id' => $service->id,
+                    'name'              => $k,
+                    'notes'             => $value['notes'] ?? null,
                 ]);
+
+                $docs = explode('@@@', $value['docs'] ?? '');
+
+                foreach ($docs as $doc) {
+                    $dg->documents()->create([
+                        'center_service_id' => $service->id,
+                        'name'              => $doc,
+                    ]);
+                }
             }
         }
     }

@@ -11,17 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('document_categories', function (Blueprint $table) {
+        Schema::create('document_groups', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('sub_category_id')->constrained();
+            $table->foreignId('center_service_id')->constrained();
             $table->string('name');
-            $table->string('slug');
             $table->longText('notes')->nullable();
-            $table->longText('docs')->nullable();
+            $table->integer('sort_order')->default(0);
             $table->boolean('is_active')->default(true);
             $table->timestamps();
-
-            $table->unique(['sub_category_id', 'slug']);
         });
     }
 
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('document_categories');
+        Schema::dropIfExists('document_groups');
     }
 };

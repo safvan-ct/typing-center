@@ -4,13 +4,14 @@ use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\PasswordResetController;
 use App\Http\Controllers\Admin\Auth\RegisterController;
 use App\Http\Controllers\Admin\BookingController;
-use App\Http\Controllers\Admin\Category\CategoryController;
-use App\Http\Controllers\Admin\Category\CategoryServiceController;
-use App\Http\Controllers\Admin\Category\DocumentGroupController;
-use App\Http\Controllers\Admin\Category\SubCategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\Service\CenterServiceController;
+use App\Http\Controllers\Admin\Service\DocumentController;
+use App\Http\Controllers\Admin\Service\DocumentGroupController;
+use App\Http\Controllers\Admin\Service\GovernmentCenterController;
+use App\Http\Controllers\Admin\Service\MenuController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use Illuminate\Support\Facades\Route;
@@ -42,56 +43,73 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
         ->middleware('throttle:6,1')
         ->name('verification.send');
 
-    Route::prefix('categories')
-        ->name('categories.')
-        ->controller(CategoryController::class)
+    Route::prefix('menu')
+        ->name('menu.')
+        ->controller(MenuController::class)
         ->group(function () {
             Route::get('/', 'index')->name('index');
             Route::post('/', 'store')->name('store');
-            Route::put('/{category}', 'update')->name('update');
-            Route::delete('/{category}', 'destroy')->name('destroy');
+            Route::put('/{menu}', 'update')->name('update');
+            Route::delete('/{id}', 'destroy')->name('destroy');
 
             Route::get('/form/{id?}', 'form')->name('form');
             Route::get('/datatable', 'dataTable')->name('datatable');
-            Route::patch('/{category}/toggle-status', 'toggleStatus')->name('toggle-status');
+            Route::patch('/{id}/toggle-status', 'toggleStatus')->name('toggle-status');
         });
 
-    Route::prefix('subcategories')
-        ->name('subcategories.')
-        ->controller(SubCategoryController::class)
+    Route::prefix('govt-center')
+        ->name('govt-center.')
+        ->controller(GovernmentCenterController::class)
         ->group(function () {
             Route::get('/', 'index')->name('index');
             Route::post('/', 'store')->name('store');
-            Route::put('/{subcategory}', 'update')->name('update');
-            Route::delete('/{subcategory}', 'destroy')->name('destroy');
+            Route::put('/{govtCenter}', 'update')->name('update');
+            Route::delete('/{id}', 'destroy')->name('destroy');
 
             Route::get('/form/{id?}', 'form')->name('form');
             Route::get('/datatable', 'dataTable')->name('datatable');
-            Route::patch('/{subcategory}/toggle-status', 'toggleStatus')->name('toggle-status');
+            Route::patch('/{id}/toggle-status', 'toggleStatus')->name('toggle-status');
         });
 
-    Route::prefix('category-services')
-        ->name('category-services.')
-        ->controller(CategoryServiceController::class)
+    Route::prefix('service')
+        ->name('service.')
+        ->controller(CenterServiceController::class)
+        ->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::post('/', 'store')->name('store');
+            Route::put('/{centerService}', 'update')->name('update');
+            Route::delete('/{id}', 'destroy')->name('destroy');
+
+            Route::get('/form/{id?}', 'form')->name('form');
+            Route::get('/datatable', 'dataTable')->name('datatable');
+            Route::patch('/{id}/toggle-status', 'toggleStatus')->name('toggle-status');
+        });
+
+    Route::prefix('document')
+        ->name('document.')
+        ->controller(DocumentController::class)
         ->group(function () {
             Route::get('/datatable', 'dataTable')->name('datatable');
-            Route::get('/form/{category}/{id?}', 'form')->name('form');
-            Route::get('/{category}', 'index')->name('index');
-            Route::post('/{category}', 'store')->name('store');
-            Route::put('/{categoryService}', 'update')->name('update');
-            Route::patch('/{categoryService}/toggle-status', 'toggleStatus')->name('toggle-status');
+            Route::get('{service}', 'index')->name('index');
+            Route::post('/{service}', 'store')->name('store');
+            Route::put('/{document}', 'update')->name('update');
+            Route::delete('/{id}', 'destroy')->name('destroy');
+
+            Route::get('/form/{id}/{service}', 'form')->name('form');
+            Route::patch('/{id}/toggle-status', 'toggleStatus')->name('toggle-status');
         });
 
-    Route::prefix('document-groups')
-        ->name('document-groups.')
+    Route::prefix('document-group')
+        ->name('document-group.')
         ->controller(DocumentGroupController::class)
         ->group(function () {
             Route::get('/datatable', 'dataTable')->name('datatable');
-            Route::get('/form/{category}/{id?}', 'form')->name('form');
-            Route::get('/{category}', 'index')->name('index');
-            Route::post('/{category}', 'store')->name('store');
-            Route::put('/{categoryService}', 'update')->name('update');
-            Route::patch('/{categoryService}/toggle-status', 'toggleStatus')->name('toggle-status');
+            Route::get('/{service}', 'index')->name('index');
+            Route::post('/{service}', 'store')->name('store');
+            Route::put('/{documentGroup}', 'update')->name('update');
+
+            Route::get('/form/{id}/{service?}', 'form')->name('form');
+            Route::patch('/{id}/toggle-status', 'toggleStatus')->name('toggle-status');
         });
 
     Route::prefix('settings')

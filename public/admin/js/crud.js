@@ -48,7 +48,11 @@ class CRUD {
         $("#crudBody").html("Loading...");
 
         // Load fields partial from controller
-        $("#crudBody").load(`/admin/${resource}/form/${id}`, function () {
+        let formUrl = attributeId
+            ? `/admin/${resource}/form/${id}/${attributeId}`
+            : `/admin/${resource}/form/${id}`;
+
+        $("#crudBody").load(formUrl, function () {
             let img = $("#imagePreview");
 
             // show only if value exists
@@ -188,7 +192,12 @@ class CRUD {
     }
 
     // reusable action buttons column
-    static columnActions(edit = true, del = true, table = "dataTable") {
+    static columnActions(
+        edit = true,
+        del = true,
+        table = "dataTable",
+        attributeId = ""
+    ) {
         return {
             data: null, // action is not from DB
             orderable: false,
@@ -197,7 +206,7 @@ class CRUD {
                 return `
                     <button class="btn btn-link" onclick="CRUD.open(${
                         row.id
-                    })">Edit</button>
+                    }, ${attributeId})">Edit</button>
                     ${
                         del
                             ? `<button class="btn btn-link text-danger" onclick="CRUD.delete(${row.id}, '${table}')">Delete</button>`

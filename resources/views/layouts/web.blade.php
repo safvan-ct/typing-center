@@ -68,7 +68,8 @@
                 </a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="border: none; padding: 0px">
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
+                    style="border: none; padding: 0px">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -88,26 +89,75 @@
                         </li>
 
                         @php $service = isset($service) ? $service : null; @endphp
-                        @foreach ($sharedCategories as $category)
+                        @foreach ($sharedMenus as $menu)
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle {{ $category->id == $service?->category_id ? 'active' : '' }}"
+                                <a class="nav-link dropdown-toggle {{ $menu->id == $service?->menu_id ? 'active' : '' }}"
                                     href="javascript:void(0)" id="navbarServicesDropdown" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                                    {{ $category->name }}
+                                    {{ $menu->name }}
                                 </a>
+
                                 @php
-                                    $items = $category->subCategories;
+                                    $govtCenters = $menu->governmentCenters->map(function ($item) {
+                                        $item->is_government_center = true;
+                                        return $item;
+                                    });
+
+                                    $centerServices = $menu->centerServices->map(function ($item) {
+                                        $item->is_government_center = false;
+                                        return $item;
+                                    });
+
+                                    $items = $govtCenters->merge($centerServices);
+
                                     $useTwoColumns = $items->count() > 6;
                                 @endphp
 
                                 <ul class="dropdown-menu {{ $useTwoColumns ? 'dropdown-2cols' : '' }}">
                                     @foreach ($items as $item)
-                                        <li>
-                                            <a class="dropdown-item {{ $item->id == $service?->id ? 'active' : '' }}"
-                                                href="{{ route('web.service-details', $item->slug) }}">
-                                                {{ $item->name }}
-                                            </a>
-                                        </li>
+                                        @if ($item->is_government_center)
+                                            @if ($item->centerServices->isEmpty())
+                                                <li>
+                                                    <a class="dropdown-item {{ $item->id == $service?->id ? 'active' : '' }}"
+                                                        href="{{ route('web.service-details', $item->slug) }}">
+                                                        {{ $item->name }}
+                                                    </a>
+                                                </li>
+                                            @else
+                                                <li class="dropdown-submenu">
+                                                    <a class="dropdown-item" href="#"
+                                                        id="navbarBusinessSubDropdown" role="button"
+                                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                                        {{ $item->name }}
+                                                        <i class="fas fa-chevron-right sub-arrow"
+                                                            style="line-height: 1.7;"></i>
+                                                    </a>
+
+                                                    @php
+                                                        $innerUseTwoColumns = $item->centerServices->count() > 6;
+                                                    @endphp
+
+                                                    <ul class="dropdown-menu submenu {{ $innerUseTwoColumns ? 'dropdown-2cols' : '' }}"
+                                                        aria-labelledby="navbarBusinessSubDropdown">
+                                                        @foreach ($item->centerServices as $cs)
+                                                            <li>
+                                                                <a class="dropdown-item {{ $cs->id == $service?->id ? 'active' : '' }}"
+                                                                    href="{{ route('web.service-details', $cs->slug) }}">
+                                                                    {{ $cs->name }}
+                                                                </a>
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                </li>
+                                            @endif
+                                        @else
+                                            <li>
+                                                <a class="dropdown-item {{ $item->id == $service?->id ? 'active' : '' }}"
+                                                    href="{{ route('web.service-details', $item->slug) }}">
+                                                    {{ $item->name }}
+                                                </a>
+                                            </li>
+                                        @endif
                                     @endforeach
                                 </ul>
                             </li>

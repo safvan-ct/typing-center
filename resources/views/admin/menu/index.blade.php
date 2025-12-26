@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 
 @section('content')
-    <x-admin.page-header title="Categories" :breadcrumb="[['label' => 'Dashboard', 'link' => route('admin.dashboard')], ['label' => 'Categories']]" />
+    <x-admin.page-header title="Menu" :breadcrumb="[['label' => 'Dashboard', 'link' => route('admin.dashboard')], ['label' => 'Menu']]" />
 
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
-                    <button onclick="CRUD.open()" class="btn btn-primary btn-sm add-btn">Add Category</button>
-                    <x-admin.table :headers="['#', 'Name', 'Services', 'Description', 'Menu', 'Active', 'Actions']"></x-admin.table>
+                    <button onclick="CRUD.open()" class="btn btn-primary btn-sm add-btn">Add Menu</button>
+                    <x-admin.table :headers="['#', 'Name', 'Slug', 'Active', 'Actions']"></x-admin.table>
                 </div>
             </div>
         </div>
@@ -17,7 +17,7 @@
 
 @push('scripts')
     <script>
-        CRUD.setResource("categories");
+        CRUD.setResource("menu");
 
         const tableColumns = [{
                 data: "id"
@@ -26,14 +26,9 @@
                 data: "name"
             },
             {
-                data: "sub_categories_count"
-            },
-            {
-                data: "description",
-                visible: false
+                data: "slug"
             },
 
-            CRUD.columnToggleStatus('is_menu'),
             CRUD.columnToggleStatus(),
             CRUD.columnActions(true, false),
         ];

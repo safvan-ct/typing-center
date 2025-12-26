@@ -2,14 +2,13 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
-use App\Models\SubCategory;
+use App\Models\CenterService;
 
 class ServiceController extends Controller
 {
     public function index()
     {
-        $services = Category::select('id', 'name', 'slug')
+        $services = CenterService::select('id', 'name', 'slug')
             ->with([
                 'subCategories' => fn($q) =>
                 $q->select('id', 'category_id', 'name', 'slug', 'short_desc', 'image')
@@ -26,12 +25,11 @@ class ServiceController extends Controller
 
     public function show($slug)
     {
-        $service = SubCategory::select('id', 'category_id', 'name', 'slug', 'short_desc', 'desc_title', 'description', 'doc_notes', 'image')
+        $service = CenterService::select('id', 'menu_id', 'government_center_id', 'name', 'slug', 'tagline', 'notes', 'ad_image')
             ->with([
-                'category'                     => fn($q)                     => $q->select('id', 'name', 'slug')->where('is_active', true),
-                'documentCategories.documents' => fn($q) => $q->where('is_active', true),
-                'documents'                    => fn($q)                    => $q->where('is_active', true),
-                'categoryServices'             => fn($q)             => $q->where('is_active', true),
+                'menu'                     => fn($q)                     => $q->select('id', 'name', 'slug')->where('is_active', true),
+                'documentGroups.documents' => fn($q) => $q->where('is_active', true),
+                'documents'                => fn($q)                => $q->where('is_active', true),
             ])
             ->where('slug', $slug)
             ->first();
@@ -40,8 +38,8 @@ class ServiceController extends Controller
             abort(404);
         }
 
-        $relatedServices = SubCategory::select('id', 'name', 'slug')
-            ->where('category_id', $service->category_id)
+        $relatedServices = CenterService::select('id', 'name', 'slug')
+            ->where('menu_id', $service->menu_id)
             ->where('is_active', true)
             ->orderBy('name')
             ->get();

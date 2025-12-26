@@ -2,8 +2,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\CenterService;
 use App\Models\ConsultantRequest;
-use App\Models\SubCategory;
+use App\Models\GovernmentCenter;
 
 class DashboardController extends Controller
 {
@@ -11,8 +12,8 @@ class DashboardController extends Controller
     {
         $totalBooking  = ConsultantRequest::count();
         $newBooking    = ConsultantRequest::where('status', 1)->count();
-        $servicesCount = SubCategory::where('is_govt_sector', 0)->count();
-        $govtServices  = SubCategory::where('is_govt_sector', 1)->count();
+        $servicesCount = CenterService::count();
+        $govtServices  = GovernmentCenter::count();
 
         return view('admin.dashboard', [
             'totalBooking'  => $totalBooking,

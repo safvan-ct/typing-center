@@ -24,12 +24,12 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call([
-            CategorySeeder::class,
-            SubCategorySeeder::class,
-            SettingsSeeder::class,
-            DocumentCategorySeeder::class,
-            // DocumentSeeder::class,
-            CategoryServiceSeeder::class,
+            MenuSeeder::class,
+            GovernmentCenterSeeder::class,
+            CenterServiceSeeder::class,
+            DocumentGroupSeeder::class,
+            DocumentSeeder::class,
+            // SettingsSeeder::class,
         ]);
     }
 }

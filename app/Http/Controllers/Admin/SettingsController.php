@@ -2,8 +2,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\CenterService;
 use App\Models\Settings;
-use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -12,7 +12,7 @@ class SettingsController extends Controller
     public function index()
     {
         $settings = Settings::pluck('value', 'key');
-        $services = SubCategory::select('id', 'name', 'slug')->get();
+        $services = CenterService::select('id', 'name', 'slug')->get();
 
         return view('admin.settings', compact('settings', 'services'));
     }
@@ -105,14 +105,6 @@ class SettingsController extends Controller
                 ['key' => $key],
                 ['value' => is_array($value) ? implode(',', $value) : $value]
             );
-        }
-
-        SubCategory::query()->update(['key_service' => false, 'useful_service' => false]);
-        if (isset($data['key_services'])) {
-            SubCategory::whereIn('id', $data['key_services'])->update(['key_service' => true]);
-        }
-        if (isset($data['useful_links'])) {
-            SubCategory::whereIn('id', $data['useful_links'])->update(['useful_service' => true]);
         }
 
         return back()->with('success', 'Settings saved');

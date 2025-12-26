@@ -11,19 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('center_services', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('menu_id')->nullable()->constrained();
+            $table->foreignId('government_center_id')->nullable()->constrained();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->string('description')->nullable();
-            $table->string('icon')->nullable();
-            $table->boolean('is_menu')->default(false);
+            $table->text('tagline')->nullable();
+            $table->longText('notes')->nullable();
+
+            $table->string('ad_image')->nullable();
+
             $table->boolean('is_active')->default(true);
             $table->unsignedInteger('sort_order')->default(0);
             $table->timestamps();
-            $table->softDeletes();
-
-            $table->index(['is_active', 'sort_order']);
         });
     }
 
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('center_services');
     }
 };

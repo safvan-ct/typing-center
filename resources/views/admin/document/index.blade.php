@@ -2,7 +2,7 @@
 
 @section('content')
     @php
-        $title = '<span class="text-primary">' . e($service->name) . '</span> - Document Groups';
+        $title = '<span class="text-primary">' . e($service->name) . '</span> - Required Documents';
     @endphp
 
     <x-admin.page-header :title="$title" :breadcrumb="[
@@ -23,9 +23,10 @@
                 <div class="card-body">
                     <input type="hidden" id="getFilter" value="{{ $service->id }}">
                     <button onclick="CRUD.open(0, {{ $service->id }})" class="btn btn-primary btn-sm add-btn">
-                        Add Document Group
+                        Add Document
                     </button>
-                    <x-admin.table :headers="['#', 'Service', 'Name', 'Notes', 'Active', 'Actions']"></x-admin.table>
+
+                    <x-admin.table :headers="['#', 'Name', 'Notes', 'Active', 'Actions']"></x-admin.table>
                 </div>
             </div>
         </div>
@@ -34,25 +35,21 @@
 
 @push('scripts')
     <script>
-        CRUD.setResource("document-group");
+        CRUD.setResource("document");
 
         const tableColumns = [{
                 data: "id"
             },
             {
-                data: 'service',
-                name: 'service',
-                visible: false
-            },
-            {
-                data: "name"
+                data: "name",
+                defaultContent: ''
             },
             {
                 data: "notes",
             },
 
             CRUD.columnToggleStatus(),
-            CRUD.columnActions(true, false),
+            CRUD.columnActions(true, false, 'dataTable', '{{ $service->id }}'),
         ];
 
         window.crudTable = CRUD.loadDataTable(tableColumns);

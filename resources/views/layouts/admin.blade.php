@@ -69,30 +69,34 @@
                     </li>
 
                     <li
-                        class="d-none pc-item pc-hasmenu
-                        {{ Str::is('admin.categories.*', Route::currentRouteName()) ||
-                        Str::is('admin.subcategories.*', Route::currentRouteName()) ||
-                        Str::is('admin.category-services.*', Route::currentRouteName()) ||
-                        Str::is('admin.document-groups.*', Route::currentRouteName())
+                        class="pc-item pc-hasmenu
+                        {{ Str::is('admin.menu.*', Route::currentRouteName()) ||
+                        Str::is('admin.govt-center.*', Route::currentRouteName()) ||
+                        Str::is('admin.service.*', Route::currentRouteName()) ||
+                        Str::is('admin.document-group.*', Route::currentRouteName()) ||
+                        Str::is('admin.document.*', Route::currentRouteName())
                             ? 'active pc-trigger'
                             : '' }}">
                         <a href="javascript:void(0)" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-package"></i></span>
-                            <span class="pc-mtext">Services</span>
+                            <span class="pc-mtext">Service Config</span>
                             <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                         </a>
                         <ul class="pc-submenu">
-                            <li
-                                class="pc-item {{ Route::currentRouteName() == 'admin.categories.index' ? 'active' : '' }}">
-                                <a class="pc-link" href="{{ route('admin.categories.index') }}">Categories</a>
+                            <li class="pc-item {{ Route::currentRouteName() == 'admin.menu.index' ? 'active' : '' }}">
+                                <a class="pc-link" href="{{ route('admin.menu.index') }}">Menus</a>
                             </li>
                             <li
-                                class="pc-item {{ Route::currentRouteName() == 'admin.subcategories.index' ||
-                                Str::is('admin.category-services.*', Route::currentRouteName()) ||
-                                Str::is('admin.document-groups.*', Route::currentRouteName())
+                                class="pc-item {{ Route::currentRouteName() == 'admin.govt-center.index' ? 'active' : '' }}">
+                                <a class="pc-link" href="{{ route('admin.govt-center.index') }}">Govt. Centers</a>
+                            </li>
+                            <li
+                                class="pc-item {{ Str::is('admin.service.*', Route::currentRouteName()) ||
+                                Str::is('admin.document-group.*', Route::currentRouteName()) ||
+                                Str::is('admin.document.*', Route::currentRouteName())
                                     ? 'active'
                                     : '' }}">
-                                <a class="pc-link" href="{{ route('admin.subcategories.index') }}">Sub Categories</a>
+                                <a class="pc-link" href="{{ route('admin.service.index') }}">Services</a>
                             </li>
                         </ul>
                     </li>

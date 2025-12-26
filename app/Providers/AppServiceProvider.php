@@ -1,9 +1,8 @@
 <?php
 namespace App\Providers;
 
-use App\Models\Category;
+use App\Models\Menu;
 use App\Models\Settings;
-use App\Models\SubCategory;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
@@ -25,15 +24,26 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         View::composer('*', function ($view) {
-            $categories = Cache::rememberForever('menu_categories', function () {
-                return Category::select('id', 'name', 'slug')
-                    ->with([
-                        'subCategories' => fn($q) =>
-                        $q->select('id', 'category_id', 'name', 'slug')
-                            ->where('is_active', true)
-                            ->orderBy('sort_order'),
-                    ])
-                    ->where('is_menu', true)
+            $menus = Cache::rememberForever('menus', function () {
+                return Menu::select('id', 'name', 'slug')
+                    ->with(
+                        [
+                            'governmentCenters' => fn($q) =>
+                            $q->select('id', 'menu_id', 'name', 'slug')
+                                ->with(
+                                    [
+                                        'centerServices' => fn($q) =>
+                                        $q->select('id', 'government_center_id', 'menu_id', 'name', 'slug')
+                                            ->where('is_active', true)
+                                            ->orderBy('sort_order'),
+                                    ])
+                                ->where('is_active', true)
+                                ->orderBy('sort_order'),
+
+                            'centerServices'    => fn($q)    =>
+                            $q->select('id', 'menu_id', 'name', 'slug')->where('is_active', true)->orderBy('sort_order'),
+                        ]
+                    )
                     ->where('is_active', true)
                     ->orderBy('sort_order')
                     ->get();
@@ -43,14 +53,14 @@ class AppServiceProvider extends ServiceProvider
                 return Settings::pluck('value', 'key');
             });
 
-            $useful = Cache::rememberForever('useful_links', function () use ($settings) {
-                return SubCategory::select('id', 'name', 'slug')->where('useful_service', true)->get();
-            });
+            // $useful = Cache::rememberForever('useful_links', function () use ($settings) {
+            //     return SubCategory::select('id', 'name', 'slug')->where('useful_service', true)->get();
+            // });
 
             $view->with([
-                'sharedCategories' => $categories,
+                'sharedMenus' => $menus,
                 'generalSettings'  => $settings,
-                'usefulLinks'      => $useful,
+                'usefulLinks'      => [],
             ]);
         });
 

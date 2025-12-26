@@ -14,18 +14,17 @@ return new class extends Migration
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('sub_category_id')
-                ->constrained('sub_categories')
+            $table->foreignId('center_service_id')
+                ->constrained('center_services')
                 ->cascadeOnDelete();
 
-            $table->foreignId('document_category_id')
+            $table->foreignId('document_group_id')
                 ->nullable()
-                ->constrained('document_categories')
+                ->constrained('document_groups')
                 ->cascadeOnDelete();
 
-            $table->text('title');
+            $table->text('name');
             $table->longText('notes')->nullable();
-            $table->boolean('is_required')->default(true);
             $table->integer('sort_order')->default(0);
             $table->boolean('is_active')->default(true);
             $table->timestamps();

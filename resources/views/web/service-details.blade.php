@@ -51,7 +51,7 @@
                     <p class="{{ !$service->desc_title ? 'pt-4' : '' }}">{{ $service->description }}</p>
                 @endif
 
-                @if (!$service->documents->isEmpty() || !$service->documentCategories->isEmpty())
+                @if (!$service->documents->isEmpty() || !$service->documentGroups->isEmpty())
                     <h3 class="border-bottom mt-4 pb-2 color-red ">Documents Required</h3>
 
                     @if (!$service->documents->isEmpty())
@@ -60,7 +60,7 @@
                                 <li class="list-group-item d-flex align-items-{{ $item->notes ? 'start' : 'center' }} px-3">
                                     <i class="bi bi-check-circle-fill me-3 mt-1 fs-5 color-green"></i>
                                     <div>
-                                        <p class="m-0 p-0">{{ $item->title }}</p>
+                                        <p class="m-0 p-0">{{ $item->name }}</p>
                                         @if ($item->notes)
                                             <small class="text-muted">Note:- {{ $item->notes }}</small>
                                         @endif
@@ -70,19 +70,19 @@
                         </ul>
                     @endif
 
-                    @if (!$service->documentCategories->isEmpty())
-                        @foreach ($service->documentCategories as $data)
+                    @if (!$service->documentGroups->isEmpty())
+                        @foreach ($service->documentGroups as $data)
                             @if ($data->name != 'general')
                                 <h5 class="pb-2 border-danger border-bottom fw-bold mt-4">{{ $data->name }}</h5>
                             @endif
 
-                            {{-- <ul class="list-group list-group-flush documents-list">
+                            <ul class="list-group list-group-flush documents-list">
                                 @foreach ($data->documents as $item)
                                     <li
                                         class="list-group-item d-flex align-items-{{ $item->notes ? 'start' : 'center' }} px-3">
                                         <i class="bi bi-check-circle-fill me-3 mt-1 fs-5 color-green"></i>
                                         <div>
-                                            <p class="m-0 p-0">{{ $item->title }}</p>
+                                            <p class="m-0 p-0">{{ $item->name }}</p>
                                             @if ($item->notes)
                                                 <small class="text-muted">Notes:- {{ $item->notes }}</small>
                                             @endif
@@ -93,42 +93,7 @@
                                 @if ($data->notes)
                                     <li class="list-group-item px-3 pb-2 pt-2">
                                         @php
-                                            $notesArray = array_filter(
-                                                explode('@@@', $data->notes),
-                                            );
-                                        @endphp
-
-                                        <small class="text-muted">Notes:-</small>
-                                        @if (count($notesArray))
-                                            <ul class="ps-3 mb-0">
-                                                @foreach ($notesArray as $note)
-                                                    <li><small class="text-muted"> {{ $note }}</small></li>
-                                                @endforeach
-                                            </ul>
-                                        @endif
-                                    </li>
-                                @endif
-                            </ul> --}}
-
-                            <ul class="list-group list-group-flush documents-list">
-                                @php
-                                    $documents = array_filter(explode('@@@', $data->docs));
-                                @endphp
-                                @foreach ($documents as $item)
-                                    <li class="list-group-item d-flex align-items-center px-3">
-                                        <i class="bi bi-check-circle-fill me-3 mt-1 fs-5 color-green"></i>
-                                        <div>
-                                            <p class="m-0 p-0">{{ $item }}</p>
-                                        </div>
-                                    </li>
-                                @endforeach
-
-                                @if ($data->notes)
-                                    <li class="list-group-item px-3 pb-2 pt-2">
-                                        @php
-                                            $notesArray = array_filter(
-                                                explode('@@@', $data->notes),
-                                            );
+                                            $notesArray = array_filter(explode('.', $data->notes));
                                         @endphp
 
                                         <small class="text-muted">Notes:-</small>
@@ -146,7 +111,7 @@
                     @endif
                 @endif
 
-                @if (!$service->categoryServices->isEmpty())
+                {{-- @if (!$service->categoryServices->isEmpty())
                     <h3 class="border-bottom pb-2 color-red mb-3">{{ $service->name }} & Required Documents</h3>
 
                     @php
@@ -225,7 +190,7 @@
                             </div>
                         </div>
                     </div>
-                @endif
+                @endif --}}
 
                 @if ($service->doc_notes)
                     <ul class="list-group list-group-flush documents-list mt-4 bg-white">
@@ -259,7 +224,7 @@
         </div>
     </div>
 
-    <section class="py-3 bg-light">
+    <section class="py-3 bg-light d-none">
         <div class="container">
             <h3 class="section-heading text-center mb-3 fw-bold text-uppercase">
                 <span class="section-heading-underline">Why Choose Us</span>

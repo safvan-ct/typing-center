@@ -5,5 +5,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Document extends Model
 {
-    protected $fillable = ['sub_category_id', 'document_category_id', 'title', 'is_required', 'notes', 'sort_order', 'is_active'];
+    protected $fillable = ['center_service_id', 'document_group_id', 'name', 'notes', 'sort_order', 'is_active'];
+
+    public function centerService()
+    {
+        return $this->belongsTo(CenterService::class);
+    }
+
+    public function documentGroup()
+    {
+        return $this->belongsTo(DocumentGroup::class);
+    }
 }
