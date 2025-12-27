@@ -142,7 +142,7 @@
                         </div>
                         <button class="btn btn-gold btn-lg w-100 rounded-pill fw-bold py-3 shadow" data-bs-toggle="modal"
                             data-bs-target="#consultantModal" data-source="eid_ad_callback">
-                            BOOK APPOINTMENT <i class="bi bi-arrow-right ms-2"></i>
+                            BOOK NOW <i class="bi bi-arrow-right ms-2"></i>
                         </button>
                         <div class="mt-3 d-flex justify-content-center gap-3 small">
                             <span><i class="bi bi-clock me-1"></i> 24-48h Process</span>
