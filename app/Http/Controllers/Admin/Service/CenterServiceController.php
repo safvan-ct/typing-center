@@ -48,6 +48,7 @@ class CenterServiceController extends Controller
             'government_center_id' => "nullable|exists:government_centers,id",
             'name'                 => "required|string|max:255",
             'tagline'              => "nullable|string",
+            'notes'                => "nullable|string",
             'ad_image'             => "nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
         ]);
 
@@ -62,6 +63,7 @@ class CenterServiceController extends Controller
             'name'                 => $request->name,
             'slug'                 => str()->slug($request->name),
             'tagline'              => $request->tagline,
+            'notes'                => $request->notes,
             'ad_image'             => $image,
         ]);
 
@@ -75,6 +77,7 @@ class CenterServiceController extends Controller
             'government_center_id' => "nullable|exists:government_centers,id",
             'name'                 => "required|string|max:255",
             'tagline'              => "nullable|string",
+            'notes'                => "nullable|string",
             'ad_image'             => "nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
         ]);
 

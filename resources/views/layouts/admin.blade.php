@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="icon" href="{{ asset('img/logo.svg') }}" type="image/x-icon" />
+    <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}" type="image/x-icon">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
         id="main-font-link" />
     <link rel="stylesheet" href="{{ asset('admin/fonts/phosphor/duotone/style.css') }}" />
@@ -51,11 +51,11 @@
         <div class="navbar-wrapper">
             <div class="m-header d-flex justify-content-center">
                 <a href="{{ route('admin.dashboard') }}" class="b-brand text-primary">
-                    <div class="fw-bold fs-2">
+                    {{-- <div class="fw-bold fs-2">
                         <span class="text-success">AL</span>-<span class="text-danger">AQSA</span>
-                    </div>
-                    {{-- <img src="{{ asset('img/logo.svg') }}" alt="{{ config('app.name') }}" class="logo logo-lg"
-                        width="150" /> --}}
+                    </div> --}}
+                    <img src="{{ asset('img/logo.png') }}" alt="{{ config('app.name') }}" class="logo logo-lg"
+                        width="150" />
                 </a>
             </div>
 
@@ -260,8 +260,8 @@
 
     <script>
         window.logoPaths = {
-            dark: "{{ asset('img/logo.svg') }}",
-            light: "{{ asset('img/logo.svg') }}"
+            dark: "{{ asset('img/logo.png') }}",
+            light: "{{ asset('img/logo.png') }}"
         };
 
         preset_change('preset-1');

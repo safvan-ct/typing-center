@@ -211,10 +211,7 @@ class DocumentGroupSeeder extends Seeder
                 $docs = explode('@@@', $value['docs'] ?? '');
 
                 foreach ($docs as $doc) {
-                    $dg->documents()->create([
-                        'center_service_id' => $service->id,
-                        'name'              => $doc,
-                    ]);
+                    $dg->documents()->create(['center_service_id' => $service->id, 'name' => $doc]);
                 }
             }
         }

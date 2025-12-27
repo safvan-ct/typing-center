@@ -31,8 +31,8 @@ class SettingsController extends Controller
             'twitter'          => 'nullable|string|max:255',
             'linkedin'         => 'nullable|string|max:255',
 
-            'key_services'     => 'nullable|exists:sub_categories,id',
-            'useful_links'     => 'nullable|exists:sub_categories,id',
+            'key_services'     => 'nullable|exists:center_services,id',
+            'useful_services'  => 'nullable|exists:center_services,id',
             'service_desc'     => 'nullable|string|max:255',
             'service_icon'     => 'nullable|file|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 

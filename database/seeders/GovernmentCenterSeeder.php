@@ -37,16 +37,16 @@ class GovernmentCenterSeeder extends Seeder
                 'desc_title'  => "Experience Excellence with DET Services Dubai: Pioneering Tourism Innovation",
                 'description' => "DET Services Dubai delivers excellence by supporting tourism growth and innovation across the emirate. We help businesses and individuals navigate tourism-related services with clarity, efficiency, and expert guidance, contributing to Dubai’s vision as a world-class destination.",
             ],
+            "Ejari Services"   => [
+                'tagline'     => "Making tenancy registration and rental documentation simple and hassle-free.",
+                'desc_title'  => "Register Your Tenancy with Ease: Ejari Services Dubai",
+                'description' => "Ejari Services Dubai helps tenants and landlords complete tenancy registration and rental contract approvals smoothly. Our team ensures accurate documentation and quick processing in compliance with Dubai Land Department regulations.",
+            ],
 
             // "ICP Smart Services" => [
             //     'tagline'     => "Simplifying residency, visa, and identity services for individuals and families.",
             //     'desc_title'  => "Smart & Seamless ICP Services Dubai",
             //     'description' => "ICP Smart Services Dubai provides easy access to federal residency, visa, Emirates ID, and citizenship-related services. Our expert team ensures accurate processing and smooth completion of all ICP requirements, saving you time and effort.",
-            // ],
-            // "Ejari Services"     => [
-            //     'tagline'     => "Making tenancy registration and rental documentation simple and hassle-free.",
-            //     'desc_title'  => "Register Your Tenancy with Ease: Ejari Services Dubai",
-            //     'description' => "Ejari Services Dubai helps tenants and landlords complete tenancy registration and rental contract approvals smoothly. Our team ensures accurate documentation and quick processing in compliance with Dubai Land Department regulations.",
             // ],
             // "PRO Services"       => [
             //     'tagline'     => "Reliable support for business, visa, and government approvals in Dubai.",

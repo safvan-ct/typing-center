@@ -34,6 +34,12 @@
     </div>
     <hr />
 
+    <div class="col-12 form-floating mb-2">
+        <textarea class="form-control" name="notes" id="notes" placeholder="Notes" rows="10"
+            style="min-height: 75px">{{ $data?->notes ?? '' }}</textarea>
+        <label for="notes">Notes</label>
+    </div>
+
     <div class="col-12">
         <x-admin.input type="file" name="ad_image" label="Ad Image" accept="image/*" />
 

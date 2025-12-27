@@ -124,9 +124,9 @@
                         </div>
                         <div>
                             <h6 class="mb-1 fw-bold">Chat on WhatsApp</h6>
-                            <a href="https://wa.me/{{ $generalSettings['whatsapp'] ?? '971582530133' }}?text={{ urlencode($generalSettings['whatsapp_message'] ?? 'Hello') }}"
+                            <a href="https://wa.me/{{ $generalSettings['whatsapp'] }}?text={{ urlencode($generalSettings['whatsapp_message']) }}"
                                 class="whatsapp-link">
-                                {{ formatUaePhone($generalSettings['whatsapp'] ?? '+971 582 53 0133') }}
+                                {{ formatUaePhone($generalSettings['whatsapp']) }}
                             </a>
                         </div>
                     </div>

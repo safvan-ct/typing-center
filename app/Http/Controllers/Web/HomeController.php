@@ -6,13 +6,21 @@ use App\Jobs\SendBookingAdminMail;
 use App\Models\CenterService;
 use App\Models\ConsultantRequest;
 use App\Models\Partner;
+use App\Models\Settings;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $services = CenterService::select('id', 'name', 'slug', 'tagline', 'ad_image')->get();
+        $key = Settings::where('key', 'key_services')->pluck('value')->first();
+
+        $services = CenterService::select('id', 'name', 'slug', 'tagline', 'ad_image')
+            ->whereIn('id', explode(',', $key))
+            ->where('is_active', true)
+            ->orderBy('sort_order')
+            ->get();
+
         $partners = Partner::select('id', 'name', 'image')->where('is_active', true)->get()->chunk(6);
 
         return view('web.index', compact('services', 'partners'));

@@ -16,6 +16,6 @@ class Settings extends Model
 
     protected static function clearMenuCache(): void
     {
-        collect(['general_settings', 'useful_links'])->each(fn($key) => Cache::forget($key));
+        collect(['general_settings', 'useful_services'])->each(fn($key) => Cache::forget($key));
     }
 }

@@ -1,6 +1,7 @@
 <?php
 namespace App\Providers;
 
+use App\Models\CenterService;
 use App\Models\Menu;
 use App\Models\Settings;
 use Illuminate\Support\Facades\Cache;
@@ -53,14 +54,14 @@ class AppServiceProvider extends ServiceProvider
                 return Settings::pluck('value', 'key');
             });
 
-            // $useful = Cache::rememberForever('useful_links', function () use ($settings) {
-            //     return SubCategory::select('id', 'name', 'slug')->where('useful_service', true)->get();
-            // });
+            $useful = Cache::rememberForever('useful_services', function () use ($settings) {
+                return CenterService::select('id', 'name', 'slug')->whereIn('id', explode(',', $settings['useful_services']))->get();
+            });
 
             $view->with([
-                'sharedMenus' => $menus,
-                'generalSettings'  => $settings,
-                'usefulLinks'      => [],
+                'sharedMenus'     => $menus,
+                'generalSettings' => $settings,
+                'usefulLinks'     => $useful,
             ]);
         });
 

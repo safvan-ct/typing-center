@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
             CenterServiceSeeder::class,
             DocumentGroupSeeder::class,
             DocumentSeeder::class,
-            // SettingsSeeder::class,
+            SettingsSeeder::class,
         ]);
     }
 }

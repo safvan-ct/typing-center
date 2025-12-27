@@ -25,6 +25,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/admin.php';
 // require __DIR__ . '/auth.php';
 
+Route::get('/center/{slug}', [ServiceController::class, 'center'])->name('web.center-details');
 Route::get('/{slug}', [ServiceController::class, 'show'])->name('web.service-details');
 Route::fallback(function () {
     return abort(404);

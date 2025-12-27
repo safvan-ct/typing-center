@@ -52,17 +52,17 @@
             </div>
 
             <div class="form-floating col-12 col-md-6 mb-2">
-                <p class="form-label m-0">Useful Links</p>
-                @php $selectedServices = !empty($settings['useful_links']) ? explode(',', $settings['useful_links']) : []; @endphp
-                <select name="useful_links[]" id="useful_links" class="form-select" multiple>
+                <p class="form-label m-0">Useful Services</p>
+                @php $selectedServices = !empty($settings['useful_services']) ? explode(',', $settings['useful_services']) : []; @endphp
+                <select name="useful_services[]" id="useful_services" class="form-select" multiple>
                     @foreach ($services as $service)
-                        <option value="{{ $service->id }}" @selected(in_array($service->id, old('useful_links', $selectedServices ?? [])))>
+                        <option value="{{ $service->id }}" @selected(in_array($service->id, old('useful_services', $selectedServices ?? [])))>
                             {{ $service->name }}
                         </option>
                     @endforeach
                 </select>
-                @if ($errors->has('useful_links'))
-                    <x-admin.form-error :messages="$errors->get('useful_links')" class="mt-2" />
+                @if ($errors->has('useful_services'))
+                    <x-admin.form-error :messages="$errors->get('useful_services')" class="mt-2" />
                 @endif
             </div>
 
@@ -153,11 +153,11 @@
                 shouldSort: true,
             });
 
-            new Choices('#useful_links', {
+            new Choices('#useful_services', {
                 removeItemButton: true,
                 searchEnabled: true,
                 placeholder: true,
-                placeholderValue: 'Select useful links',
+                placeholderValue: 'Select useful services',
                 shouldSort: true,
             });
         });

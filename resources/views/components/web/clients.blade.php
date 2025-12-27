@@ -24,43 +24,6 @@
                         </div>
                     </div>
                 @endforeach
-
-
-
-                {{-- <div class="carousel-item active">
-                    <div class="row text-center align-items-center">
-                        <div class="col-2"><img src="https://placehold.co/600x400" alt="Logo 1"
-                                class="img-fluid client-logo" style="max-height: 80px;"></div>
-                        <div class="col-2"><img src="https://placehold.co/600x400" alt="Logo 2"
-                                class="img-fluid client-logo" style="max-height: 80px;"></div>
-                        <div class="col-2"><img src="https://placehold.co/600x400" alt="Logo 2"
-                                class="img-fluid client-logo" style="max-height: 80px;"></div>
-                        <div class="col-2"><img src="https://placehold.co/600x400" alt="Logo 4"
-                                class="img-fluid client-logo" style="max-height: 80px;"></div>
-                        <div class="col-2"><img src="https://placehold.co/600x400" alt="Logo 2"
-                                class="img-fluid client-logo" style="max-height: 80px;"></div>
-                        <div class="col-2"><img src="https://placehold.co/600x400" alt="Logo 4"
-                                class="img-fluid client-logo" style="max-height: 80px;"></div>
-                    </div>
-                </div>
-
-                <div class="carousel-item">
-                    <div class="row text-center align-items-center">
-                        <div class="col-2"><img src="https://placehold.co/600x400" alt="Logo 1"
-                                class="img-fluid client-logo" style="max-height: 80px;"></div>
-                        <div class="col-2"><img src="https://placehold.co/600x400" alt="Logo 2"
-                                class="img-fluid client-logo" style="max-height: 80px;"></div>
-                        <div class="col-2"><img src="https://placehold.co/600x400" alt="Logo 2"
-                                class="img-fluid client-logo" style="max-height: 80px;"></div>
-                        <div class="col-2"><img src="https://placehold.co/600x400" alt="Logo 4"
-                                class="img-fluid client-logo" style="max-height: 80px;"></div>
-                        <div class="col-2"><img src="https://placehold.co/600x400" alt="Logo 2"
-                                class="img-fluid client-logo" style="max-height: 80px;"></div>
-                        <div class="col-2"><img src="https://placehold.co/600x400" alt="Logo 4"
-                                class="img-fluid client-logo" style="max-height: 80px;"></div>
-                    </div>
-                </div> --}}
-
             </div>
 
             <button class="carousel-control-prev" type="button" data-bs-target="#clientCarousel" data-bs-slide="prev">

@@ -59,12 +59,14 @@
             <div class="container-xl d-flex justify-content-between w-100">
                 <a href="{{ route('web.index') }}" class="navbar-brand d-flex flex-column align-items-center lh-1">
                     <div class="fw-bold fs-4">
-                        <span class="text-uae-green">AL</span>-<span class="text-danger">AQSA</span>
+                        <img src="{{ asset('img/logo.png') }}" alt="logo"
+                            style="width: 100%; height: 75px; object-fit: cover;">
+                        {{-- <span class="text-uae-green">AL</span>-<span class="text-danger">AQSA</span> --}}
                     </div>
 
-                    <small class="text-dark fw-semibold text-uppercase" style="font-size: 9px; letter-spacing: 2px;">
+                    {{-- <small class="text-dark fw-semibold text-uppercase" style="font-size: 9px; letter-spacing: 2px;">
                         Typing Center
-                    </small>
+                    </small> --}}
                 </a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -118,15 +120,15 @@
                                         @if ($item->is_government_center)
                                             @if ($item->centerServices->isEmpty())
                                                 <li>
-                                                    <a class="dropdown-item {{ $item->id == $service?->id ? 'active' : '' }}"
-                                                        href="{{ route('web.service-details', $item->slug) }}">
+                                                    <a class="dropdown-item {{ $item->slug == $service?->slug ? 'active' : '' }}"
+                                                        href="{{ route('web.center-details', $item->slug) }}">
                                                         {{ $item->name }}
                                                     </a>
                                                 </li>
                                             @else
                                                 <li class="dropdown-submenu">
-                                                    <a class="dropdown-item" href="#"
-                                                        id="navbarBusinessSubDropdown" role="button"
+                                                    <a class="dropdown-item {{ $item->slug == $service?->slug ? 'active' : '' }}"
+                                                        href="#" id="navbarBusinessSubDropdown" role="button"
                                                         data-bs-toggle="dropdown" aria-expanded="false">
                                                         {{ $item->name }}
                                                         <i class="fas fa-chevron-right sub-arrow"
@@ -141,7 +143,7 @@
                                                         aria-labelledby="navbarBusinessSubDropdown">
                                                         @foreach ($item->centerServices as $cs)
                                                             <li>
-                                                                <a class="dropdown-item {{ $cs->id == $service?->id ? 'active' : '' }}"
+                                                                <a class="dropdown-item {{ $cs->slug == $service?->slug ? 'active' : '' }}"
                                                                     href="{{ route('web.service-details', $cs->slug) }}">
                                                                     {{ $cs->name }}
                                                                 </a>
@@ -152,7 +154,7 @@
                                             @endif
                                         @else
                                             <li>
-                                                <a class="dropdown-item {{ $item->id == $service?->id ? 'active' : '' }}"
+                                                <a class="dropdown-item {{ $item->slug == $service?->slug ? 'active' : '' }}"
                                                     href="{{ route('web.service-details', $item->slug) }}">
                                                     {{ $item->name }}
                                                 </a>
@@ -189,13 +191,11 @@
 
                 <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
                     <h5 class="text-uppercase border-bottom border-danger pb-2 mb-3">About Us</h5>
-                    <p class="text-white-50">
-                        {{ $generalSettings['about_us'] ?? 'Easily manage and process your applications with our premium streamlined system.' }}
-                    </p>
+                    <p class="text-white-50">{{ $generalSettings['about_us'] }}</p>
                 </div>
 
                 <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                    <h5 class="text-uppercase border-bottom border-danger pb-2 mb-3">Useful Links</h5>
+                    <h5 class="text-uppercase border-bottom border-danger pb-2 mb-3">Useful Services</h5>
                     <ul class="list-unstyled mb-0">
                         @foreach ($usefulLinks as $item)
                             <li>
@@ -228,7 +228,7 @@
         </div>
     </footer>
 
-    <a href="https://wa.me/{{ $generalSettings['whatsapp'] ?? '971582530133' }}?text={{ urlencode($generalSettings['whatsapp_message'] ?? 'Hello') }}"
+    <a href="https://wa.me/{{ $generalSettings['whatsapp'] }}?text={{ urlencode($generalSettings['whatsapp_message']) }}"
         target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
