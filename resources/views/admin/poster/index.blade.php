@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 
 @section('content')
-    <x-admin.page-header title="Valued Partners" :breadcrumb="[['label' => 'Dashboard', 'link' => route('admin.dashboard')], ['label' => 'Valued Partners']]" />
+    <x-admin.page-header title="Posters" :breadcrumb="[['label' => 'Dashboard', 'link' => route('admin.dashboard')], ['label' => 'Posters']]" />
 
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
-                    <button onclick="CRUD.open()" class="btn btn-primary btn-sm add-btn">Add Partner</button>
-                    <x-admin.table :headers="['#', 'Name', 'Logo', 'Active', 'Actions']"></x-admin.table>
+                    <button onclick="CRUD.open(0)" class="btn btn-primary btn-sm add-btn">Add Poster</button>
+                    <x-admin.table :headers="['#', 'Name', 'Poster', 'Active', 'Actions']"></x-admin.table>
                 </div>
             </div>
         </div>
@@ -17,7 +17,7 @@
 
 @push('scripts')
     <script>
-        CRUD.setResource("partners");
+        CRUD.setResource("poster");
 
         const tableColumns = [{
                 data: "id"

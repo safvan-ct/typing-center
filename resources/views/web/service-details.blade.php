@@ -22,7 +22,7 @@
         </div>
     </div>
 
-    <div class="container mt-3">
+    <div class="container my-3">
         <div class="row">
             <div class="col-lg-9 mb-3">
                 <div class="service-card-modern">

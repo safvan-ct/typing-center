@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\Auth\RegisterController;
 use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PartnerController;
+use App\Http\Controllers\Admin\PosterController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\Service\CenterServiceController;
 use App\Http\Controllers\Admin\Service\DocumentController;
@@ -112,12 +113,18 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
             Route::patch('/{id}/toggle-status', 'toggleStatus')->name('toggle-status');
         });
 
-    Route::prefix('settings')
-        ->name('settings.')
-        ->controller(SettingsController::class)
+    Route::prefix('poster')
+        ->name('poster.')
+        ->controller(PosterController::class)
         ->group(function () {
             Route::get('/', 'index')->name('index');
             Route::post('/', 'store')->name('store');
+            Route::put('/{poster}', 'update')->name('update');
+            Route::delete('/{id}', 'destroy')->name('destroy');
+
+            Route::get('/form/{id}', 'form')->name('form');
+            Route::get('/datatable', 'dataTable')->name('datatable');
+            Route::patch('/{id}/toggle-status', 'toggleStatus')->name('toggle-status');
         });
 
     Route::prefix('partners')
@@ -132,6 +139,14 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
             Route::get('/form/{id?}', 'form')->name('form');
             Route::get('/datatable', 'dataTable')->name('datatable');
             Route::patch('/{partner}/toggle-status', 'toggleStatus')->name('toggle-status');
+        });
+
+    Route::prefix('settings')
+        ->name('settings.')
+        ->controller(SettingsController::class)
+        ->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::post('/', 'store')->name('store');
         });
 
     Route::prefix('booking')

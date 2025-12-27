@@ -5,7 +5,9 @@ use App\Http\Controllers\Controller;
 use App\Jobs\SendBookingAdminMail;
 use App\Models\CenterService;
 use App\Models\ConsultantRequest;
+use App\Models\GovernmentCenter;
 use App\Models\Partner;
+use App\Models\Poster;
 use App\Models\Settings;
 use Illuminate\Http\Request;
 
@@ -21,14 +23,20 @@ class HomeController extends Controller
             ->orderBy('sort_order')
             ->get();
 
-        $partners = Partner::select('id', 'name', 'image')->where('is_active', true)->get()->chunk(6);
+        $govtCenters = GovernmentCenter::select('id', 'name', 'slug', 'tagline', 'ad_image')
+            ->where('is_active', true)
+            ->orderBy('sort_order')
+            ->get();
 
-        return view('web.index', compact('services', 'partners'));
+        $posters  = Poster::select('id', 'name', 'image')->where('is_active', true)->get();
+        $partners = Partner::select('id', 'name', 'image')->where('is_active', true)->get();
+
+        return view('web.index', compact('services', 'partners', 'posters', 'govtCenters'));
     }
 
     public function about()
     {
-        $partners = Partner::select('id', 'name', 'image')->where('is_active', true)->get()->chunk(6);
+        $partners = Partner::select('id', 'name', 'image')->where('is_active', true)->get();
 
         return view('web.about', compact('partners'));
     }

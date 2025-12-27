@@ -101,20 +101,31 @@
                         </ul>
                     </li>
 
-                    <li class="pc-item">
-                        <a href="{{ route('admin.settings.index') }}"
-                            class="pc-link {{ Route::currentRouteName() == 'admin.settings.*' ? 'active' : '' }}">
+                    <li
+                        class="pc-item pc-hasmenu
+                        {{ Str::is('admin.poster.*', Route::currentRouteName()) ||
+                        Str::is('admin.settings.*', Route::currentRouteName()) ||
+                        Str::is('admin.partners.*', Route::currentRouteName())
+                            ? 'active pc-trigger'
+                            : '' }}">
+                        <a href="javascript:void(0)" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-settings"></i></span>
-                            <span class="pc-mtext">Settings</span>
+                            <span class="pc-mtext">Website Config</span>
+                            <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                         </a>
-                    </li>
-
-                    <li class="pc-item">
-                        <a href="{{ route('admin.partners.index') }}"
-                            class="pc-link {{ Route::currentRouteName() == 'admin.partners.*' ? 'active' : '' }}">
-                            <span class="pc-micon"><i class="ti ti-list"></i></span>
-                            <span class="pc-mtext">Partners</span>
-                        </a>
+                        <ul class="pc-submenu">
+                            <li
+                                class="pc-item {{ Route::currentRouteName() == 'admin.poster.index' ? 'active' : '' }}">
+                                <a class="pc-link" href="{{ route('admin.poster.index') }}">Poster</a>
+                            </li>
+                            <li
+                                class="pc-item {{ Str::is('admin.partners.*', Route::currentRouteName()) ? 'active' : '' }}">
+                                <a class="pc-link" href="{{ route('admin.partners.index') }}">Partners</a>
+                            </li>
+                            <li class="pc-item {{ Route::currentRouteName() == 'admin.settings.*' ? 'active' : '' }}">
+                                <a class="pc-link" href="{{ route('admin.settings.index') }}">Settings</a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </div>

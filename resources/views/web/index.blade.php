@@ -36,6 +36,56 @@
         </div>
     </section>
 
+    <section class="client-carousel-section py-5 bg-light {{ $posters->isEmpty() ? 'd-none' : '' }}">
+        <div class="container">
+            <div class="row text-center mb-3">
+                <div class="col-12">
+                    <h2 class="section-heading text-center">
+                        <span class="section-heading-underline fw-bold text-uppercase">Our Services</span>
+                    </h2>
+                </div>
+            </div>
+
+            <div class="swiper PosterSwiper">
+                <div class="swiper-wrapper">
+                    @foreach ($posters as $poster)
+                        <div class="swiper-slide text-center">
+                            <div class="poster-container">
+                                <img src="{{ $poster->image_src }}" style="max-height:80%; width: 100%; object-fit:cover;"
+                                    alt="{{ $poster->name }}" class="img-thumbnail">
+
+                                <button class="creative-btn" data-bs-toggle="modal" data-bs-target="#consultantModal"
+                                    data-source="poster_callback">
+                                    {{-- <span class="btn-icon">⚡</span> --}}
+                                    <span class="btn-text">BOOK NOW</span>
+                                </button>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+                <div class="swiper-button-prev text-danger"></div>
+                <div class="swiper-button-next text-danger"></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="news-ticker-container">
+        <div class="ticker-label">
+            <span>UPDATES</span>
+        </div>
+
+        <div class="ticker-wrap">
+            <div class="ticker-move">
+                <div class="ticker-item">⚡ New Visa Regulations 2024: Fast track processing now available for 15+ countries!
+                </div>
+                <div class="ticker-item">🌍 Special discounts on European Student Visas for a limited time only.</div>
+                <div class="ticker-item">🛂 Passport renewal services now integrated into our mobile app.</div>
+                <div class="ticker-item">⭐ Over 10,000 successful visa approvals reached this month!</div>
+            </div>
+        </div>
+    </div>
+
     <section class="py-5 bg-white">
         <div class="container">
             <div class="row align-items-center">
@@ -104,10 +154,71 @@
         </div>
     </section>
 
-    <section class="py-5 bg-light {{ $services->isEmpty() ? 'd-none' : '' }}">
+    <div class="container py-5">
+        <div class="swiper GovCenterSwiper">
+            <div class="swiper-wrapper">
+                @foreach ($govtCenters as $item)
+                    <div class="swiper-slide text-center">
+                        <div class="uae-card card-amer">
+                            <div class="card-icon d-none"><i class="bi bi-passport"></i></div>
+                            <h3>{{ $item->name }}</h3>
+                            <p>{{ $item->tagline }}</p>
+                            <ul class="service-list d-none">
+                                <li><i class="bi bi-check2"></i> Visa Renewal</li>
+                                <li><i class="bi bi-check2"></i> Emirates ID</li>
+                            </ul>
+                            <a href="{{ route('web.center-details', $item->slug) }}" class="btn-uae">
+                                Visit {{ $item->name }}
+                            </a>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
+            <div class="swiper-pagination text-danger"></div>
+        </div>
+    </div>
+
+    <div class="container pb-5">
+        <div class="visa-ad-banner position-relative overflow-hidden rounded-4 shadow-lg">
+            <img src="https://images.unsplash.com/photo-1544016768-982d1554f0b9?auto=format&fit=crop&q=80&w=1200"
+                alt="Travel World" class="banner-bg">
+
+            <div class="row g-0 align-items-center position-relative h-100 banner-content">
+                <div class="col-lg-7 p-4 p-md-5 text-white">
+                    <span class="badge bg-warning text-dark mb-3 px-3 py-2 rounded-pill fw-bold text-uppercase">
+                        Fast Track Approval
+                    </span>
+                    <h2 class="display-5 fw-bold mb-3">Global Visa Services</h2>
+                    <p class="lead mb-4">Get your Tourist, Business, or Work Visa processed in record time. Professional
+                        assistance for over 50+ countries.</p>
+
+                    <ul class="list-unstyled d-flex flex-wrap gap-3 mb-4 visa-features">
+                        <li><i class="bi bi-check-circle-fill text-info"></i> 99% Success Rate</li>
+                        <li><i class="bi bi-check-circle-fill text-info"></i> 24/7 Support</li>
+                        <li><i class="bi bi-check-circle-fill text-info"></i> No Hidden Fees</li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-5 p-4 text-center">
+                    <div class="glass-cta p-4 rounded-4">
+                        <h4 class="text-white mb-2">Starts at only</h4>
+                        <div class="price-tag display-6 fw-bold text-warning mb-3">AED 349.00</div>
+                        <button class="btn btn-light btn-lg w-100 rounded-pill fw-bold shadow hover-grow"
+                            data-bs-toggle="modal" data-bs-target="#consultantModal" data-source="ad_callback">
+                            BOOK NOW <i class="bi bi-arrow-right-short"></i>
+                        </button>
+                        <p class="text-white-50 mt-3 small">*T&C Apply. Processing time varies by country.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="py-5 bg-white {{ $services->isEmpty() ? 'd-none' : '' }}">
         <div class="container">
             <h2 class="section-heading text-center mb-5">
-                <span class="section-heading-underline">Our Key Services</span>
+                <span class="section-heading-underline fw-bold text-uppercase">Our Key Services</span>
             </h2>
 
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
@@ -132,7 +243,8 @@
                                 </p>
 
                                 <div class="mt-auto">
-                                    <a href="{{ route('web.service-details', $item->slug) }}" class="read-more-link-small">
+                                    <a href="{{ route('web.service-details', $item->slug) }}"
+                                        class="read-more-link-small">
                                         Read More <span class="ms-1">&rarr;</span>
                                     </a>
                                 </div>
@@ -148,3 +260,53 @@
 
     <x-web.clients :clients="$partners" />
 @endsection
+
+@push('scripts')
+    <script>
+        new Swiper('.PosterSwiper', {
+            loop: true,
+            spaceBetween: 20,
+
+            breakpoints: {
+                0: {
+                    slidesPerView: 1, // mobile
+                },
+                768: {
+                    slidesPerView: 3, // desktop
+                }
+            },
+
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+
+        new Swiper('.GovCenterSwiper', {
+            loop: true,
+            spaceBetween: 20,
+
+            breakpoints: {
+                0: {
+                    slidesPerView: 1, // mobile
+                },
+                768: {
+                    slidesPerView: 4, // desktop
+                }
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            }
+        });
+    </script>
+@endpush
