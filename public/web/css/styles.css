@@ -33,15 +33,14 @@
     --muted-text: #c0c4c8;
 
     --amer-color: #d32f2f;
-    /* GDRFA Red */
-    --tasheel-color: #00897b;
-    /* MOHRE Green */
-    --tadbeer-color: #00796b;
-    /* Domestic teal */
-    --tawjeeh-color: #0277bd;
-    /* Info blue */
+
     --uae-gold: #c5a059;
-    /* UAE Logo Gold */
+    --uae-navy: #0a1d37;
+    --uae-gold-hover: #b38f4a;
+
+    --uae-primary: #00897b;
+    /* Tasheel Green */
+    --uae-dark: #1e293b;
 }
 
 body {
@@ -1609,4 +1608,190 @@ header,
 .GovCenterSwiper .swiper-pagination {
     position: relative;
     margin-top: 25px;
+}
+
+.immigration-banner {
+    min-height: 450px;
+    background-color: var(--uae-navy);
+}
+
+.banner-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #0a1d37f2 20%, #0a1d3780 100%);
+    z-index: 2;
+}
+
+.text-gold {
+    color: var(--uae-gold) !important;
+}
+
+.bg-gold {
+    background-color: var(--uae-gold) !important;
+}
+
+/* The "Book Now" Button */
+.btn-gold {
+    background-color: var(--uae-gold);
+    color: #000;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-gold:hover {
+    background-color: var(--uae-gold-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Glassmorphism Effect for the CTA */
+.cta-glass-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 24px;
+    z-index: 3;
+}
+
+/* Responsiveness */
+@media (max-width: 991px) {
+    .banner-overlay {
+        background: rgba(10, 29, 55, 0.85);
+    }
+
+    .immigration-banner {
+        text-align: center;
+    }
+
+    .d-flex.align-items-center {
+        justify-content: center;
+    }
+}
+
+.labor-service-banner {
+    position: relative;
+    height: 650px;
+    background: var(--uae-dark);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+/* Background Image & Shape */
+.banner-bg-img {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 60%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    filter: brightness(0.6);
+}
+
+.bg-shape {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background: var(--uae-dark);
+    z-index: 2;
+    clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
+}
+
+/* Floating Card */
+.service-float-card {
+    position: relative;
+    z-index: 10;
+    background: white;
+    border-radius: 12px;
+    border: none;
+    overflow: hidden;
+}
+
+.card-header-accent {
+    height: 8px;
+    background: linear-gradient(90deg, var(--uae-primary), #4db6ac);
+}
+
+.text-primary-uae {
+    color: var(--uae-primary);
+}
+
+.btn-primary-uae {
+    background: var(--uae-primary);
+    color: white;
+    border: none;
+    transition: 0.3s;
+}
+
+.btn-primary-uae:hover {
+    background: #00695c;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Service List Styling */
+.s-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.s-icon {
+    width: 45px;
+    height: 45px;
+    background: #e0f2f1;
+    color: var(--uae-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 1.2rem;
+}
+
+/* Stats Pill */
+.stat-pill {
+    padding: 8px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+    font-size: 0.9rem;
+    backdrop-filter: blur(5px);
+}
+
+.stats-box {
+    position: relative;
+    z-index: 5;
+}
+
+/* Mobile Fixes */
+@media (max-width: 991px) {
+    .bg-shape {
+        width: 100%;
+        clip-path: none;
+        opacity: 0.9;
+    }
+
+    .banner-bg-img {
+        width: 100%;
+    }
+
+    .labor-service-banner {
+        height: auto;
+        padding: 50px 0;
+    }
 }
