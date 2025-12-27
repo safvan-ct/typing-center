@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('document_groups', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('center_service_id')->constrained();
+            $table->foreignId('center_service_id')
+                ->constrained('center_services')
+                ->cascadeOnDelete();
+
             $table->string('name');
             $table->longText('notes')->nullable();
             $table->integer('sort_order')->default(0);
