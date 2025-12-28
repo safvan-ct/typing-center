@@ -13,7 +13,7 @@ class GovernmentCenter extends Model
 
     public function getAdImageSrcAttribute()
     {
-        return $this->ad_image ? asset('storage/' . $this->ad_image) : null;
+        return globalFileView($this->ad_image);
     }
 
     public function menu()

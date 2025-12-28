@@ -11,6 +11,6 @@ class Poster extends Model
 
     public function getImageSrcAttribute()
     {
-        return $this->image ? asset('storage/' . $this->image) : null;
+        return globalFileView($this->image);
     }
 }

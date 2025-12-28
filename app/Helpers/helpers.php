@@ -33,6 +33,12 @@ if (! function_exists('uploadFileHelper')) {
 if (! function_exists('globalFileView')) {
     function globalFileView($file)
     {
+        if (config('app.env') === 'dev') {
+            return ! empty($file) && Storage::disk('public')->exists($file)
+                ? asset('typing-center/storage/app/public/' . $file)
+                : 'https://placehold.net/default.png';
+        }
+
         return ! empty($file) && Storage::disk('public')->exists($file)
             ? Storage::url($file)
             : 'https://placehold.net/default.png';

@@ -97,35 +97,34 @@
             <div class="form-floating col-12 col-md-6 mb-2">
                 <x-admin.input type="file" name="welcome" label="Welcome (600*400)" accept="image/*" />
                 @if (isset($settings['welcome']) && !empty($settings['welcome']))
-                    <img src="{{ asset('storage/' . $settings['welcome']) }}" class="img-thumbnail"
-                        style="max-width: 100px;">
+                    <img src="{{ globalFileView($settings['welcome']) }}" class="img-thumbnail" style="max-width: 100px;">
                 @endif
             </div>
             <div class="form-floating col-12 col-md-6 mb-2">
                 <x-admin.input type="file" name="who_we_are" label="Who We Are (525x350)" accept="image/*" />
                 @if (isset($settings['who_we_are']) && !empty($settings['who_we_are']))
-                    <img src="{{ asset('storage/' . $settings['who_we_are']) }}" class="img-thumbnail"
+                    <img src="{{ globalFileView($settings['who_we_are']) }}" class="img-thumbnail"
                         style="max-width: 100px;">
                 @endif
             </div>
             <div class="form-floating col-12 col-md-6 mb-2">
                 <x-admin.input type="file" name="about_large" label="About Large (420x520)" accept="image/*" />
                 @if (isset($settings['about_large']) && !empty($settings['about_large']))
-                    <img src="{{ asset('storage/' . $settings['about_large']) }}" class="img-thumbnail"
+                    <img src="{{ globalFileView($settings['about_large']) }}" class="img-thumbnail"
                         style="max-width: 100px;">
                 @endif
             </div>
             <div class="form-floating col-12 col-md-6 mb-2">
                 <x-admin.input type="file" name="about_small_1" label="About Small 1 (200x250)" accept="image/*" />
                 @if (isset($settings['about_small_1']) && !empty($settings['about_small_1']))
-                    <img src="{{ asset('storage/' . $settings['about_small_1']) }}" class="img-thumbnail"
+                    <img src="{{ globalFileView($settings['about_small_1']) }}" class="img-thumbnail"
                         style="max-width: 100px;">
                 @endif
             </div>
             <div class="form-floating col-12 col-md-6 mb-2">
                 <x-admin.input type="file" name="about_small_2" label="About Small 2 (200x250)" accept="image/*" />
                 @if (isset($settings['about_small_2']) && !empty($settings['about_small_2']))
-                    <img src="{{ asset('storage/' . $settings['about_small_2']) }}" class="img-thumbnail"
+                    <img src="{{ globalFileView($settings['about_small_2']) }}" class="img-thumbnail"
                         style="max-width: 100px;">
                 @endif
             </div>
@@ -144,6 +143,7 @@
                 toastr.error("{{ $error }}");
             @endforeach
         @endif
+
         document.addEventListener('DOMContentLoaded', function() {
             new Choices('#key_services', {
                 removeItemButton: true,
