@@ -1,27 +1,23 @@
-@props(['clients'])
+@props(['partners'])
 
-<section class="client-carousel-section py-5 bg-white {{ $clients->isEmpty() ? 'd-none' : '' }}">
-    <div class="container">
-        <div class="row text-center mb-4">
-            <div class="col-12">
-                <h2 class="section-heading text-center">
-                    <span class="section-heading-underline fw-bold text-uppercase">Govt. Sectors</span>
-                </h2>
-            </div>
-        </div>
-
-        <div class="swiper ClientSwiper">
-            <div class="swiper-wrapper">
-                @foreach ($clients as $client)
-                    <div class="swiper-slide text-center">
-                        <img src="{{ $client->image_src }}" style="width: 100%; height: 80px; object-fit: contain;"
-                            alt="{{ $client->name }}" class="img-thumbnail">
-                    </div>
-                @endforeach
-            </div>
-
-            <div class="swiper-button-prev text-danger"></div>
-            <div class="swiper-button-next text-danger"></div>
-        </div>
+<div class="container">
+    <div class="text-center mb-3">
+        <h6 class="text-gold-uae fw-bold text-uppercase">Trusted Affiliations</h6>
+        <h2 class="fw-bold">Authorized Service Partners</h2>
     </div>
-</section>
+
+    <div class="swiper partnerSwiper py-3">
+        <div class="swiper-wrapper align-items-center">
+
+            @foreach ($partners as $client)
+                <div class="swiper-slide text-center">
+                    <div class="partner-logo-box">
+                        <img src="{{ $client->image_src }}" alt="MOHRE" class="img-thumbnail">
+                        <p class="small mt-2 fw-bold text-muted text-uppercase">{{ $client->name }}</p>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        <div class="swiper-pagination mt-4"></div>
+    </div>
+</div>

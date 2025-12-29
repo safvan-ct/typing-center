@@ -16,10 +16,9 @@
         </div>
     </div>
 
-    <div class="container my-4 py-5">
-        <div class="row g-5">
-
-            <div class="col-lg-7">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-7 mb-4">
                 <div class="contact-form-card shadow p-4 p-md-5 bg-white">
                     <h2 class="fw-bold mb-2">Send us a <span style="color: var(--uae-green);">Message</span></h2>
                     <p class="text-muted mb-4">Fill out the form below and our team will get back to you within 24
@@ -146,7 +145,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 @endsection

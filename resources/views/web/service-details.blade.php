@@ -1,12 +1,6 @@
 @extends('layouts.web')
 
 @section('content')
-    <style>
-        .text-muted {
-            color: #999999 !important;
-        }
-    </style>
-
     <div class="page-banner">
         <div class="page-banner-bg"></div>
 
@@ -22,9 +16,9 @@
         </div>
     </div>
 
-    <div class="container my-3">
-        <div class="row">
-            <div class="col-lg-9 mb-3">
+    <div class="container mt-5">
+        <div class="row g-3">
+            <div class="col-lg-9">
                 <div class="service-card-modern">
                     <div class="row align-items-center">
                         <div class="col-lg-8 col-md-12 mb-3 mb-lg-0">
@@ -53,14 +47,14 @@
                 @endif
 
                 @if (optional($service->documents)->isNotEmpty() || optional($service->documentGroups)->isNotEmpty())
-                    <h3 class="border-bottom mt-4 pb-2 color-red ">Documents Required</h3>
+                    <h3 class="border-bottom mt-4 pb-2 text-danger ">Documents Required</h3>
 
                     @if (!$service->documents?->isEmpty())
                         <ul class="list-group list-group-flush documents-list mb-4 bg-white">
                             @foreach ($service->documents ?? [] as $item)
                                 <li
                                     class="list-group-item d-flex align-items-{{ $item->notes ? 'start' : 'center' }} px-3">
-                                    <i class="bi bi-check-circle-fill me-3 mt-1 fs-5 color-green"></i>
+                                    <i class="bi bi-check-circle-fill me-3 mt-1 fs-5 text-success"></i>
                                     <div>
                                         <p class="m-0 p-0">{{ $item->name }}</p>
                                         @if ($item->notes)
@@ -82,7 +76,7 @@
                                 @foreach ($data->documents as $item)
                                     <li
                                         class="list-group-item d-flex align-items-{{ $item->notes ? 'start' : 'center' }} px-3">
-                                        <i class="bi bi-check-circle-fill me-3 mt-1 fs-5 color-green"></i>
+                                        <i class="bi bi-check-circle-fill me-3 mt-1 fs-5 text-success"></i>
                                         <div>
                                             <p class="m-0 p-0">{{ $item->name }}</p>
                                             @if ($item->notes)
@@ -114,7 +108,7 @@
                 @endif
 
                 @if (optional($service->centerServices)->isNotEmpty())
-                    <h3 class="border-bottom pb-2 color-red mb-3">{{ $service->name }} & Required Documents</h3>
+                    <h3 class="border-bottom pb-2 text-danger mb-3">{{ $service->name }} & Required Documents</h3>
 
                     @php
                         $items = $service->centerServices;
@@ -142,7 +136,7 @@
                                                 <ul class="list-group list-group-flush documents-list bg-white">
                                                     @foreach ($item->documents as $doc)
                                                         <li class="list-group-item">
-                                                            <i class="bi bi-check fs-6 color-green"></i>
+                                                            <i class="bi bi-check fs-6 text-success"></i>
                                                             <small>{{ $doc->name }}</small>
                                                         </li>
                                                     @endforeach
@@ -174,7 +168,7 @@
                                                 <ul class="list-group list-group-flush documents-list bg-white">
                                                     @foreach ($item->documents as $doc)
                                                         <li class="list-group-item">
-                                                            <i class="bi bi-check fs-6 color-green"></i>
+                                                            <i class="bi bi-check fs-6 text-success"></i>
                                                             <small>{{ $doc->name }}</small>
                                                         </li>
                                                     @endforeach
@@ -208,7 +202,8 @@
                 @endif
             </div>
 
-            <div class="col-lg-3 mb-3">
+            <div class="col-lg-3">
+                <h3 class="fw-bold mb-2 custom-underline">Related Services</h3>
                 @foreach ($relatedServices as $item)
                     <a href="{{ route('web.' . $type . '-details', $item->slug) }}"
                         class="custom-card {{ $item->id == $service->id ? 'custom-card-active' : '' }}">
@@ -220,75 +215,7 @@
         </div>
     </div>
 
-    <section class="py-3 bg-light d-none">
-        <div class="container">
-            <h3 class="section-heading text-center mb-3 fw-bold text-uppercase">
-                <span class="section-heading-underline">Why Choose Us</span>
-            </h3>
-
-            <div class="row g-4 mb-4">
-                <div class="col-md-6 col-lg-4">
-                    <div class="card p-3 h-100 feature-card shadow-sm">
-                        <i class="bi bi-file-earmark-text-fill fs-3 mb-2 color-green"></i>
-                        <h5 class="fw-bold">Accurate Documentation</h5>
-                        <p class="text-muted mb-0">
-                            Error-free typing and submission of government forms to avoid delays and rejections.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4">
-                    <div class="card p-3 h-100 feature-card shadow-sm">
-                        <i class="bi bi-lightning-charge-fill fs-3 mb-2 color-green"></i>
-                        <h5 class="fw-bold">Fast Processing</h5>
-                        <p class="text-muted mb-0">
-                            Quick turnaround time for visas, Emirates ID, Ejari, and other government services.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4">
-                    <div class="card p-3 h-100 feature-card shadow-sm">
-                        <i class="bi bi-shield-check fs-3 mb-2 color-green"></i>
-                        <h5 class="fw-bold">Government Approved</h5>
-                        <p class="text-muted mb-0">
-                            Authorized typing services compliant with UAE government regulations and systems.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4">
-                    <div class="card p-3 h-100 feature-card shadow-sm">
-                        <i class="bi bi-translate fs-3 mb-2 color-green"></i>
-                        <h5 class="fw-bold">Multilingual Assistance</h5>
-                        <p class="text-muted mb-0">
-                            Support available in multiple languages to serve customers from diverse backgrounds.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4">
-                    <div class="card p-3 h-100 feature-card shadow-sm">
-                        <i class="bi bi-people fs-3 mb-2 color-green"></i>
-                        <h5 class="fw-bold">Expert Guidance</h5>
-                        <p class="text-muted mb-0">
-                            Professional guidance on document requirements, procedures, and application status.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4">
-                    <div class="card p-3 h-100 feature-card shadow-sm">
-                        <i class="bi bi-headset fs-3 mb-2 color-green"></i>
-                        <h5 class="fw-bold">Customer Support</h5>
-                        <p class="text-muted mb-0">
-                            Friendly support team available to assist you throughout the application process.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <x-web.cta-banner />
+    <div class="container mb-3">
+        <x-web.cta-banner />
+    </div>
 @endsection

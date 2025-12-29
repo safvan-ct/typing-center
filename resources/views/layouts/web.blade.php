@@ -25,61 +25,55 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.13.3/build/css/intlTelInput.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
-    <link rel="stylesheet" href="{{ asset('web/css/styles.css') }}" />
+    <link rel="stylesheet" href="{{ asset('web/css/core.css') }}" />
+    <link rel="stylesheet" href="{{ asset('web/css/custom.css') }}" />
 </head>
 
 <body>
+    <!-- TOP BAR -->
     <div class="top-bar d-none d-md-block">
         <div class="container d-flex justify-content-between align-items-center">
             <div class="social-icons">
-                <a href="{{ $generalSettings['facebook'] ?? 'javascript:void(0)' }}" target="_blank">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="{{ $generalSettings['twitter'] ?? 'javascript:void(0)' }}" target="_blank">
-                    <i class="bi bi-twitter-x"></i>
-                </a>
-                <a href="{{ $generalSettings['instagram'] ?? 'javascript:void(0)' }}" target="_blank">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="{{ $generalSettings['linkedin'] ?? 'javascript:void(0)' }}" target="_blank">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
+                <a href="{{ $generalSettings['facebook'] ?? '#' }}" target="_blank"><i
+                        class="fab fa-facebook-f"></i></a>
+                <a href="{{ $generalSettings['twitter'] ?? '#' }}" target="_blank"><i class="bi bi-twitter-x"></i></a>
+                <a href="{{ $generalSettings['instagram'] ?? '#' }}" target="_blank"><i
+                        class="fab fa-instagram"></i></a>
+                <a href="{{ $generalSettings['linkedin'] ?? '#' }}" target="_blank"><i
+                        class="fab fa-linkedin-in"></i></a>
             </div>
 
-            <div>
-                <a href="tel:+{{ $generalSettings['primary_phone'] ?? '' }}" class="me-4">
-                    <i class="fas fa-phone-alt me-1"></i> {{ formatUaePhone($generalSettings['primary_phone'] ?? '') }}
+            <div class="top-contact">
+                <a href="tel:+{{ $generalSettings['primary_phone'] ?? '' }}">
+                    <i class="fas fa-phone-alt"></i>
+                    {{ formatUaePhone($generalSettings['primary_phone'] ?? '') }}
                 </a>
                 <a href="mailto:{{ $generalSettings['email'] ?? '' }}">
-                    <i class="fas fa-envelope me-1"></i> {{ $generalSettings['email'] ?? '' }}
+                    <i class="fas fa-envelope"></i>
+                    {{ $generalSettings['email'] ?? '' }}
                 </a>
             </div>
         </div>
     </div>
 
-    <header class="shadow-sm sticky-top bg-white">
-        <nav class="navbar navbar-expand-lg container-fluid-mobile px-md-0">
-            <div class="container-xl d-flex justify-content-between w-100">
-                <a href="{{ route('web.index') }}" class="navbar-brand d-flex flex-column align-items-center lh-1">
-                    <div class="fw-bold fs-4">
-                        <img src="{{ asset('img/logo.png') }}" alt="logo"
-                            style="width: 100%; height: 75px; object-fit: cover;">
-                        {{-- <span class="text-uae-green">AL</span>-<span class="text-danger">AQSA</span> --}}
-                    </div>
+    <!-- HEADER -->
+    <header class="main-header sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-xl">
 
-                    {{-- <small class="text-dark fw-semibold text-uppercase" style="font-size: 9px; letter-spacing: 2px;">
-                        Typing Center
-                    </small> --}}
+                <!-- LOGO -->
+                <a href="{{ route('web.index') }}" class="navbar-brand">
+                    <img src="{{ asset('img/logo.png') }}" alt="logo" class="logo-img">
                 </a>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
-                    style="border: none; padding: 0px">
+                <!-- TOGGLER -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
+                <!-- MENU -->
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+                    <ul class="navbar-nav ms-auto align-items-lg-center">
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('web.index') ? 'active' : '' }}"
                                 aria-current="page"href="{{ route('web.index') }}">
@@ -176,7 +170,7 @@
                         </li>
                         <li class="nav-item ms-lg-3 mt-2">
                             <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#consultantModal"
-                                data-source="navbar_callback" class="btn btn-danger text-white fw-bold py-2 px-4">
+                                data-source="navbar_callback" class="btn btn-gradient">
                                 Book a Consultation!
                             </a>
                         </li>
@@ -188,10 +182,10 @@
 
     @yield('content')
 
+    <!-- Footer -->
     <footer class="text-center text-lg-start pt-4">
         <div class="container text-white">
             <div class="row">
-
                 <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
                     <h5 class="text-uppercase border-bottom border-danger pb-2 mb-3">About Us</h5>
                     <p class="text-white-50">{{ $generalSettings['about_us'] }}</p>
@@ -202,7 +196,7 @@
                     <ul class="list-unstyled mb-0">
                         @foreach ($usefulLinks as $item)
                             <li>
-                                <a class="text-white-50" href="{{ route('web.service-details', $item->slug) }}">
+                                <a href="{{ route('web.service-details', $item->slug) }}">
                                     {{ $item->name }}
                                 </a>
                             </li>
@@ -213,20 +207,32 @@
                 <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
                     <h5 class="text-uppercase border-bottom border-danger pb-2 mb-3">Address</h5>
                     <p class="mb-1 text-white-50">Main Office: {{ $generalSettings['address'] ?? '' }}</p>
-                    <p class="mb-1 text-white-50">Email: {{ $generalSettings['email'] ?? '' }}</p>
+                    <p class="mb-1 text-white-50">
+                        Email:
+                        <a href="mailto:{{ $generalSettings['email'] ?? '' }}">
+                            {{ $generalSettings['email'] ?? '' }}
+                        </a>
+                    </p>
                 </div>
 
                 <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
                     <h5 class="text-uppercase border-bottom border-danger pb-2 mb-3">Drop Us A Line</h5>
                     <p class="mb-1 fw-bold">Call Us Now!</p>
-                    <p class="mb-1 text-white-50">{{ formatUaePhone($generalSettings['primary_phone'] ?? '') }}</p>
-                    <p class="mb-1 text-white-50">{{ formatUaePhone($generalSettings['secondary_phone'] ?? '') }}</p>
+                    <p class="mb-1">
+                        <a href="tel:+{{ $generalSettings['primary_phone'] ?? '' }}">
+                            {{ formatUaePhone($generalSettings['primary_phone'] ?? '') }}
+                        </a>
+                    </p>
+                    <p class="mb-1">
+                        <a href="tel:+{{ $generalSettings['secondary_phone'] ?? '' }}">
+                            {{ formatUaePhone($generalSettings['secondary_phone'] ?? '') }}
+                        </a>
+                    </p>
                 </div>
-
             </div>
         </div>
 
-        <div class="text-center p-3 mt-4" style="background-color: rgba(0, 0, 0, 0.2);">
+        <div class="text-center p-2 mt-3" style="background-color: rgba(0, 0, 0, 0.2);">
             &copy; {{ date('Y') }} {{ config('app.name') }}. All rights reserved.
         </div>
     </footer>
@@ -240,83 +246,114 @@
         <div class="uae-spinner"></div>
     </div>
 
-    <!-- Modal -->
+    <!-- Consultant Modal -->
     <div class="modal fade" id="consultantModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 overflow-hidden rounded-4 shadow-lg">
 
-                <!-- Header -->
-                <div class="modal-header text-white" style="background-color: var(--primary-red);">
-                    <h5 class="modal-title">Book a Consultant</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                <div class="row g-0">
+                    <div class="col-lg-5 d-none d-lg-block modal-sidebar">
+                        <div class="p-5 text-white h-100 d-flex flex-column justify-content-between">
+                            <div>
+                                <h3 class="fw-bold mb-3">Quick Booking</h3>
+                                <p class="opacity-75">Your visa and document processing simplified. Our experts are
+                                    ready to
+                                    assist you.</p>
+                            </div>
+
+                            <div class="contact-info-list">
+                                <div class="d-flex align-items-center mb-3">
+                                    <i class="bi bi-clock-history me-3 fs-4"></i>
+                                    <span>Fast Track: 24-48 hrs</span>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-shield-check me-3 fs-4"></i>
+                                    <span>GDRFA Authorized</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-7 bg-white">
+                        <div class="modal-header border-0 pb-0">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body p-4 p-md-5 pt-0">
+                            <h2 class="fw-bold text-dark mb-4">Service Request</h2>
+
+                            <form id="consultantForm" method="POST" action="{{ route('consultant.store') }}">
+                                @csrf
+
+                                <input type="hidden" name="opened_from" id="openedFrom"
+                                    value="{{ old('opened_from') }}">
+                                <input type="hidden" name="phone" id="phone_full" value="{{ old('phone') }}">
+
+                                <div class="mb-3">
+                                    <label class="form-label small fw-bold text-uppercase text-muted">Full Name</label>
+                                    <div class="input-group-custom">
+                                        <i class="bi bi-person"></i>
+                                        <input type="text" class="form-control" placeholder="Enter your name"
+                                            required name="name" value="{{ old('name') }}"
+                                            @error('name') autofocus @enderror>
+                                        @error('name')
+                                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12 mb-3">
+                                        <label class="form-label small fw-bold text-uppercase text-muted">Email
+                                            Address</label>
+                                        <div class="input-group-custom">
+                                            <i class="bi bi-envelope"></i>
+                                            <input type="email" class="form-control" placeholder="name@company.com"
+                                                name="email" value="{{ old('email') }}" required
+                                                @error('email') autofocus @enderror>
+                                            @error('email')
+                                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <label class="form-label small fw-bold text-muted">PHONE NUMBER</label>
+                                        <input type="tel" id="phone"
+                                            class="form-control bg-light border-0 py-2 @error('phone') is-invalid @enderror"
+                                            value="{{ old('phone') }}" required placeholder="00 000 0000"
+                                            @error('phone') autofocus @enderror style="width: 100%;" />
+                                        @error('phone')
+                                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="form-label small fw-bold text-uppercase text-muted">Message / Service
+                                        Details</label>
+                                    <div class="input-group-custom align-items-start">
+                                        <i class="bi bi-chat-left-text mt-2"></i>
+                                        <textarea class="form-control @error('message') is-invalid @enderror" rows="4"
+                                            placeholder="Describe the service you need..." name="message" required @error('message') autofocus @enderror>{{ old('message') }}</textarea>
+                                        @error('message')
+                                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-submit-booking w-100 py-3 rounded-3 shadow">
+                                    CONFIRM BOOKING <i class="bi bi-arrow-right ms-2"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
 
-                <form id="consultantForm" method="POST" action="{{ route('consultant.store') }}">
-                    @csrf
-
-                    <input type="hidden" name="opened_from" id="openedFrom" value="{{ old('opened_from') }}">
-                    <input type="hidden" name="phone" id="phone_full" value="{{ old('phone') }}">
-
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label class="form-label">Full Name</label>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                placeholder="Enter your name" name="name" value="{{ old('name') }}"
-                                @error('name') autofocus @enderror>
-                            @error('name')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <!-- Email -->
-                        <div class="mb-3">
-                            <label class="form-label">Email Address</label>
-                            <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                placeholder="Enter your email" name="email" value="{{ old('email') }}" required
-                                @error('email') autofocus @enderror>
-                            @error('email')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <!-- Phone -->
-                        <div class="mb-3">
-                            <label class="form-label">Mobile Number</label>
-                            <input type="tel" id="phone"
-                                class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone') }}"
-                                required placeholder="00 000 0000" @error('phone') autofocus @enderror />
-                            @error('phone')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <!-- Message -->
-                        <div class="mb-3">
-                            <label class="form-label">Message</label>
-                            <textarea class="form-control @error('message') is-invalid @enderror" rows="4"
-                                placeholder="How can we help you?" name="message" required @error('message') autofocus @enderror>{{ old('message') }}</textarea>
-                            @error('message')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <!-- Footer -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                            Cancel
-                        </button>
-                        <button type="submit" class="btn"
-                            style="background-color: var(--primary-red); color: #fff;">
-                            Book Consultant
-                        </button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
 
-    <!-- Bootstrap JS -->
+    <!-- JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -421,27 +458,27 @@
             }
         });
 
-        new Swiper('.ClientSwiper', {
+        const partnerSwiper = new Swiper('.partnerSwiper', {
             loop: true,
-            spaceBetween: 20,
-
-            breakpoints: {
-                0: {
-                    slidesPerView: 2, // mobile
-                },
-                768: {
-                    slidesPerView: 6, // desktop
-                }
-            },
-
             autoplay: {
-                delay: 3000,
+                delay: 2500,
                 disableOnInteraction: false,
             },
-
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
+            slidesPerView: 2, // Default for mobile
+            spaceBetween: 20,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            breakpoints: {
+                // When window width is >= 768px (Tablet)
+                768: {
+                    slidesPerView: 2,
+                },
+                // When window width is >= 1024px (Desktop)
+                1024: {
+                    slidesPerView: 6,
+                },
             },
         });
     </script>

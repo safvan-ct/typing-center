@@ -1,219 +1,139 @@
 @extends('layouts.web')
 
 @section('content')
-    <section class="about-section py-5">
+    <section class="about-hero text-white overflow-hidden">
+        <div class="hero-circle-decoration"></div>
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-6 pe-lg-5 mb-5 mb-lg-0">
-                    <h3 class="about-subtitle fw-bold">ABOUT US</h3>
-                    <h1 class="about-main-heading mb-4">
-                        Immigration Services From <span class="fw-bold">Experienced Providers.</span>
+                <div class="col-lg-7">
+                    <span class="badge bg-gold-uae mb-3 px-3 py-2 rounded-pill">ESTABLISHED 2018</span>
+                    <h1 class="display-4 fw-bold mb-4">
+                        Leading the Way in <br><span class="text-gold-uae">UAE PRO Services</span>
                     </h1>
-
-                    <p class="about-text-lead mb-3">
-                        The Most Eminent Visas and Immigration Consultant service provider. Branches in Dubai.
+                    <p class="lead opacity-75">
+                        We simplify government procedures, allowing you to focus on growing your
+                        business while we handle the paperwork.
                     </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                    <p class="about-text-body mb-4">
-                        Amer Centre-Karama (UID SMART SERVICES) Was established in 2018, with expert Immigration
-                        Consultants, we also provide multiple government services. Our center is operated by trained
-                        staff to meet the requirements of various Nationalities. We also have a special area to cater to
-                        the requirements of Companies and PRO's. <a href="#" class="read-more-link-small">Read More</a>
-                    </p>
+    <div class="container pt-5 pb-3">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h6 class="text-gold-uae fw-bold text-uppercase">Our Story</h6>
+                <h2 class="fw-bold mb-4 custom-underline">Reliable Partners for Success</h2>
+                <p class="mb-4 text-secondary">Starting a journey in the UAE requires a partner who understands the
+                    local laws and government landscape. Our center has spent over two decades building direct
+                    relationships with ministries to provide you with the fastest results.</p>
 
-                    <div class="feature-item mb-4">
-                        <div class="feature-icon-box">
-                            <i class="fas fa-file-contract"></i>
-                        </div>
+                <div class="row g-4 mt-2">
+                    <div class="col-md-6 d-flex gap-3">
+                        <div class="feature-icon"><i class="bi bi-patch-check"></i></div>
                         <div>
-                            <h5 class="feature-title">Accurate Guidance</h5>
-                            <p class="mb-0 text-muted">
-                                Skilled professionals are always ready to provide reliable services to our clients!
-                            </p>
+                            <h6 class="fw-bold mb-1">MOHRE Authorized</h6>
+                            <p class="small text-muted mb-0">Direct access to labour systems.</p>
                         </div>
                     </div>
-
-                    <div class="feature-item">
-                        <div class="feature-icon-box">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
+                    <div class="col-md-6 d-flex gap-3">
+                        <div class="feature-icon"><i class="bi bi-lightning-charge"></i></div>
                         <div>
-                            <h5 class="feature-title">Our Presence</h5>
-                            <p class="mb-0 text-muted">
-                                Four Branches are situated in the heart of Dubai.
-                                <a href="#" class="read-more-link-small">CLICK here to Locate our branch.</a>
-                            </p>
+                            <h6 class="fw-bold mb-1">Express Results</h6>
+                            <p class="small text-muted mb-0">Same-day processing for many tasks.</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-6">
-                    <div class="image-collage">
-                        <div class="row g-3">
-                            <div class="col-8">
-                                <img src="{{ globalFileView($generalSettings['about_large'] ?? '') }}"
-                                    alt="Family traveling in airport" class="img-fluid large-image rounded-3">
-                            </div>
+                <div class="about-features mt-5">
+                    <div class="d-flex gap-3 mb-4">
+                        <div class="feature-icon"><i class="bi bi-shield-check"></i></div>
+                        <div>
+                            <h5 class="fw-bold">Certified Expertise</h5>
+                            <p class="small text-muted">Authorized by UAE government entities for official document
+                                processing.</p>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-3">
+                        <div class="feature-icon"><i class="bi bi-clock-history"></i></div>
+                        <div>
+                            <h5 class="fw-bold">Time Efficiency</h5>
+                            <p class="small text-muted">We cut down processing times by 40% through our direct
+                                digital link with authorities.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                            <div class="col-4">
-                                <div class="row g-3">
-                                    <div class="col-12">
-                                        <img src="{{ globalFileView($generalSettings['about_small_1'] ?? '') }}"
-                                            alt="Hands holding passports" class="img-fluid small-image rounded-3">
-                                    </div>
-                                    <div class="col-12">
-                                        <img src="{{ globalFileView($generalSettings['about_small_2'] ?? '') }}"
-                                            alt="Woman waiting at airport" class="img-fluid small-image rounded-3">
-                                    </div>
-                                </div>
-                            </div>
+            <div class="col-lg-6">
+                <div class="about-img-group position-relative">
+                    <div class="main-img shadow-lg overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200"
+                            class="img-fluid" alt="Team Office">
+                    </div>
+                    <div class="floating-stats shadow-lg rounded-4 p-4 animate-float">
+                        <div class="text-center">
+                            <h2 class="fw-bold text-primary mb-0">7+</h2>
+                            <p class="small text-muted text-uppercase mb-0">Years Excellence</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <section class="section-dark">
+    <section class="service-section">
         <div class="container">
-            <p class="what-we-do text-center">WHAT WE DO</p>
-            <h2 class="main-heading text-center">We Provide All Government And Business Services At One Place</h2>
-
-            <div class="row g-3 pb-4">
-                <div class="col-md-6 col-lg-3 d-flex">
-                    <div class="dark-service-card d-flex flex-column w-100 h-100">
-                        <i class="fas fa-passport card-icon"></i>
-                        <h5 class="card-title-dark">Apply Residency Visa for New Born Baby</h5>
-                        <p class="card-text-dark">Apply for residency visa</p>
-
-                        <div class="mt-auto d-flex justify-content-center">
-                            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#consultantModal"
-                                data-source="about_callback" class="card-arrow-dark">
-                                <i class="fas fa-chevron-right"></i>
-                            </a>
-                        </div>
-                    </div>
+            <div class="support-cta d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-4">
+                <div>
+                    <h4 class="fw-bold mb-1">Not sure what you need?</h4>
+                    <p class="mb-0 opacity-75">Our consultants are ready to guide you through the process.</p>
                 </div>
-
-                <div class="col-md-6 col-lg-3 d-flex">
-                    <div class="dark-service-card d-flex flex-column w-100 h-100">
-                        <i class="fas fa-file-signature card-icon"></i>
-                        <h5 class="card-title-dark">Change Nationality </h5>
-                        <p class="card-text-dark"> Apply for change your nationality </p>
-
-                        <div class="mt-auto d-flex justify-content-center">
-                            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#consultantModal"
-                                data-source="about_callback" class="card-arrow-dark">
-                                <i class="fas fa-chevron-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-3 d-flex">
-                    <div class="dark-service-card d-flex flex-column w-100 h-100">
-                        <i class="fas fa-graduation-cap card-icon"></i>
-                        <h5 class="card-title-dark"> Change Profession </h5>
-                        <p class="card-text-dark"> Apply for change your profession </p>
-
-                        <div class="mt-auto d-flex justify-content-center">
-                            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#consultantModal"
-                                data-source="about_callback" class="card-arrow-dark">
-                                <i class="fas fa-chevron-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-3 d-flex">
-                    <div class="dark-service-card d-flex flex-column w-100 h-100">
-                        <i class="fas fa-calculator card-icon"></i>
-                        <h5 class="card-title-dark"> Data Modification </h5>
-                        <p class="card-text-dark"> Apply for modify your data </p>
-
-                        <div class="mt-auto d-flex justify-content-center">
-                            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#consultantModal"
-                                data-source="about_callback" class="card-arrow-dark">
-                                <i class="fas fa-chevron-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                <a href="javascript:void(0);" class="btn btn-light btn-lg rounded-pill px-4 fw-bold"
+                    data-bs-toggle="modal" data-bs-target="#consultantModal" data-source="specialised_services_callback">
+                    <i class="bi bi-telephone-fill me-2"></i> Contact Us
+                </a>
             </div>
+
         </div>
     </section>
 
-    <x-web.cta-banner />
-
-    <section class="py-5 bg-light">
+    <section class="bg-light py-4">
         <div class="container">
-            <h3 class="section-heading text-center mb-3 fw-bold text-uppercase">
-                <span class="section-heading-underline">Why Choose Us</span>
-            </h3>
-
-            <div class="row g-4 mb-4">
-                <div class="col-md-6 col-lg-4">
-                    <div class="card p-3 h-100 feature-card shadow-sm">
-                        <i class="bi bi-file-earmark-text-fill fs-3 mb-2 color-green"></i>
-                        <h5 class="fw-bold">Accurate Documentation</h5>
-                        <p class="text-muted mb-0">
-                            Error-free typing and submission of government forms to avoid delays and rejections.
-                        </p>
+            <div class="text-center mb-3">
+                <h2 class="fw-bold">Our Core Values</h2>
+                <div class="heading-line mx-auto"></div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 p-4 shadow-sm text-center">
+                        <i class="bi bi-eye fs-1 text-primary-uae mb-3"></i>
+                        <h4 class="fw-bold">Transparency</h4>
+                        <p class="text-muted small">No hidden fees or unexpected delays. We provide clear tracking for every
+                            application.</p>
                     </div>
                 </div>
-
-                <div class="col-md-6 col-lg-4">
-                    <div class="card p-3 h-100 feature-card shadow-sm">
-                        <i class="bi bi-lightning-charge-fill fs-3 mb-2 color-green"></i>
-                        <h5 class="fw-bold">Fast Processing</h5>
-                        <p class="text-muted mb-0">
-                            Quick turnaround time for visas, Emirates ID, Ejari, and other government services.
-                        </p>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 p-4 shadow-sm text-center">
+                        <i class="bi bi-lightning fs-1 text-primary-uae mb-3"></i>
+                        <h4 class="fw-bold">Agility</h4>
+                        <p class="text-muted small">Quick adaptation to new government laws and instant processing updates
+                            for clients.</p>
                     </div>
                 </div>
-
-                <div class="col-md-6 col-lg-4">
-                    <div class="card p-3 h-100 feature-card shadow-sm">
-                        <i class="bi bi-shield-check fs-3 mb-2 color-green"></i>
-                        <h5 class="fw-bold">Government Approved</h5>
-                        <p class="text-muted mb-0">
-                            Authorized typing services compliant with UAE government regulations and systems.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4">
-                    <div class="card p-3 h-100 feature-card shadow-sm">
-                        <i class="bi bi-translate fs-3 mb-2 color-green"></i>
-                        <h5 class="fw-bold">Multilingual Assistance</h5>
-                        <p class="text-muted mb-0">
-                            Support available in multiple languages to serve customers from diverse backgrounds.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4">
-                    <div class="card p-3 h-100 feature-card shadow-sm">
-                        <i class="bi bi-people fs-3 mb-2 color-green"></i>
-                        <h5 class="fw-bold">Expert Guidance</h5>
-                        <p class="text-muted mb-0">
-                            Professional guidance on document requirements, procedures, and application status.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4">
-                    <div class="card p-3 h-100 feature-card shadow-sm">
-                        <i class="bi bi-headset fs-3 mb-2 color-green"></i>
-                        <h5 class="fw-bold">Customer Support</h5>
-                        <p class="text-muted mb-0">
-                            Friendly support team available to assist you throughout the application process.
-                        </p>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 p-4 shadow-sm text-center">
+                        <i class="bi bi-heart fs-1 text-primary-uae mb-3"></i>
+                        <h4 class="fw-bold">Integrity</h4>
+                        <p class="text-muted small">Handling your sensitive legal and corporate documents with the highest
+                            confidentiality.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <x-web.clients :clients="$partners" />
+    <section class="py-5 bg-white">
+        <x-web.clients :partners="$partners" />
+    </section>
 @endsection
