@@ -47,40 +47,43 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.13.3/build/css/intlTelInput.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
-    <link rel="stylesheet" href="{{ asset('web/css/core.css') }}" />
     <link rel="stylesheet" href="{{ asset('web/css/custom.css') }}" />
 
+    @php
+        $seoData = [
+            '@context' => 'https://schema.org',
+            '@type' => 'GovernmentService',
+            'name' => 'AL-AQSA',
+            'alternateName' => 'UAE Visa & PRO Services',
+            'description' => 'Authorized provider for UAE Golden Visa, Business Setup, and Corporate PRO services.',
+            'logo' => asset('img/logo.png'),
+            'address' => [
+                '@type' => 'PostalAddress',
+                'streetAddress' => $generalSettings['address'] ?? '',
+                'addressLocality' => 'Dubai',
+                'addressRegion' => 'Dubai',
+                'addressCountry' => 'AE',
+            ],
+            'geo' => [
+                '@type' => 'GeoCoordinates',
+                'latitude' => 25.2048,
+                'longitude' => 55.2708,
+            ],
+            'url' => url('/'),
+            'telephone' => '+' . $generalSettings['primary_phone'],
+            'openingHoursSpecification' => [
+                [
+                    '@type' => 'OpeningHoursSpecification',
+                    'dayOfWeek' => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                    'opens' => '08:00',
+                    'closes' => '20:00',
+                ],
+            ],
+        ];
+    @endphp
+
     <script type="application/ld-json">
-        {
-            "@context": "https://schema.org",
-            "@type": "GovernmentService",
-            "name": "AL-AQSA",
-            "alternateName": "UAE Visa & PRO Services",
-            "description": "Authorized provider for UAE Golden Visa, Business Setup, and Corporate PRO services.",
-            "logo": "{{ asset('img/logo.png') }}",
-            "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Your Office Street Address",
-                "addressLocality": "Dubai",
-                "addressRegion": "Dubai",
-                "addressCountry": "AE"
-            },
-            "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": 25.2048,
-                "longitude": 55.2708
-            },
-            "url": "{{ url('/') }}",
-            "telephone": "+971522857577",
-            "openingHoursSpecification": [
-                {
-                    "@type": "OpeningHoursSpecification",
-                    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-                    "opens": "08:00",
-                    "closes": "20:00"
-                }
-            ]
-        }
+        {!! json_encode($seoData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) !!}
     </script>
 </head>
 
