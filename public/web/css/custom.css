@@ -1044,7 +1044,7 @@ header,
     color: var(--uae-dark);
 }
 
-.text-gradient {
+.labor-text-gradient {
     color: var(--uae-green);
 }
 
@@ -1400,117 +1400,11 @@ header,
     }
 }
 
-:root {
-    --navy-uae: #0a1d37;
-    --gold-uae: #c5a059;
-}
-
+/* About Us Page*/
 .text-primary-uae {
-    color: var(--gold-uae);
+    color: var(--uae-gold);
 }
 
-.text-navy {
-    color: var(--navy-uae);
-}
-
-.btn-navy-uae {
-    background: var(--navy-uae);
-    color: white;
-}
-
-.text-gradient {
-    background: linear-gradient(90deg, var(--navy-uae), var(--gold-uae));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-/* Image Column Styling */
-.about-image-wrapper {
-    position: relative;
-    padding: 40px;
-}
-
-.about-shape {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 80%;
-    height: 80%;
-    background: var(--gold-uae);
-    opacity: 0.1;
-    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-    z-index: 1;
-}
-
-.main-img-container {
-    position: relative;
-    z-index: 2;
-    transform: rotate(-2deg);
-    transition: transform 0.3s ease;
-}
-
-.main-img-container:hover {
-    transform: rotate(0deg) scale(1.02);
-}
-
-.experience-badge {
-    position: absolute;
-    bottom: 10%;
-    left: 0;
-    background: #fff;
-    padding: 20px 30px;
-    border-radius: 20px;
-    z-index: 3;
-    border-left: 5px solid var(--gold-uae);
-}
-
-.exp-num {
-    font-size: 2.5rem;
-    font-weight: 900;
-    color: var(--navy-uae);
-    line-height: 1;
-}
-
-.exp-text {
-    font-size: 0.85rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: var(--gold-uae);
-}
-
-/* Animation */
-@keyframes float {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-15px);
-    }
-}
-
-.animate-float {
-    animation: float 4s ease-in-out infinite;
-}
-
-/* Mobile Friendly */
-@media (max-width: 991px) {
-    .about-image-wrapper {
-        margin-top: 50px;
-        padding: 20px;
-    }
-
-    .experience-badge {
-        bottom: -20px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 80%;
-    }
-}
-
-/* About Hero */
 .about-hero {
     background-color: var(--uae-navy);
     padding: 70px 0;

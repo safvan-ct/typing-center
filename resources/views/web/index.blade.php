@@ -152,7 +152,7 @@
             <div class="banner-overlay"></div>
 
             <div class="row g-0 position-relative" style="z-index: 5;">
-                <div class="col-lg-7 p-4 p-md-5 d-flex flex-column justify-content-center">
+                <div class="col-lg-7 p-3 p-md-5 d-flex flex-column justify-content-center">
                     <div class="badge-wrapper mb-3">
                         <span class="creative-badge">
                             <span class="pulse-icon"></span> AUTHORIZED SERVICE PROVIDER
@@ -164,12 +164,12 @@
                         <span class="text-gradient">Emirates ID</span> Services
                     </h1>
 
-                    <p class="hero-desc mb-4">
+                    <p class="hero-desc mb-0 mb-md-4">
                         Fast-track your residency with premium typing and document processing.
                         We handle the complex paperwork while you focus on your future.
                     </p>
 
-                    <div class="row g-3 mb-4">
+                    <div class="row g-3 mb-4 d-none d-md-flex">
                         <div class="col-6 col-md-6">
                             <div class="service-pill"><i class="bi bi-patch-check"></i> New Visa</div>
                         </div>
@@ -185,8 +185,8 @@
                     </div>
                 </div>
 
-                <div class="col-lg-5 p-4 p-md-5 d-flex align-items-center justify-content-center bg-glass-mobile">
-                    <div class="cta-floating-card p-4">
+                <div class="col-lg-5 p-3 p-md-5 d-flex align-items-center justify-content-center bg-glass-mobile">
+                    <div class="cta-floating-card p-3 p-md-4">
                         <div class="text-center">
                             <h4 class="fw-bold mb-1">Apply Online</h4>
                             <p class="small opacity-75">Processing in 24-48 Hours</p>
@@ -211,7 +211,7 @@
     </div>
 
     <!-- Authorized Services -->
-    <div class="container pt-5 pb-5">
+    <div class="container py-4 py-md-5">
         <div class="row text-center mb-0">
             <div class="col-12">
                 <h2 class="section-heading text-center">
@@ -270,7 +270,7 @@
 
                             <h1 class="labor-hero-title mb-4">
                                 Labour & Work <br>
-                                <span class="text-gradient">Contract Services</span>
+                                <span class="labor-text-gradient">Contract Services</span>
                             </h1>
 
                             <div class="creative-labor-list">
@@ -398,106 +398,80 @@
     </section>
 
     <!-- Visa Ad Banner -->
-    <div class="container py-5">
+    @php
+        $visaAds = [
+            [
+                'badge' => 'HOLIDAY SPECIAL',
+                'title' => 'Global Visa Services',
+                'desc' =>
+                    'Get your Tourist, Business, or Work Visa processed in record time. Professional assistance for over 50+ countries.',
+                'img' => 'https://images.unsplash.com/photo-1544016768-982d1554f0b9?auto=format&fit=crop&q=80&w=1200',
+                'price' => '299.00',
+                'features' => ['99% Success Rate', '24/7 Support', 'No Hidden Fees'],
+            ],
+            [
+                'badge' => 'UAE RESIDENCY',
+                'title' => 'UAE Golden Visa',
+                'desc' => 'Secure your 10-year residency. Specialist assistance for investors and professionals.',
+                'img' =>
+                    'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=1200',
+                'price' => '499.00',
+                'features' => ['VIP Processing', 'Family Sponsorship'],
+            ],
+            [
+                'badge' => 'CORPORATE',
+                'title' => 'Business & Work Visas',
+                'desc' => 'Global business entry visas and work permits for companies and entrepreneurs.',
+                'img' =>
+                    'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200',
+                'price' => '750.00',
+                'features' => ['PRO Services', 'Bulk Processing'],
+            ],
+        ];
+    @endphp
+    <div class="container py-4 py-md-5">
         <div class="swiper VisaAdSwiper">
             <div class="swiper-wrapper">
 
-                <div class="swiper-slide">
-                    <div class="visa-ad-banner position-relative overflow-hidden rounded-4 shadow-lg">
-                        <img src="https://images.unsplash.com/photo-1544016768-982d1554f0b9?auto=format&fit=crop&q=80&w=1200"
-                            class="banner-bg">
-                        <div class="row g-0 align-items-center position-relative h-100 banner-content">
-                            <div class="col-lg-7 p-4 p-md-5 text-white">
-                                <span class="badge bg-warning text-dark mb-3 px-3 py-2 rounded-pill fw-bold">HOLIDAY
-                                    SPECIAL</span>
-                                <h2 class="display-5 fw-bold mb-3">Global Visa Services</h2>
-                                <p class="lead mb-4">Get your Tourist, Business, or Work Visa processed in record time.
-                                    Professional
-                                    assistance for over 50+ countries.</p>
+                @foreach ($visaAds as $item)
+                    <div class="swiper-slide">
+                        <div class="visa-ad-banner position-relative overflow-hidden rounded-4 shadow-lg">
+                            <img src="{{ $item['img'] }}" alt="{{ $item['title'] }}" class="banner-bg">
 
-                                <ul class="list-unstyled d-flex flex-wrap gap-3 mb-4 visa-features">
-                                    <li><i class="bi bi-check-circle-fill text-info"></i> 99% Success Rate</li>
-                                    <li><i class="bi bi-check-circle-fill text-info"></i> 24/7 Support</li>
-                                    <li><i class="bi bi-check-circle-fill text-info"></i> No Hidden Fees</li>
-                                </ul>
-                            </div>
-                            <div class="col-lg-5 p-4 text-center">
-                                <div class="glass-cta p-4 rounded-4">
-                                    <h4 class="text-white mb-2">Starts at</h4>
-                                    <div class="price-tag display-6 fw-bold text-warning mb-3">AED 299.00</div>
-                                    <button class="btn btn-light btn-lg w-100 rounded-pill fw-bold shadow hover-grow"
-                                        data-bs-toggle="modal" data-bs-target="#consultantModal"
-                                        data-source="visa_ad_callback">
-                                        BOOK NOW <i class="bi bi-arrow-right-short"></i>
-                                    </button>
-                                    <p class="text-white-50 mt-3 small">*T&C Apply. Processing time varies by country.</p>
+                            <div class="row g-0 align-items-center position-relative h-100 banner-content">
+                                <div class="col-lg-7 p-3 p-md-5 text-white">
+                                    <span class="badge bg-warning text-dark mb-3 px-3 py-2 rounded-pill fw-bold">
+                                        {{ $item['badge'] }}
+                                    </span>
+                                    <h2 class="display-5 fw-bold mb-3">{{ $item['title'] }}</h2>
+                                    <p class="lead mb-2 mb-md-4">{{ $item['desc'] }}</p>
+
+                                    <ul class="list-unstyled d-flex flex-wrap gap-2 mb-0 mb-md-4 visa-features">
+                                        @foreach ($item['features'] as $feature)
+                                            <li><i class="bi bi-check-circle-fill text-info"></i> {{ $feature }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                <div class="col-lg-5 p-3 p-md-4 text-center">
+                                    <div class="glass-cta p-2 p-md-4 rounded-4">
+                                        <h4 class="text-white mb-2">Starts At</h4>
+                                        <div class="price-tag display-6 fw-bold text-warning mb-3">
+                                            AED {{ $item['price'] }}
+                                        </div>
+                                        <button class="btn btn-light btn-lg w-100 rounded-pill fw-bold shadow hover-grow"
+                                            data-bs-toggle="modal" data-bs-target="#consultantModal"
+                                            data-source="visa_ad_callback">
+                                            BOOK NOW <i class="bi bi-arrow-right-short"></i>
+                                        </button>
+                                        <p class="text-white-50 mt-3 small">
+                                            *T&C Apply. Processing time varies by service.
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="swiper-slide">
-                    <div class="visa-ad-banner position-relative overflow-hidden rounded-4 shadow-lg">
-                        <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=1200"
-                            class="banner-bg">
-                        <div class="row g-0 align-items-center position-relative h-100 banner-content">
-                            <div class="col-lg-7 p-4 p-md-5 text-white">
-                                <span class="badge bg-danger mb-3 px-3 py-2 rounded-pill fw-bold">UAE RESIDENCY</span>
-                                <h2 class="display-5 fw-bold mb-3">UAE Golden Visa</h2>
-                                <p class="lead mb-4">Secure your 10-year residency. Specialist assistance for investors and
-                                    professionals.</p>
-                                <ul class="list-unstyled d-flex flex-wrap gap-3 mb-0 visa-features">
-                                    <li><i class="bi bi-check-circle-fill text-info"></i> VIP Processing</li>
-                                    <li><i class="bi bi-check-circle-fill text-info"></i> Family Sponsorship</li>
-                                </ul>
-                            </div>
-                            <div class="col-lg-5 p-4 text-center">
-                                <div class="glass-cta p-4 rounded-4">
-                                    <h4 class="text-white mb-2">Consultation</h4>
-                                    <div class="price-tag display-6 fw-bold text-warning mb-3">AED 499.00</div>
-                                    <button class="btn btn-light btn-lg w-100 rounded-pill fw-bold shadow hover-grow"
-                                        data-bs-toggle="modal" data-bs-target="#consultantModal"
-                                        data-source="visa_ad_callback">
-                                        BOOK NOW <i class="bi bi-arrow-right-short"></i>
-                                    </button>
-                                    <p class="text-white-50 mt-3 small">*T&C Apply. Processing time varies by country.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="swiper-slide">
-                    <div class="visa-ad-banner position-relative overflow-hidden rounded-4 shadow-lg">
-                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200"
-                            class="banner-bg">
-                        <div class="row g-0 align-items-center position-relative h-100 banner-content">
-                            <div class="col-lg-7 p-4 p-md-5 text-white">
-                                <span class="badge bg-success mb-3 px-3 py-2 rounded-pill fw-bold">CORPORATE</span>
-                                <h2 class="display-5 fw-bold mb-3">Business & Work Visas</h2>
-                                <p class="lead mb-4">Global business entry visas and work permits for companies and
-                                    entrepreneurs.</p>
-                                <ul class="list-unstyled d-flex flex-wrap gap-3 mb-0 visa-features">
-                                    <li><i class="bi bi-check-circle-fill text-info"></i> PRO Services</li>
-                                    <li><i class="bi bi-check-circle-fill text-info"></i> Bulk Processing</li>
-                                </ul>
-                            </div>
-                            <div class="col-lg-5 p-4 text-center">
-                                <div class="glass-cta p-4 rounded-4">
-                                    <h4 class="text-white mb-2">Processing Fee</h4>
-                                    <div class="price-tag display-6 fw-bold text-warning mb-3">AED 750.00</div>
-                                    <button class="btn btn-light btn-lg w-100 rounded-pill fw-bold shadow hover-grow"
-                                        data-bs-toggle="modal" data-bs-target="#consultantModal"
-                                        data-source="visa_ad_callback">
-                                        BOOK NOW <i class="bi bi-arrow-right-short"></i>
-                                    </button>
-                                    <p class="text-white-50 mt-3 small">*T&C Apply. Processing time varies by country.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
 
             <div class="swiper-pagination visa-pagination"></div>

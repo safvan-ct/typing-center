@@ -279,7 +279,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
-                        <div class="modal-body p-4 p-md-5 pt-0">
+                        <div class="modal-body p-2 px-md-5 pt-0">
                             <h2 class="fw-bold text-dark mb-4">Service Request</h2>
 
                             <form id="consultantForm" method="POST" action="{{ route('consultant.store') }}">
