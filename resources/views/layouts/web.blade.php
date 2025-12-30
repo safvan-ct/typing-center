@@ -5,6 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ config('app.name') }}</title>
+    <meta name="title" content="Expert Government & Corporate Services in UAE | {{ config('app.name') }}">
+    <meta name="description"
+        content="Authorized provider for UAE Visa services, Golden Visa assistance, MOHRE, and Amer services. Fast-track document processing and corporate PRO solutions in Dubai.">
+    <meta name="keywords"
+        content="UAE Visa, Golden Visa Dubai, PRO Services UAE, Amer Center Services, MOHRE services, Business Setup Dubai, Document Clearing">
+    <meta name="author" content="{{ config('app.name') }}">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="Expert Government & Corporate Services in UAE">
+    <meta property="og:description"
+        content="Get your Tourist, Business, or Golden Visa processed in record time with our authorized PRO services.">
+    <meta property="og:image" content="{{ asset('img/logo.png') }}">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ url()->current() }}">
+    <meta property="twitter:title" content="Expert Government & Corporate Services in UAE">
+    <meta property="twitter:description"
+        content="Authorized provider for UAE Visa services and corporate PRO solutions.">
+    <meta property="twitter:image" content="{{ asset('img/logo.png') }}">
+
+    <link rel="canonical" href="{{ url()->current() }}">
 
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('img/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('img/favicon-32x32.png') }}">
@@ -27,6 +49,39 @@
 
     <link rel="stylesheet" href="{{ asset('web/css/core.css') }}" />
     <link rel="stylesheet" href="{{ asset('web/css/custom.css') }}" />
+
+    <script type="application/ld-json">
+        {
+            "@context": "https://schema.org",
+            "@type": "GovernmentService",
+            "name": "AL-AQSA",
+            "alternateName": "UAE Visa & PRO Services",
+            "description": "Authorized provider for UAE Golden Visa, Business Setup, and Corporate PRO services.",
+            "logo": "{{ asset('img/logo.png') }}",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Your Office Street Address",
+                "addressLocality": "Dubai",
+                "addressRegion": "Dubai",
+                "addressCountry": "AE"
+            },
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 25.2048,
+                "longitude": 55.2708
+            },
+            "url": "{{ url('/') }}",
+            "telephone": "+971522857577",
+            "openingHoursSpecification": [
+                {
+                    "@type": "OpeningHoursSpecification",
+                    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+                    "opens": "08:00",
+                    "closes": "20:00"
+                }
+            ]
+        }
+    </script>
 </head>
 
 <body>
